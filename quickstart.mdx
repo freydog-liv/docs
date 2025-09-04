@@ -11,16 +11,16 @@ Configure your project and add LCK to your game.
 
 <AccordionGroup>
   <Accordion title="Configure LCK Settings" icon="gear">
-    Go to the LCK project settings under`Edit/Project Settings/LCK`
+    Go to the LCK project settings under **Edit/Project Settings/LCK**
 
-    - Set the `Tracking ID`  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false))
-    - Add your project's name to the  `Game Name`  field. 
+    - Set the **Tracking ID**  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false))
+    - Add your project's name to the  **Game Name**  field.
   </Accordion>
   <Accordion title="Configure Player Settings " description="Android only" icon="folder-gear">
     Go to Player/Other Settings/Android
 
-    - Set `Minimum API Level` to `29` or above.
-    - Set `Target Architectures` to `ARM64`
+    - Set **Minimum API Level** to **29** or above.
+    - Set **Target Architectures** to **ARM64**
   </Accordion>
 </AccordionGroup>
 
@@ -28,12 +28,12 @@ Configure your project and add LCK to your game.
 
 <AccordionGroup>
   <Accordion title="Add Tablet and Service" icon="aperture">
-    - Go to `Packages/LIV Creator Kit/Runtime/Prefabs`
-    - Drag the `LCK Service Helper` prefab into your scene.
-    - Navigate to the `Tablets` folder and add the `LCK Tablet` prefab that matches your interaction framework and input style, or use `Base LCK Tablet` to set up your own input system.
+    - Go to **Packages/LIV Creator Kit/Runtime/Prefabs**
+    - Drag the **LCK Service Helper** prefab into your scene.
+    - Navigate to the **Tablets** folder and add the **LCK Tablet** prefab that matches your interaction framework and input style, or use **Base LCK Tablet** to set up your own input system.
   </Accordion>
   <Accordion title="Configure Layers" icon="layer-group">
-    Add a layer called `LCK Tablet` to your project layers.
+    Add a layer called **LCK Tablet** to your project layers.
 
     <Info>
       LCK will automatically use this to hide the tablet geometry from LCK cameras where necessary.
@@ -44,15 +44,11 @@ Configure your project and add LCK to your game.
 
     ### Direct Touch
 
-    - Ensure your hand colliders have the tag `Hand` (or whatever tag you specified in `Project Settings/LCK/Trigger Enter Tag` by default this is `Hand`)
+    - Ensure your hand colliders have the tag **Hand** or whatever tag you set in **Project Settings/LCK/Trigger Enter Tag** (by default this is Hand)
 
     ### Raycast
 
     - Ensure that the `Raycast Mask` for the `Ray Interactor` includes both `Default` and `UI` layers.
-
-    <Tip>
-      Try changing the primary color to see an immediate difference\!
-    </Tip>
   </Accordion>
 </AccordionGroup>
 
@@ -66,9 +62,9 @@ Configure your project and add LCK to your game.
   ### Test
 
   - In headset, grab your tablet by the handles.
-  - Tap "Record"
+  - Tap **Record**
   - Switch between selfie, first-person and third-person views, and play around with the various camera controls like Follow, Distance and FOV to ensure it is working as expected.
-  - Tap "Stop" to save the recording.
+  - Tap **Stop** to save the recording.
 </Accordion>
 
 ## Next steps
