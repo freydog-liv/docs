@@ -1,46 +1,54 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+description: "Go from zero to game ready in just a few steps."
 ---
 
-## Get started in three steps
+## Add LCK in three easy steps
 
-Get your documentation site running locally and make your first customization.
+Configure your project and add LCK to your game.
 
-### Step 1: Set up your local environment
+### Step 1: Configure your project
 
 <AccordionGroup>
-  <Accordion title="Clone your docs locally" icon="copy">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
+  <Accordion title="Configure LCK Settings" icon="gear">
+    Go to the LCK project settings under`Edit/Project Settings/LCK`
 
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
+    - Set the `Tracking ID`  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false))
+    - Add your project's name to the  `Game Name`  field. 
   </Accordion>
-  <Accordion title="Start the preview server" icon="rectangle-terminal">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live\!
+  <Accordion title="Configure Player Settings " description="Android only" icon="folder-gear">
+    Go to Player/Other Settings/Android
 
-    <Tip>
-      Your preview updates automatically as you edit files.
-    </Tip>
+    - Set `Minimum API Level` to `29` or above.
+    - Set `Target Architectures` to `ARM64`
   </Accordion>
 </AccordionGroup>
 
-### Step 2: Deploy your changes
+### Step 2: Add the tablet
 
 <AccordionGroup>
-  <Accordion title="Install our GitHub app" icon="github">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
+  <Accordion title="Add Tablet and Service" icon="aperture">
+    - Go to `Packages/LIV Creator Kit/Runtime/Prefabs`
+    - Drag the `LCK Service Helper` prefab into your scene.
+    - Navigate to the `Tablets` folder and add the `LCK Tablet` prefab that matches your interaction framework and input style, or use `Base LCK Tablet` to set up your own input system.
   </Accordion>
-  <Accordion title="Update your site name and colors" icon="palette">
-    For a first change, let's update the name and colors of your docs site.
+  <Accordion title="Configure Layers" icon="layer-group">
+    Add a layer called `LCK Tablet` to your project layers.
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+    <Info>
+      LCK will automatically use this to hide the tablet geometry from LCK cameras where necessary.
+    </Info>
+  </Accordion>
+  <Accordion title="Configure Input" icon="joystick">
+    Set up LCK to work with the input system used in your project.
+
+    ### Direct Touch
+
+    - Ensure your hand colliders have the tag `Hand` (or whatever tag you specified in `Project Settings/LCK/Trigger Enter Tag` by default this is `Hand`)
+
+    ### Raycast
+
+    - Ensure that the `Raycast Mask` for the `Ray Interactor` includes both `Default` and `UI` layers.
 
     <Tip>
       Try changing the primary color to see an immediate difference\!
@@ -48,11 +56,19 @@ Get your documentation site running locally and make your first customization.
   </Accordion>
 </AccordionGroup>
 
-### Step 3: Go live
+### Step 3: Test
 
-<Accordion title="Publish your docs" icon="rocket">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments\!
+<Accordion title="Build and Test" icon="rocket">
+  ### Build
+
+  - Build and install your project normally, and run the game on your headset.
+
+  ### Test
+
+  - In headset, grab your tablet by the handles.
+  - Tap "Record"
+  - Switch between selfie, first-person and third-person views, and play around with the various camera controls like Follow, Distance and FOV to ensure it is working as expected.
+  - Tap "Stop" to save the recording.
 </Accordion>
 
 ## Next steps
