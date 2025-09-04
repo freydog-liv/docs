@@ -9,16 +9,14 @@ description: "Go from zero to recording ready in just three steps."
 
 <AccordionGroup>
   <Accordion title="Configure LCK Settings" icon="gear">
-    Go to the LCK project settings under **Edit/Project Settings/LCK**
-
-    - Set the **Tracking ID**  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false))
-    - Add your project's name to the  **Game Name**  field.
+    1. Go to the LCK project settings under **Edit/Project Settings/LCK.**
+    2. Set the **Tracking ID**  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false)).
+    3. Add your project's name to the  **Game Name**  field.
   </Accordion>
   <Accordion title="Configure Player Settings " description="Android only" icon="folder-gear">
-    Go to Player/Other Settings/Android
-
-    - Set **Minimum API Level** to **29** or above.
-    - Set **Target Architectures** to **ARM64**
+    1. Go to **Player/Other Settings/Android**.
+    2. Set **Minimum API Level** to **29** or above.
+    3. Set **Target Architectures** to **ARM64.**
   </Accordion>
 </AccordionGroup>
 
@@ -26,12 +24,16 @@ description: "Go from zero to recording ready in just three steps."
 
 <AccordionGroup>
   <Accordion title="Add Tablet and Service" icon="aperture">
-    - Go to **Packages/LIV Creator Kit/Runtime/Prefabs**
-    - Drag the **LCK Service Helper** prefab into your scene.
-    - Navigate to the **Tablets** folder and add the **LCK Tablet** prefab that matches your interaction framework and input style, or use **Base LCK Tablet** to set up your own input system.
+    Set up the LCK Service Prefabs and Tablet Prefab in scene.
+
+    1. Go to **Packages/LIV Creator Kit/Runtime/Prefabs**
+    2. Drag the **LCK Service Helper** prefab into your scene.
+    3. Navigate to the **Tablets** folder and add the **LCK Tablet** prefab that matches your interaction framework and input style, or use **Base LCK Tablet** to set up your own input system.
   </Accordion>
   <Accordion title="Configure Layers" icon="layer-group">
-    Add a layer called **LCK Tablet** to your project layers.
+    Configure project layers.
+
+    - Add a layer called **LCK Tablet** to your project layers.
 
     <Info>
       LCK will automatically use this to hide the tablet geometry from LCK cameras where necessary.
@@ -52,7 +54,7 @@ description: "Go from zero to recording ready in just three steps."
 ### Step 3: Test
 
 <Accordion title="Build and Test" icon="rocket">
-  ### 
+  Build and test your game to verify LCK has been installed and added correctly.
 
   <Steps>
     <Step title="Build">
@@ -63,6 +65,13 @@ description: "Go from zero to recording ready in just three steps."
       - Tap **Record**
       - Switch between selfie, first-person and third-person views, and play around with the various camera controls like Follow, Distance and FOV to ensure it is working as expected.
       - Tap **Stop** to save the recording.
+    </Step>
+    <Step title="Review">
+      - Check your recording in headset at **Storage/Movies/\<RecordingAlbumName\> **or for PCVR at **\<User\>/Videos/\<RecordingAlbumName\>**
+
+        <Info>
+          The **RecordingAlbumName** variable can be configured in **LCK Settings**.
+        </Info>
     </Step>
   </Steps>
 </Accordion>
