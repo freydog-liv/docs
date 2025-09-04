@@ -1,11 +1,9 @@
 ---
 title: "Quickstart"
-description: "Go from zero to game ready in just a few steps."
+description: "Go from zero to recording ready in just three steps."
 ---
 
 ## Add LCK in three easy steps
-
-Configure your project and add LCK to your game.
 
 ### Step 1: Configure your project
 
@@ -42,13 +40,12 @@ Configure your project and add LCK to your game.
   <Accordion title="Configure Input" icon="joystick">
     Set up LCK to work with the input system used in your project.
 
-    ### Direct Touch
-
-    - Ensure your hand colliders have the tag **Hand** or whatever tag you set in **Project Settings/LCK/Trigger Enter Tag** (by default this is Hand)
-
-    ### Raycast
-
-    - Ensure that the **Raycast Mask** for the **Ray Interactor** includes both **Default** and **UI** layers.
+    <Card title="Direct Input" icon="hand-back-point-up">
+      Ensure your hand colliders have the tag **Hand** or whatever tag you set in **Project Settings/LCK/Trigger Enter Tag** (by default this is Hand)
+    </Card>
+    <Card title="Raycast" icon="arrow-down-right">
+      Ensure that the **Raycast Mask** for the **Ray Interactor** includes both **Default** and **UI** layers.
+    </Card>
   </Accordion>
 </AccordionGroup>
 
