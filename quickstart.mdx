@@ -3,15 +3,19 @@ title: "Quickstart"
 description: "Go from zero to recording ready in just three steps."
 ---
 
-## Add LCK in three easy steps
+### Step 1: Set up LCK
 
-### Step 1: Configure your project
+Set up your LCK and Player settings to support the tablet.
 
 <AccordionGroup>
   <Accordion title="Configure LCK Settings" icon="gear">
     1. Go to the LCK project settings under **Edit/Project Settings/LCK.**
-    2. Set the **Tracking ID**  (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false)).
-    3. Add your project's name to the  **Game Name**  field.
+    2. Set the **Tracking ID** (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false)).
+    3. Add your project's name to the **Game Name**  field.
+
+    <Info>
+      You can view your telemetry data from the LCK Dashboard once launched - there's roughly a 24 hour delay in reporting to allow for data privacy.
+    </Info>
   </Accordion>
   <Accordion title="Configure Player Settings " description="Android only" icon="folder-gear">
     1. Go to **Player/Other Settings/Android**.
@@ -21,6 +25,8 @@ description: "Go from zero to recording ready in just three steps."
 </AccordionGroup>
 
 ### Step 2: Add the tablet
+
+Add the tablet and configure your input system and project layers.
 
 <AccordionGroup>
   <Accordion title="Add Tablet and Service" icon="aperture">
@@ -53,8 +59,10 @@ description: "Go from zero to recording ready in just three steps."
 
 ### Step 3: Test
 
+Build and test your game to verify LCK has been installed and added correctly.
+
 <Accordion title="Build and Test" icon="rocket">
-  Build and test your game to verify LCK has been installed and added correctly.
+  
 
   <Steps>
     <Step title="Build">
@@ -67,7 +75,7 @@ description: "Go from zero to recording ready in just three steps."
       - Tap **Stop** to save the recording.
     </Step>
     <Step title="Review">
-      - Check your recording in headset at **Storage/Movies/\<RecordingAlbumName\> **or for PCVR at **\<User\>/Videos/\<RecordingAlbumName\>**
+      - Check your recording in headset at **Storage/Movies/\<RecordingAlbumName\>** or for PCVR at **\<User\>/Videos/\<RecordingAlbumName\>**
 
         <Info>
           The **RecordingAlbumName** variable can be configured in **LCK Settings**.
@@ -81,17 +89,17 @@ description: "Go from zero to recording ready in just three steps."
 Now that you have your docs running, explore these key features:
 
 <CardGroup cols={2}>
-  <Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
+  <Card title="Spawn The Camera" icon="pen-to-square" href="/essentials/markdown">
     Learn MDX syntax and start writing your documentation.
   </Card>
-  <Card title="Customize style" icon="palette" href="/essentials/settings">
-    Make your docs match your brand perfectly.
+  <Card title="Tablet Customisation" icon="palette" href="/essentials/settings">
+    Learn about the components and features of the LCK Tablet.
   </Card>
-  <Card title="Add code examples" icon="square-code" href="/essentials/code">
-    Include syntax-highlighted code blocks.
+  <Card title="Add Custom Audio" icon="square-code" href="/essentials/code">
+    Learn how the LCK audio system works and how to add support for your custom audio framework.
   </Card>
   <Card title="API documentation" icon="code" href="/api-reference/introduction">
-    Auto-generate API docs from OpenAPI specs.
+    Learn about the LCK scripting API.
   </Card>
 </CardGroup>
 
