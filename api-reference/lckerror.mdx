@@ -1,0 +1,32 @@
+---
+title: "LckError"
+description: "Represents error codes that describe why an LCK operation failed."
+---
+
+## Description
+
+Defines error codes returned by `LckResult` when an operation fails.\
+Each value indicates a specific failure condition in the LIV Capture Kit (LCK).
+
+## Enum Values
+
+| Name                               | Value | Description                                                      |
+| :--------------------------------- | :---- | :--------------------------------------------------------------- |
+| **ServiceNotCreated**              | 1     | The service has not been created before the call.                |
+| **ServiceDisposed**                | 2     | The service has already been disposed and can no longer be used. |
+| **InvalidDescriptor**              | 3     | The provided `LckDescriptor` was invalid.                        |
+| **CameraIdNotFound**               | 4     | The specified camera ID could not be found.                      |
+| **MonitorIdNotFound**              | 5     | The specified monitor ID could not be found.                     |
+| **MicrophonePermissionDenied**     | 6     | Microphone permission was denied by the user or system.          |
+| **RecordingAlreadyStarted**        | 7     | A recording session is already in progress.                      |
+| **NotCurrentlyRecording**          | 8     | Stop or query was attempted while no recording was active.       |
+| **RecordingError**                 | 9     | An error occurred while recording.                               |
+| **PhotoCaptureError**              | 10    | An error occurred while capturing a photo.                       |
+| **CantEditSettingsWhileRecording** | 11    | Settings cannot be changed during an active recording.           |
+| **NotEnoughStorageSpace**          | 12    | The device does not have enough free storage space.              |
+| **FailedToCopyRecordingToGallery** | 13    | A recorded video could not be copied to the gallery.             |
+| **FailedToCopyPhotoToGallery**     | 14    | A captured photo could not be copied to the gallery.             |
+| **UnsupportedGraphicsApi**         | 15    | The current graphics API is not supported by LCK.                |
+| **UnsupportedPlatform**            | 16    | The current platform is not supported by LCK.                    |
+| **MicrophoneError**                | 17    | A runtime error occurred with microphone input.                  |
+| **UnknownError**                   | 18    | An unspecified or unknown error occurred.                        |
