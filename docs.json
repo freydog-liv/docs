@@ -54,7 +54,7 @@
             "pages": [
               "api-reference/introduction",
               "api-reference/lckservice",
-              "api-reference/lckresult"
+              "api-reference/lckresult",
               "api-reference/lckerror"
             ]
           }
