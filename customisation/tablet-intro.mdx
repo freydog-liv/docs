@@ -15,21 +15,29 @@ description: "Breakdown of tablet components and functionality."
       - FOV (50-100)
       - Smoothing (0-100)
       - Flip (Front/Back camera)
+      - Follow
     </Accordion>
   </Tab>
   <Tab title="First Person">
-    
+    ## First Person
+
+    First person camera that films from perspective of the player. The camera transform will be set to the HMD Transform field in LCK Camera Controller, if this is not set it will default to the main camera transform.
+
+    <Accordion title="Available Settings" defaultOpen icon="gear">
+      - FOV (50-100)
+      - Smoothing (0-100)
+    </Accordion>
   </Tab>
   <Tab title="Third Person">
-    
+    ## Third Person
+
+    Third person camera that tracks position of users head. Allows user to select FOV, smooth and distance offset. Can flip between front or back of user.
+
+    <Accordion title="Available Settings" defaultOpen icon="gear">
+      - FOV (50-100)
+      - Smoothing (0-100)
+      - Distance (1-5)
+      - Flip (Forward of user HMD/Behind user HMD)
+    </Accordion>
   </Tab>
 </Tabs>
-
-## First Person 
-
-First person camera that films from perspective of the player. The camera transform will be set to the HMD Transform field in LCK Camera Controller, if this is not set it will default to the main camera transform.
-
-<Accordion title="Available Settings" defaultOpen icon="gear">
-  - FOV (50-100)
-  - Smoothing (0-100)
-</Accordion>
