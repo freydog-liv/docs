@@ -18,8 +18,7 @@
             "pages": [
               "index",
               "installation",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
