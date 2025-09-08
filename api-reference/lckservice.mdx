@@ -17,8 +17,10 @@ At which point you can call `SetActiveCamera` on the returned service, passing i
 
 Then the recording can be controlled with `StartRecording` and `StopRecording`.
 
+## References
+
 <AccordionGroup>
-  <Accordion title="Events">
+  <Accordion title="Events" defaultOpen>
     | Event                | Type                                   | Description                           |
     | :------------------- | :------------------------------------- | :------------------------------------ |
     | `OnRecordingStarted` | `event LckResultDelegate`              | Raised when recording starts.         |
@@ -28,67 +30,63 @@ Then the recording can be controlled with `StartRecording` and `StopRecording`.
     | `OnRecordingSaved`   | `event LckResultRecordingDataDelegate` | Raised when recording data is saved.  |
     | `OnActiveCameraSet`  | `event LckResultILckCameraDelegate`    | Raised when the active camera is set. |
   </Accordion>
-  <Accordion title="Static Methods">
+  <Accordion title="Static Methods" defaultOpen>
     | Method                                    | Returns                 | Description                                                                            |
     | :---------------------------------------- | :---------------------- | :------------------------------------------------------------------------------------- |
     | `CreateService(LckDescriptor descriptor)` | `LckResult<LckService>` | Creates and initializes the service. Validates platform, graphics API, and descriptor. |
     | `DestroyService()`                        | `LckResult`             | Destroys the current service instance and frees resources.                             |
     | `GetService()`                            | `LckResult<LckService>` | Retrieves the current service instance if available.                                   |
   </Accordion>
+  <Accordion title="Recording Control" defaultOpen>
+    | Method                   | Returns               | Description                                             |
+    | :----------------------- | :-------------------- | :------------------------------------------------------ |
+    | `StartRecording()`       | `LckResult`           | Starts a new recording session.                         |
+    | `StopRecording()`        | `LckResult`           | Stops the current recording (`StopReason.UserStopped`). |
+    | `GetRecordingDuration()` | `LckResult<TimeSpan>` | Gets the elapsed recording duration.                    |
+    | `IsRecording()`          | `LckResult<bool>`     | Checks if recording is currently active.                |
+    | `IsCapturing()`          | `LckResult<bool>`     | Checks if capture is active (includes preview).         |
+    | `CapturePhoto()`         | `LckResult`           | Captures a still photo.                                 |
+  </Accordion>
+  <Accordion title="Track Configuration" defaultOpen>
+    
+
+    | `SetTrackResolution(CameraResolutionDescriptor descriptor)` | `LckResult` | Sets the track resolution.        |
+    | :---------------------------------------------------------- | :---------- | :-------------------------------- |
+    | `SetTrackFramerate(uint framerate)`                         | `LckResult` | Sets the recording framerate.     |
+    | `SetTrackDescriptor(CameraTrackDescriptor descriptor)`      | `LckResult` | Sets the camera track descriptor. |
+    | `SetTrackBitrate(uint bitrate)`                             | `LckResult` | Sets the video bitrate.           |
+    | `SetTrackAudioBitrate(uint audioBitrate)`                   | `LckResult` | Sets the audio bitrate.           |
+    | `SetPreviewActive(bool isActive)`                           | `LckResult` | Enables or disables live preview. |
+  </Accordion>
+  <Accordion title="Audio Control" defaultOpen>
+    
+
+    | `SetGameAudioCaptureActive(bool isActive)`  | `LckResult`        | Enables/disables game audio capture.  |
+    | :------------------------------------------ | :----------------- | :------------------------------------ |
+    | `SetMicrophoneCaptureActive(bool isActive)` | `LckResult`        | Enables/disables microphone capture.  |
+    | `SetMicrophoneGain(float gain)`             | `LckResult`        | Sets microphone gain.                 |
+    | `SetGameAudioGain(float gain)`              | `LckResult`        | Sets game audio gain.                 |
+    | `GetMicrophoneOutputLevel()`                | `LckResult<float>` | Gets current microphone output level. |
+    | `GetGameOutputLevel()`                      | `LckResult<float>` | Gets current game audio output level. |
+    | `IsGameAudioMute()`                         | `LckResult<bool>`  | Checks if game audio is muted.        |
+  </Accordion>
+  <Accordion title="Camera Control" defaultOpen>
+    | Method                                                      | Returns                    | Description                                     |
+    | :---------------------------------------------------------- | :------------------------- | :---------------------------------------------- |
+    | `SetActiveCamera(string cameraId, string monitorId = null)` | `LckResult`                | Activates a camera by ID (optional monitor ID). |
+    | `GetActiveCamera()`                                         | `LckResult<ILckCamera>`    | Retrieves the currently active camera.          |
+    | `GetDescriptor()`                                           | `LckResult<LckDescriptor>` | Gets the current track descriptor.              |
+  </Accordion>
+  <Accordion title="Discreet Audio Playback" defaultOpen>
+    | Method                                                                         | Returns     | Description                                   |
+    | :----------------------------------------------------------------------------- | :---------- | :-------------------------------------------- |
+    | `PreloadDiscreetAudio(AudioClip clip, float volume, bool forceReload = false)` | `LckResult` | Preloads an audio clip for discreet playback. |
+    | `PlayDiscreetAudioClip(AudioClip clip)`                                        | `LckResult` | Plays a discreet audio clip.                  |
+    | `StopAllDiscreetAudio()`                                                       | `LckResult` | Stops all discreet audio playback.            |
+  </Accordion>
+  <Accordion title="Disposal" defaultOpen>
+    | Method      | Returns | Description                                |
+    | :---------- | :------ | :----------------------------------------- |
+    | `Dispose()` | `void`  | Disposes of the service and its resources. |
+  </Accordion>
 </AccordionGroup>
-
-## Recording Control
-
-| Method                   | Returns               | Description                                             |
-| :----------------------- | :-------------------- | :------------------------------------------------------ |
-| `StartRecording()`       | `LckResult`           | Starts a new recording session.                         |
-| `StopRecording()`        | `LckResult`           | Stops the current recording (`StopReason.UserStopped`). |
-| `GetRecordingDuration()` | `LckResult<TimeSpan>` | Gets the elapsed recording duration.                    |
-| `IsRecording()`          | `LckResult<bool>`     | Checks if recording is currently active.                |
-| `IsCapturing()`          | `LckResult<bool>`     | Checks if capture is active (includes preview).         |
-| `CapturePhoto()`         | `LckResult`           | Captures a still photo.                                 |
-
-## Track Configuration
-
-| Method                                                      | Returns     | Description                       |
-| :---------------------------------------------------------- | :---------- | :-------------------------------- |
-| `SetTrackResolution(CameraResolutionDescriptor descriptor)` | `LckResult` | Sets the track resolution.        |
-| `SetTrackFramerate(uint framerate)`                         | `LckResult` | Sets the recording framerate.     |
-| `SetTrackDescriptor(CameraTrackDescriptor descriptor)`      | `LckResult` | Sets the camera track descriptor. |
-| `SetTrackBitrate(uint bitrate)`                             | `LckResult` | Sets the video bitrate.           |
-| `SetTrackAudioBitrate(uint audioBitrate)`                   | `LckResult` | Sets the audio bitrate.           |
-| `SetPreviewActive(bool isActive)`                           | `LckResult` | Enables or disables live preview. |
-
-## Audio Control
-
-| Method                                      | Returns            | Description                           |
-| :------------------------------------------ | :----------------- | :------------------------------------ |
-| `SetGameAudioCaptureActive(bool isActive)`  | `LckResult`        | Enables/disables game audio capture.  |
-| `SetMicrophoneCaptureActive(bool isActive)` | `LckResult`        | Enables/disables microphone capture.  |
-| `SetMicrophoneGain(float gain)`             | `LckResult`        | Sets microphone gain.                 |
-| `SetGameAudioGain(float gain)`              | `LckResult`        | Sets game audio gain.                 |
-| `GetMicrophoneOutputLevel()`                | `LckResult<float>` | Gets current microphone output level. |
-| `GetGameOutputLevel()`                      | `LckResult<float>` | Gets current game audio output level. |
-| `IsGameAudioMute()`                         | `LckResult<bool>`  | Checks if game audio is muted.        |
-
-## Camera Control
-
-| Method                                                      | Returns                    | Description                                     |
-| :---------------------------------------------------------- | :------------------------- | :---------------------------------------------- |
-| `SetActiveCamera(string cameraId, string monitorId = null)` | `LckResult`                | Activates a camera by ID (optional monitor ID). |
-| `GetActiveCamera()`                                         | `LckResult<ILckCamera>`    | Retrieves the currently active camera.          |
-| `GetDescriptor()`                                           | `LckResult<LckDescriptor>` | Gets the current track descriptor.              |
-
-## Discreet Audio Playback
-
-| Method                                                                         | Returns     | Description                                   |
-| :----------------------------------------------------------------------------- | :---------- | :-------------------------------------------- |
-| `PreloadDiscreetAudio(AudioClip clip, float volume, bool forceReload = false)` | `LckResult` | Preloads an audio clip for discreet playback. |
-| `PlayDiscreetAudioClip(AudioClip clip)`                                        | `LckResult` | Plays a discreet audio clip.                  |
-| `StopAllDiscreetAudio()`                                                       | `LckResult` | Stops all discreet audio playback.            |
-
-## Disposal
-
-| Method      | Returns | Description                                |
-| :---------- | :------ | :----------------------------------------- |
-| `Dispose()` | `void`  | Disposes of the service and its resources. |
