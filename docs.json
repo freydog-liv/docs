@@ -22,10 +22,9 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "Tablet Customization",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "tablet-customisation/tablet-customisation"
             ]
           },
           {
