@@ -1,11 +1,29 @@
 ---
-title: "LckResult<T> Class"
-description: "Data container returned by LckService."
+title: "LckResult"
+description: "Represent the outcome of operations in the LIV and provide a consistent way to check for success or failure, capture error codes, and retrieve result values."
 ---
 
-Data container returned by `LckService` methods, can be queried for information and success/failure status.
+`LckResult` is used across all LIV Capture Kit (LCK) APIs to ensure operations are safe to call and provide error feedback instead of throwing exceptions.\
+When successful, `LckResult<T>` may also carry a typed result (`Result`).
 
-### Properties
+Developers should always check the `Success` property before accessing `Result` to avoid errors.
+
+## Usage
+
+```c#
+var result = LckService.GetService();
+if (result.Success)
+{
+    LckService service = result.Result;
+    Debug.Log("Service retrieved successfully");
+}
+else
+{
+    Debug.LogError($"Failed: {result.Error} - {result.Message}");
+}
+```
+
+## References
 
 | Name      | Type        | Description                                                                      |
 | :-------- | :---------- | :------------------------------------------------------------------------------- |
@@ -13,30 +31,3 @@ Data container returned by `LckService` methods, can be queried for information 
 | `Message` | `string`    | Provides an optional message, typically used for error information.              |
 | `Error`   | `LckError?` | Contains the error code or type if the operation failed.                         |
 | `Result`  | `T`         | The result value of the operation if successful; default value of `T` otherwise. |
-
-### Static Methods
-
-#### `LckResult NewSuccess()`
-
-Creates a successful result with no returned value.
-
-```c#
-var result = LckResult.NewSuccess();
-```
-
-- **Returns**: An instance of `LckResult` indicating success.
-
----
-
-#### `LckResult NewError(LckError error, string message)`
-
-Creates a failed result with an error and a message.
-
-```c#
-var result = LckResult.NewError(LckError.SomeError, "An error occurred.");
-```
-
-- **Parameters**:
-  - `error`: An `LckError` enum or struct representing the error type.
-  - `message`: A descriptive error message.
-- **Returns**: An instance of `LckResult` indicating failure.

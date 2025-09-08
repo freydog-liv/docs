@@ -17,6 +17,43 @@ At which point you can call `SetActiveCamera` on the returned service, passing i
 
 Then the recording can be controlled with `StartRecording` and `StopRecording`.
 
+### Example – Recording Workflow
+
+```c# expandable
+// Create service
+var createResult = LckService.CreateService(new LckDescriptor());
+if (!createResult.Success)
+    return;
+
+var service = createResult.Result;
+
+// Start recording
+var start = service.StartRecording();
+if (start.Success)
+    Debug.Log("Recording started");
+
+// Stop recording
+var stop = service.StopRecording();
+if (stop.Success)
+    Debug.Log("Recording stopped");
+```
+
+### Example – Camera & Audio
+
+```c# expandable
+// Switch active camera
+service.SetActiveCamera("Camera1");
+
+// Enable mic and set gain
+service.SetMicrophoneCaptureActive(true);
+service.SetMicrophoneGain(1.2f);
+
+// Get audio levels
+var micLevel = service.GetMicrophoneOutputLevel();
+if (micLevel.Success)
+    Debug.Log($"Mic level: {micLevel.Result}");
+```
+
 ## References
 
 <AccordionGroup>
@@ -48,8 +85,6 @@ Then the recording can be controlled with `StartRecording` and `StopRecording`.
     | `CapturePhoto()`         | `LckResult`           | Captures a still photo.                                 |
   </Accordion>
   <Accordion title="Track Configuration" defaultOpen>
-    
-
     | `SetTrackResolution(CameraResolutionDescriptor descriptor)` | `LckResult` | Sets the track resolution.        |
     | :---------------------------------------------------------- | :---------- | :-------------------------------- |
     | `SetTrackFramerate(uint framerate)`                         | `LckResult` | Sets the recording framerate.     |
@@ -59,8 +94,6 @@ Then the recording can be controlled with `StartRecording` and `StopRecording`.
     | `SetPreviewActive(bool isActive)`                           | `LckResult` | Enables or disables live preview. |
   </Accordion>
   <Accordion title="Audio Control" defaultOpen>
-    
-
     | `SetGameAudioCaptureActive(bool isActive)`  | `LckResult`        | Enables/disables game audio capture.  |
     | :------------------------------------------ | :----------------- | :------------------------------------ |
     | `SetMicrophoneCaptureActive(bool isActive)` | `LckResult`        | Enables/disables microphone capture.  |
