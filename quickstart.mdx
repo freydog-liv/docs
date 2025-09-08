@@ -8,7 +8,7 @@ description: "Go from zero to recording ready in just three steps."
 Set up your LCK and Player settings to support the tablet.
 
 <AccordionGroup>
-  <Accordion title="Configure LCK Settings" icon="gear">
+  <Accordion title="Configure LCK Settings" defaultOpen icon="gear">
     1. Go to the LCK project settings under **Edit/Project Settings/LCK.**
     2. Set the **Tracking ID** (provided when set up your account on the [LCK Dashboard](https://dashboard.liv.tv/dev/login?welcome=false)).
     3. Add your project's name to the **Game Name**  field.
@@ -17,7 +17,7 @@ Set up your LCK and Player settings to support the tablet.
       You can view your telemetry data from the LCK Dashboard once launched - there's roughly a 24 hour delay in reporting to allow for data privacy.
     </Info>
   </Accordion>
-  <Accordion title="Configure Player Settings " description="Android only" icon="folder-gear">
+  <Accordion title="Configure Player Settings " description="Android only" defaultOpen icon="folder-gear">
     1. Go to **Player/Other Settings/Android**.
     2. Set **Minimum API Level** to **29** or above.
     3. Set **Target Architectures** to **ARM64.**
@@ -29,14 +29,14 @@ Set up your LCK and Player settings to support the tablet.
 Add the tablet and configure your input system and project layers.
 
 <AccordionGroup>
-  <Accordion title="Add Tablet and Service" icon="aperture">
+  <Accordion title="Add Tablet and Service" defaultOpen icon="aperture">
     Set up the LCK Service Prefabs and Tablet Prefab in scene.
 
     1. Go to **Packages/LIV Creator Kit/Runtime/Prefabs**
     2. Drag the **LCK Service Helper** prefab into your scene.
     3. Navigate to the **Tablets** folder and add the **LCK Tablet** prefab that matches your interaction framework and input style, or use **Base LCK Tablet** to set up your own input system.
   </Accordion>
-  <Accordion title="Configure Layers" icon="layer-group">
+  <Accordion title="Configure Layers" defaultOpen icon="layer-group">
     Configure project layers.
 
     - Add a layer called **LCK Tablet** to your project layers.
@@ -45,7 +45,7 @@ Add the tablet and configure your input system and project layers.
       LCK will automatically use this to hide the tablet geometry from LCK cameras where necessary.
     </Info>
   </Accordion>
-  <Accordion title="Configure Input" icon="joystick">
+  <Accordion title="Configure Input" defaultOpen icon="joystick">
     Set up LCK to work with the input system used in your project.
 
     <Card title="Direct Input" icon="hand-back-point-up">
@@ -61,9 +61,7 @@ Add the tablet and configure your input system and project layers.
 
 Build and test your game to verify LCK has been installed and added correctly.
 
-<Accordion title="Build and Test" icon="rocket">
-  
-
+<Accordion title="Build and Test" defaultOpen icon="rocket">
   <Steps>
     <Step title="Build">
       - Build and install your project normally, and run the game on your headset.
