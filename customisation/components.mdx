@@ -1,0 +1,48 @@
+---
+title: "LCK Components"
+description: "Learn about the components used by the LCK tablet."
+---
+
+## Core
+
+These MonoBehaviours are the main ones you will need when using LCK. They all connect the `LckService` to Unity gameobjects to allow easy control over the capture behaviour.
+
+### LckServiceHelper
+
+A simple helper to get a baseline `LckService` up and running, tying its lifetime to a `GameObject`.
+
+If you want the service to persist across scene loads, you must keep the `LckServiceHelper` `GameObject` alive.  
+
+### LckCamera
+
+Connects a regular Unity `Camera` component with the LCK system.
+
+**Fields**
+
+| Field       | Type     | Description                                                                                                                                            |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `_camera`   | `Camera` | Reference to the Unity Camera that should be managed.                                                                                                  |
+| `_cameraId` | `string` | Optional ID for the camera. If unset, a UUID is auto-generated. Setting this to `"MyCamera"` allows you to reference it via the service using that ID. |
+
+**Methods**
+
+| Method                 | Returns  | Description                                                                 |
+| ---------------------- | -------- | --------------------------------------------------------------------------- |
+| `CameraId`             | `string` | Returns the ID of the LCK Camera (useful when passing to the `LckService`). |
+| `GetCameraComponent()` | `Camera` | Returns the underlying Unity Camera.                                        |
+
+### LckMonitor
+
+Provides access to the current active capture `RenderTexture`, which can be displayed or processed further.
+
+**Fields**
+
+| Field        | Type     | Description                                                                                                                                |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `_monitorId` | `string` | Optional ID for the monitor. If unset, a UUID is auto-generated. Setting this to `"MyMonitor"` allows you to reference it via the service. |
+
+**Events**
+
+| Event                | Type                                 | Description                                                                                                                                    |
+| -------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OnRenderTextureSet` | `LckMonitorRenderTextureSetDelegate` | Fired whenever LCK creates a new render texture for the main output. Allows you to track and use the currently active camera’s render texture. |

@@ -24,7 +24,9 @@
           {
             "group": "Customization",
             "pages": [
-              "customisation/tablet-intro"
+              "customisation/introduction",
+              "customisation/tablet-intro",
+              "customisation/components"
             ]
           },
           {
