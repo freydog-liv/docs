@@ -2,3 +2,41 @@
 title: "Telemetry"
 description: "Description of your new file."
 ---
+
+LCK sends telemetry data to LIV. If your app has a privacy policy, it's up to you to determine if it needs to be updated.
+
+LCK adheres to LCK [Privacy Notice](https://www.liv.tv/lck-privacy-notice) and your agreed upon LCK [License Agreement](https://www.liv.tv/lck-license-agreement). It is against the License Agreement to tamper with telemetry.
+
+## Basic Telemetry Data
+
+The mandatory telemetry data collected by the SDK. You cannot turn off collection for these data points.
+
+| **Data point** | **Description**                           |
+| :------------- | :---------------------------------------- |
+| Platform       | Identifies if Meta Quest or PCVR was used |
+| UnityVersion   | The Unity version of the app              |
+| RunId          | Session identifier                        |
+| GameName       | Name of the app                           |
+| GameVersion    | Version of the app                        |
+| CompanyName    | Name of the Company making the app        |
+| TrackingId     | Name of the Company making the app        |
+
+## Location Telemetry
+
+You can disable this in the Project Settings.
+
+| **Data point** | **Description**                                                   |
+| :------------- | :---------------------------------------------------------------- |
+| Region         | Short name of the Region of the source of data. Example CA        |
+| RegionName     | Full name of the Region of the source of data. Example California |
+| City           | City of the source of data                                        |
+| Country        | Country of the source of data                                     |
+
+## Device Telemetry
+
+You can disable this in the Project Settings.
+
+| **Data point** | **Description**                                                                                        |
+| :------------- | :----------------------------------------------------------------------------------------------------- |
+| RawDeviceModel | Name of the VR headset used                                                                            |
+| DeviceId       | Unique hashed identifier distinct to the app. This hash can’t be back traced to a specific individual. |
