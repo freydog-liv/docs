@@ -5,8 +5,20 @@ description: "Learn more about the LCK scripting API."
 
 ## About
 
-The **LCK API** is accessed through the `LckService` class. To get started, create a service instance using the static `CreateService` function, providing an `LckDescriptor` that defines your desired track settings.
+LCK provides an API that you can use to create custom camera implementations or features. The access to this API is mainly handled through the `LCKService` singleton.
 
-Once the service is created, you can select the camera to capture from by calling `SetActiveCamera` with the ID of the target LCK camera.
+## Next Steps
 
-From there, recording is managed with the straightforward `StartRecording` and `StopRecording` functions.
+Explore the key components of the API to understand how they work together and how you can use it in your project.
+
+<Columns cols={2}>
+  <Card title="LCK Service" icon="rectangle-terminal" href="/api-reference/lckservice">
+    Provides lifecycle management, recording, audio, camera, and telemetry control for LIV Capture Kit.
+  </Card>
+  <Card title="LCK Error" icon="triangle-exclamation" href="/api-reference/lckerror">
+    Represents error codes that describe why an LCK operation failed.
+  </Card>
+  <Card title="LCK Result" icon="database" href="/learn-more/contact-us">
+    Provides a consistent, exception-free way to check operation success, retrieve results, and handle errors in LCK.
+  </Card>
+</Columns>
