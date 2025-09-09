@@ -2,6 +2,11 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "LCK Documentation",
+  "background":{
+    "color":{
+      "dark":"#08090a"
+    }
+  },
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
