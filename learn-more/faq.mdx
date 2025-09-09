@@ -1,9 +1,11 @@
 ---
 title: "Frequently Asked Questions"
-description: "Description of your new file."
+description: "Our most commonly asked questions in one place."
 ---
 
-### **Which game engines are supported?**
+## General
+
+### Which game engines are supported?
 
 <Columns cols={2}>
   <Card title="Unity" icon="fa-unity" href="https://dashboard.liv.tv/dev/login?welcome=false" cta="Download Now">
@@ -14,7 +16,20 @@ description: "Description of your new file."
   </Card>
 </Columns>
 
-### **Supported graphics APIs?**
+### How much does it cost?
+
+<Columns cols={2}>
+  <Card title="Game Developers" cta="Download Now">
+    Free to download and integrate\!
+  </Card>
+  <Card title="Other Uses" href="mailto:hi@liv.tv" cta="Contact us">
+    Contact us at [hi@liv.tv](mailto:hi@liv.tv) for a license.
+  </Card>
+</Columns>
+
+## Technical
+
+### Which graphics APIs are supported?
 
 <Tabs>
   <Tab title="Quest">
@@ -28,69 +43,61 @@ description: "Description of your new file."
   </Tab>
 </Tabs>
 
-### **What are the specs of the video recording?**
+### What are the specs of the video recording?
 
 - Videos are encoded using H.264.
 - Resolution, framerate and bitrate can be configured by the developer.
 
-### **Where are videos stored?**
+### Where are videos stored?
 
-<Expandable title="Content">
-  Videos are saved to the following folder, depending on the platform:
+Videos are saved to the following folder, depending on the platform,
 
-  Quest
+<Tabs>
+  <Tab title="Quest">
+    ```
+    Storage/Movies/<RecordingAlbumName>
+    ```
+  </Tab>
+  <Tab title="Desktop">
+    ```
+    <User>/Videos/<RecordingAlbumName>
+    ```
+  </Tab>
+</Tabs>
 
-  ```
-  Storage/Movies/<RecordingAlbumName>
-  ```
+<Tip>
+  `RecordingAlbumName` is set in the LckSettings.
+</Tip>
 
-  Desktop
+### What resolution, FPS and Bitrate should I use?
 
-  ```
-  <User>/Videos/<RecordingAlbumName>
-  ```
+Our recommended video settings depend on the platform being targeted, please see below.
 
-  Where `RecordingAlbumName` is set in the [LckSettings](https://lck-docs.liv-latveria.com/references/project_settings).
+<Tabs>
+  <Tab title="PCVR">
+    |            | Recommended |
+    | :--------- | :---------- |
+    | Resolution | 1920x1080   |
+    | FPS        | 60          |
+    | Bitrate    | 12582912    |
+  </Tab>
+  <Tab title="Quest 3">
+    |            | Recommended |
+    | :--------- | :---------- |
+    | Resolution | 1920x1080   |
+    | FPS        | 60          |
+    | Bitrate    | 12582912    |
+  </Tab>
+  <Tab title="Quest 2">
+    |            | Recommended |
+    | :--------- | :---------- |
+    | Resolution | 1280x720    |
+    | FPS        | 30          |
+    | Bitrate    | 5242880     |
+  </Tab>
+</Tabs>
 
-  <Accordion title="Recommended Settings">
-    <Tabs>
-      <Tab title="PCVR">
-        |            | Recommended |
-        | :--------- | :---------- |
-        | Resolution | 1920x1080   |
-        | FPS        | 60          |
-        | Bitrate    | 12582912    |
-      </Tab>
-      <Tab title="Quest 3">
-        |            | Recommended |
-        | :--------- | :---------- |
-        | Resolution | 1920x1080   |
-        | FPS        | 60          |
-        | Bitrate    | 12582912    |
-      </Tab>
-      <Tab title="Quest 2">
-        |            | Recommended |
-        | :--------- | :---------- |
-        | Resolution | 1280x720    |
-        | FPS        | 30          |
-        | Bitrate    | 5242880     |
-      </Tab>
-    </Tabs>
-  </Accordion>
-</Expandable>
-
-### **How much does it cost?**
-
-<Columns cols={2}>
-  <Card title="Game Developers" cta="Download Now">
-    Free to download and integrate\!
-  </Card>
-  <Card title="Unreal" href="https://form.typeform.com/to/fCL6vJpV" cta="Join The Waitlist">
-    Contact us at [hi@liv.tv](mailto:hi@liv.tv) for a license.
-  </Card>
-</Columns>
-
-### **What's the impact on performance?**
+### **Will LCK impact the performance of my game?**
 
 LCK is designed to be minimally impacting. However, LCK does trigger up to one additional render per game frame, so general good rendering practices will be important to keep the impact of LCK as low as possible.
 
@@ -102,13 +109,7 @@ Both URP and the Built-in renderer is supported.
 
 ### **Why is the video framerate lower than what I set?**
 
-LCK only does renders on game frame updates, so the video framerate can only ever be equal or lower than the game framerate. The video framerate you set can be considered the _target_ video framerate.
-
-### **Why are only specific Unity versions supported?**
-
-LCK depends on lower level graphics APIs that can change between even minor Unity versions, so we are are starting out with a list of supported versions and will expand as we QA in different versions.
-
-See [Supported Engines](https://lck-docs.liv-latveria.com/01-quick_start/03-installation.md#supported-engines).
+LCK renders on frame updates, so the video framerate can only be equal or lower than the game framerate. The video framerate you set can be considered the _target_ video framerate.
 
 ### **What gets captured in Mixed Reality Passthrough modes?**
 
@@ -116,11 +117,28 @@ Passthrough footage is not available to application developers, and so it will n
 
 ### **The video captured by LCK looks different to the in-game render?**
 
-LCK uses built Unity Cameras to perform renders, and so you have to make sure these are configured the same way as your player cameras if you want the output to look the same. Especially things like render layers to make sure the correct objects are visible, and the far clipping plane will be important to check.
+LCK uses built Unity Cameras to perform renders, and so you have to make sure these are configured the same way as your player cameras if you want the output to look the same.
 
 ### **I'm changing settings on the ServiceHelper but it has no effect on the videos captured?**
 
 There are capture settings directly on the tablet which are platform dependent. The `LckServiceHelper` does initialize the service with its settings, but they are overriden by the tablet. It's likely we will change the `LckServiceHelper` since this behaviour is not intuitive.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Known Issues" icon="triangle-exclamation" href="/learn-more/known-issues">
+    Learn about currently known issues and limitations.
+  </Card>
+  <Card title="Support & Feedback" icon="envelope" href="/learn-more/support-feedback">
+    Access support and suggest features or ideas.
+  </Card>
+  <Card title="Telemetry and Data Privacy" icon="binary-lock">
+    Learn more about the way LCK handles data and telemetry.
+  </Card>
+  <Card title="Marketing & Partnerships" icon="megaphone">
+    Learn about LCK marketing and partnership opportunities with LIV.
+  </Card>
+</CardGroup>
 
 ### **How do I get help or report an issue with the SDK?**
 
