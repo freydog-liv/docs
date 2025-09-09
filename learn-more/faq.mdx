@@ -3,34 +3,13 @@ title: "Frequently Asked Questions"
 description: "Description of your new file."
 ---
 
-<AccordionGroup>
-  <Accordion title="Which game engines are supported?">
-    ### **Which game engines are supported?**
-
-    Currently Unity is supported, but an Unreal version is in the works. [Join the waitlist](https://form.typeform.com/to/fCL6vJpV)
-  </Accordion>
-  <Accordion title="Are there any graphics API requirements?">
-    ## TESTTTTTTT2
-
-    On Windows Vulkan, DX11 and OpenGL are supported. On Quest Vulkan and OpenGL is supported.
-  </Accordion>
-</AccordionGroup>
-
-<Card title="New Card" icon="sparkles">
-  ## TESTTTTTTT
-</Card>
-
 ### **Which game engines are supported?**
 
 Currently Unity is supported, but an Unreal version is in the works. [Join the waitlist](https://form.typeform.com/to/fCL6vJpV)
 
-### **Are there any graphics API requirements?**
+### **Are there any graphics API requireNew Cardments?**
 
 On Windows Vulkan, DX11 and OpenGL are supported. On Quest Vulkan and OpenGL is supported.
-
-**info**
-
-Any API and platform not listed is not supported, but we will re-evaluate based on developer feedback.
 
 ### **What are the specs of the video recording?**
 
@@ -46,22 +25,80 @@ Videos are saved to the following folder, depending on the platform:
 
 Where `RecordingAlbumName` is set in the [LckSettings](https://lck-docs.liv-latveria.com/references/project_settings).
 
+<Accordion title="Recommended Settings" icon="angles-up-down">
+  <Tabs>
+    <Tab title="PCVR">
+      | Property   | Value     |
+      | ---------- | --------- |
+      | Resolution | 1920x1080 |
+      | FPS        | 60        |
+      | Bitrate    | 12582912  |
+    </Tab>
+    <Tab title="Quest 3">
+      | Property   | Value     |
+      | :--------- | :-------- |
+      | Resolution | 1920x1080 |
+      | FPS        | 60        |
+      | Bitrate    | 12582912  |
+    </Tab>
+    <Tab title="Quest 2">
+      | Property   | Value    |
+      | :--------- | :------- |
+      | Resolution | 1280x720 |
+      | FPS        | 30       |
+      | Bitrate    | 5242880  |
+    </Tab>
+  </Tabs>
+</Accordion>
+
 #### **Recommended Settings:**
 
-PCVR
+### **How much does it cost?**
 
-- Resolution: 1920x1080
-- FPS: 60
-- Bitrate: 12582912
+#### **Game Developers**
 
-Quest 3
+Free to download and integrate.
 
-- Resolution: 1920x1080
-- FPS: 60
-- Bitrate: 12582912
+#### **Other Uses**
 
-Quest 2
+Contact us at [hi@liv.tv](mailto:hi@liv.tv) for a license
 
-- Resolution: 1280x720
-- FPS: 30
-- Bitrate: 5242880
+### **What's the impact on performance?**
+
+LCK is designed to be minimally impacting. However, LCK does trigger up to one additional render per game frame, so general good rendering practices will be important to keep the impact of LCK as low as possible.
+
+As a developer you are also free to customize the rendering of the LCK cameras to apply project specific optimizations.
+
+### **Which Unity render pipelines are supported?**
+
+Both URP and the Built-in renderer is supported.
+
+### **Why is the video framerate lower than what I set?**
+
+LCK only does renders on game frame updates, so the video framerate can only ever be equal or lower than the game framerate. The video framerate you set can be considered the _target_ video framerate.
+
+### **Why are only specific Unity versions supported?**
+
+LCK depends on lower level graphics APIs that can change between even minor Unity versions, so we are are starting out with a list of supported versions and will expand as we QA in different versions.
+
+See [Supported Engines](https://lck-docs.liv-latveria.com/01-quick_start/03-installation.md#supported-engines).
+
+### **What gets captured in Mixed Reality Passthrough modes?**
+
+Passthrough footage is not available to application developers, and so it will not be included in the video. If you want to customize the visuals that are captured you can change the clear color of the LCK capture camera.
+
+### **The video captured by LCK looks different to the in-game render?**
+
+LCK uses built Unity Cameras to perform renders, and so you have to make sure these are configured the same way as your player cameras if you want the output to look the same. Especially things like render layers to make sure the correct objects are visible, and the far clipping plane will be important to check.
+
+### **I'm changing settings on the ServiceHelper but it has no effect on the videos captured?**
+
+There are capture settings directly on the tablet which are platform dependent. The `LckServiceHelper` does initialize the service with its settings, but they are overriden by the tablet. It's likely we will change the `LckServiceHelper` since this behaviour is not intuitive.
+
+### **How do I get help or report an issue with the SDK?**
+
+You can get help or report issues on our [Discord](http://discord.gg/liv) or through [help.liv.tv](http://help.liv.tv).
+
+### **Ask for features**
+
+We welcome your feedback and requests via [Discord](http://discord.gg/liv).
