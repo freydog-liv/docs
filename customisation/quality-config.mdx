@@ -3,7 +3,7 @@ title: "Quality Config"
 description: "Understand and configure quality presets for LCK."
 ---
 
-The LCK tablet allows you to customise the quality settings in a variety of ways through the `LckQualityConfig` scriptable object, stored in the Quality Config field in the `LCKCameraController` script.
+The LCK tablet allows you to customise the quality settings in a variety of ways through the [LckQualityConfig](/customisation/quality-config) scriptable object, stored in the Quality Config field in the **LCKCameraController** script.
 
 ## Lck Quality Config
 
@@ -13,12 +13,12 @@ This scriptable object provides a way to define different quality presets for An
 
 For each platform you can store different quality presets that can be used by the tablet. By default this is set to the SD/HD for android and SD/HD/2k/4k for windows.
 
-Each quality preset has a name field and a `Camera Track Descriptor` that allows you to set the Bitrate, Framerate, Audio Bitrate and Width and Height through a `Camera Resolution Descriptor`.
+Each quality preset has a name field and a [CameraTrackDescriptor](/api-reference/cameratrackdescriptor)  that allows you to set the Bitrate, Framerate, Audio Bitrate and Width and Height through a [CameraResolutionDescriptor](/api-reference/cameraresolutiondescriptor) .
 
 ## Default Values
 
 <AccordionGroup>
-  <Accordion title="Android" defaultOpen={false} icon="vr-cardboard">
+  <Accordion title="Android" defaultOpen="false" icon="vr-cardboard">
     |                   | SD       | HD        |
     | :---------------- | :------- | :-------- |
     | **Resolution**    | 1280x720 | 1920x1080 |
@@ -26,7 +26,7 @@ Each quality preset has a name field and a `Camera Track Descriptor` that allows
     | **Framerate**     | 60       | 60        |
     | **Audio Bitrate** | 192000   | 192000    |
   </Accordion>
-  <Accordion title="Desktop" defaultOpen={false} icon="desktop">
+  <Accordion title="Desktop" defaultOpen="false" icon="desktop">
     |                   | **SD**   | HD        | 2K        | 4K        |
     | :---------------- | :------- | :-------- | :-------- | :-------- |
     | **Resolution**    | 1280x720 | 1920x1080 | 2560x1440 | 3840x2160 |
@@ -34,7 +34,7 @@ Each quality preset has a name field and a `Camera Track Descriptor` that allows
     | **Framerate**     | 60       | 60        | 60        | 60        |
     | **Audio Bitrate** | 192000   | 192000    | 192000    | 192000    |
   </Accordion>
-  <Accordion title="Overrides" defaultOpen={false}>
+  <Accordion title="Overrides" defaultOpen="false">
     ### Android - Quest 2
 
     |                   | SD       | HD        |
