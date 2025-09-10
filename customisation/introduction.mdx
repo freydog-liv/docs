@@ -6,11 +6,3 @@ description: "Introduction to LCK functionality."
 ## Customising Your Integration
 
 ## How LCK Works
-
-LCK works by managing standard Unity Camera components through the `LckCamera`, which performs captures at the target framerate and pipes both video and audio into an encoder. These captures can also be previewed or further processed via the `LckMonitor`.
-
-Because LCK builds on Unity’s native cameras, all the usual camera settings and rendering configurations remain available when integrating it. Control over which camera to capture from, and when to start or stop recording, is handled through an `LckService `instance that you create before beginning a recording.
-
-When issuing commands to the `LckService`, you reference cameras and monitors using string IDs instead of direct object references. This design allows you to manage components more flexibly without needing to pass references across segmented parts of your project.
-
-Once a camera is activated through the service, it immediately begins capturing, making its output available for preview through the `LckMonitor`. Switching to another camera is seamless—even during recording—allowing smooth transitions between different capture sources.

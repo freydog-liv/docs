@@ -2,3 +2,71 @@
 title: "LckQualityConfig"
 description: "Description of your new file."
 ---
+
+## Description
+
+`LckQualityConfig` is a Unity `ScriptableObject` that holds configuration data for quality settings across different platforms (Android, Desktop). It provides a structured way to define base options, device-specific overrides, and retrieve the appropriate quality options at runtime depending on the system.
+
+## Usage
+
+Assign `LckQualityConfig` in your project to manage capture quality options across devices.\
+When calling `GetQualityOptionsForSystem()`, the config automatically detects the platform and, if applicable, the current device model to return the correct set of quality options.
+
+## Examples
+
+```
+var config = Resources.Load<LckQualityConfig>("LckQualityConfig");
+var qualityOptions = config.GetQualityOptionsForSystem();
+
+foreach (var option in qualityOptions)
+{
+    Debug.Log($"Option: {option.Name} (Default: {option.IsDefault})");
+}
+```
+
+## References
+
+### Enums
+
+| Name          | Values                        | Description                      |
+| :------------ | :---------------------------- | :------------------------------- |
+| `DeviceModel` | `Quest2`, `Quest3`, `Quest3s` | Supported Android device models. |
+
+### Structs
+
+#### QualityOption
+
+| Name                    | Type                    | Description                                     |
+| :---------------------- | :---------------------- | :---------------------------------------------- |
+| `Name`                  | `string`                | Human-readable name of the quality option.      |
+| `IsDefault`             | `bool`                  | Indicates if this option is the default choice. |
+| `CameraTrackDescriptor` | `CameraTrackDescriptor` | Descriptor used for configuring camera tracks.  |
+
+#### QualityOptionOverride
+
+| Name             | Type                  | Description                                     |
+| :--------------- | :-------------------- | :---------------------------------------------- |
+| `DeviceModel`    | `DeviceModel`         | The device model this override applies to.      |
+| `QualityOptions` | `List<QualityOption>` | List of quality options specific to the device. |
+
+### Interface
+
+#### ILckQualityConfig
+
+| Method                         | Returns               | Description                                                |
+| :----------------------------- | :-------------------- | :--------------------------------------------------------- |
+| `GetQualityOptionsForSystem()` | `List<QualityOption>` | Retrieves quality options for the current platform/device. |
+
+### Class
+
+#### LckQualityConfig (ScriptableObject, ILckQualityConfig)
+
+| Property/Field                  | Type                          | Description                                  |
+| :------------------------------ | :---------------------------- | :------------------------------------------- |
+| `BaseAndroidQualityOptions`     | `List<QualityOption>`         | Default quality options for Android devices. |
+| `AndroidOptionsDeviceOverrides` | `List<QualityOptionOverride>` | Device-specific overrides for Android.       |
+| `DesktopQualityOptions`         | `List<QualityOption>`         | Quality options for desktop platforms.       |
+
+| Method                         | Returns               | Description                                                               |
+| :----------------------------- | :-------------------- | :------------------------------------------------------------------------ |
+| `GetQualityOptionsForSystem()` | `List<QualityOption>` | Returns quality options based on the current runtime platform and device. |

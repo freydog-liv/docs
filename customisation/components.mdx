@@ -1,7 +1,17 @@
 ---
-title: "Components"
+title: "Introduction to LCK"
 description: "Learn about the components used by the LCK tablet."
 ---
+
+## Overview
+
+LCK manages standard Unity Camera components through the `LckCamera`, which captures video and audio at the target framerate and sends them to the encoder. These captures can also be previewed or further processed using an `LckMonitor`.
+
+Since LCK builds directly on Unity’s native cameras, all existing camera settings and rendering options remain available. Recording control—such as choosing which camera to capture from or when to start and stop—is handled by an [LckService ](/api-reference/lckservice) instance, which you create before beginning a session.
+
+Instead of passing direct object references, cameras and monitors are managed using string IDs. This design makes it easier to organize components across different parts of a project without tightly coupling them.
+
+Once a camera is activated through the service, it immediately starts capturing, with its output available in the `LckMonitor`. You can also switch between cameras seamlessly—even during recording—for smooth, uninterrupted transitions.
 
 ## Core
 

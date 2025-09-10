@@ -5,34 +5,19 @@ description: "Provides a consistent, exception-free way to check operation succe
 
 ## Description
 
-`LckResult` represents the outcome of an operation in LckService. Instead of throwing exceptions, methods return this structured result type, which contains a success flag, an optional error code, a descriptive message, and a value produced by the operation.
+[LckResult](/api-reference/lckresult) represents the outcome of an operation in LckService. Instead of throwing exceptions, methods return this structured result type, which contains a success flag, an optional error code, a descriptive message, and a value produced by the operation.
 
 ## Usage
 
-With `LckResult`, always check the `Success` property first. If it’s `true`, use the value from `Result` (in generic cases). If it’s `false`, handle the failure by checking the `Error` code and reading the `Message` for context.
-
-## Examples
-
-```c#
-var result = LckService.GetService();
-if (result.Success)
-{
-    LckService service = result.Result;
-    Debug.Log("Service retrieved successfully");
-}
-else
-{
-    Debug.LogError($"Failed: {result.Error} - {result.Message}");
-}
-```
+With [LckResult](/api-reference/lckresult), always check the `Success` property first. If it’s `true`, use the value from `Result` (in generic cases). If it’s `false`, handle the failure by checking the `Error` code and reading the `Message` for context.
 
 ## References
 
 ### Properties
 
-| Name      | Type        | Description                                                                      |
-| :-------- | :---------- | :------------------------------------------------------------------------------- |
-| `Success` | `bool`      | Indicates whether the operation was successful.                                  |
-| `Message` | `string`    | Provides an optional message, typically used for error information.              |
-| `Error`   | `LckError?` | Contains the error code or type if the operation failed.                         |
-| `Result`  | `T`         | The result value of the operation if successful; default value of `T` otherwise. |
+| Name    | Type      | Description                                                                      |
+| :------ | :-------- | :------------------------------------------------------------------------------- |
+| Success | bool      | Indicates whether the operation was successful.                                  |
+| Message | string    | Provides an optional message, typically used for error information.              |
+| Error   | LckError? | Contains the error code or type if the operation failed.                         |
+| Result  | T         | The result value of the operation if successful; default value of `T` otherwise. |

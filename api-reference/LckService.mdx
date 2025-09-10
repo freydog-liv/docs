@@ -1,0 +1,136 @@
+---
+title: "LckService"
+description: "Provides lifecycle management, recording, audio, camera, and telemetry control for LIV Capture Kit."
+---
+
+## Description
+
+The **LckService** class is the central entry point for working with the LIV Capture Kit (LCK). It manages service lifecycle, video/audio capture, camera configuration, and discreet audio playback.
+
+A single instance of **LckService** exists at any given time. You create and destroy this instance using the static methods `CreateService` and `DestroyService`. Once created, the service exposes methods for recording, photo capture, audio control, and camera switching.
+
+## Usage
+
+The general flow for using LCK is to first use the static function `CreateService`, passing in an [LckDescriptor](/api-reference/lckdescriptor) with the wanted track settings.
+
+At which point you can call `SetActiveCamera` on the returned service, passing in the ID of the LCK Camera you wish to capture with.
+
+Then the recording can be controlled with `StartRecording` and `StopRecording`.
+
+## Examples
+
+<Accordion title="Recording Workflow" icon="code">
+  ```c# expandable
+  // Create service
+  var createResult = LckService.CreateService(new LckDescriptor());
+  if (!createResult.Success)
+      return;
+  
+  var service = createResult.Result;
+  
+  // Start recording
+  var start = service.StartRecording();
+  if (start.Success)
+      Debug.Log("Recording started");
+  
+  // Stop recording
+  var stop = service.StopRecording();
+  if (stop.Success)
+      Debug.Log("Recording stopped");
+  ```
+</Accordion>
+
+<Accordion title="Camera & Audio" icon="code">
+  ```c# expandable
+  // Switch active camera
+  service.SetActiveCamera("Camera1");
+  
+  // Enable mic and set gain
+  service.SetMicrophoneCaptureActive(true);
+  service.SetMicrophoneGain(1.2f);
+  
+  // Get audio levels
+  var micLevel = service.GetMicrophoneOutputLevel();
+  if (micLevel.Success)
+      Debug.Log($"Mic level: {micLevel.Result}");
+  ```
+</Accordion>
+
+## References
+
+### Delegates
+
+| Delegate                                                          | Description                          |
+| :---------------------------------------------------------------- | :----------------------------------- |
+| LckResultDelegate(LckResult result)                               | Generic result callback.             |
+| LckResultRecordingDataDelegate(LckResult\<RecordingData\> result) | Callback for recording data results. |
+| LckResultILckCameraDelegate(LckResult\<ILckCamera\> result)       | Callback for active camera results.  |
+
+---
+
+### Events
+
+| Event              | Type                           | Description                                 |
+| :----------------- | :----------------------------- | :------------------------------------------ |
+| OnRecordingStarted | LckResultDelegate              | Invoked when a recording starts.            |
+| OnRecordingStopped | LckResultDelegate              | Invoked when a recording stops.             |
+| OnLowStorageSpace  | LckResultDelegate              | Invoked when low storage space is detected. |
+| OnPhotoSaved       | LckResultDelegate              | Invoked when a photo is saved.              |
+| OnRecordingSaved   | LckResultRecordingDataDelegate | Invoked when a recording is saved.          |
+| OnActiveCameraSet  | LckResultILckCameraDelegate    | Invoked when the active camera changes.     |
+
+---
+
+### Enums
+
+StopReason
+
+| Value                | Description                                                  |
+| :------------------- | :----------------------------------------------------------- |
+| UserStopped          | Recording stopped by user.                                   |
+| LowStorageSpace      | Recording stopped due to low storage.                        |
+| Error                | Recording stopped due to error.                              |
+| ApplicationLifecycle | Recording stopped due to application lifecycle (pause/quit). |
+
+---
+
+### Static Methods
+
+| Method                                  | Returns                 | Description                                                      |
+| :-------------------------------------- | :---------------------- | :--------------------------------------------------------------- |
+| GetService()                            | LckResult\<LckService\> | Returns the active service if one exists, or an error otherwise. |
+| CreateService(LckDescriptor descriptor) | LckResult\<LckService\> | Creates a new LckService if platform and graphics API are valid. |
+| DestroyService()                        | LckResult               | Destroys and disposes the current service.                       |
+
+---
+
+### Instance Methods
+
+| Method                                                                       | Returns                    | Description                              |
+| :--------------------------------------------------------------------------- | :------------------------- | :--------------------------------------- |
+| Dispose()                                                                    | void                       | Disposes service resources.              |
+| StartRecording()                                                             | LckResult                  | Starts recording.                        |
+| StopRecording()                                                              | LckResult                  | Stops recording (user stopped).          |
+| GetRecordingDuration()                                                       | LckResult\<TimeSpan\>      | Gets the current recording duration.     |
+| SetTrackResolution(CameraResolutionDescriptor)                               | LckResult                  | Sets recording resolution.               |
+| SetTrackFramerate(uint framerate)                                            | LckResult                  | Sets recording framerate.                |
+| SetPreviewActive(bool isActive)                                              | LckResult                  | Enables or disables preview rendering.   |
+| SetTrackDescriptor(CameraTrackDescriptor)                                    | LckResult                  | Updates camera track descriptor.         |
+| SetTrackBitrate(uint bitrate)                                                | LckResult                  | Sets video track bitrate.                |
+| SetTrackAudioBitrate(uint audioBitrate)                                      | LckResult                  | Sets audio track bitrate.                |
+| IsRecording()                                                                | LckResult\<bool\>          | Checks if currently recording.           |
+| IsCapturing()                                                                | LckResult\<bool\>          | Checks if currently capturing.           |
+| SetGameAudioCaptureActive(bool isActive)                                     | LckResult                  | Enables or disables game audio capture.  |
+| SetMicrophoneCaptureActive(bool isActive)                                    | LckResult                  | Enables or disables microphone capture.  |
+| GetMicrophoneOutputLevel()                                                   | LckResult\<float\>         | Gets microphone volume output level.     |
+| SetMicrophoneGain(float gain)                                                | LckResult                  | Adjusts microphone gain.                 |
+| SetGameAudioGain(float gain)                                                 | LckResult                  | Adjusts game audio gain.                 |
+| GetGameOutputLevel()                                                         | LckResult\<float\>         | Gets game audio output level.            |
+| IsGameAudioMute()                                                            | LckResult\<bool\>          | Checks if game audio is muted.           |
+| SetActiveCamera(string cameraId, string monitorId = null)                    | LckResult                  | Sets active camera by ID.                |
+| GetActiveCamera()                                                            | LckResult\<ILckCamera\>    | Returns currently active camera.         |
+| PreloadDiscreetAudio(AudioClip clip, float volume, bool forceReload = false) | LckResult                  | Preloads an audio clip for playback.     |
+| PlayDiscreetAudioClip(AudioClip clip)                                        | LckResult                  | Plays a preloaded audio clip.            |
+| StopAllDiscreetAudio()                                                       | LckResult                  | Stops all discreet audio.                |
+| GetDescriptor()                                                              | LckResult\<LckDescriptor\> | Gets current descriptor.                 |
+| CapturePhoto()                                                               | LckResult                  | Captures a photo from the active camera. |
