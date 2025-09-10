@@ -1,4 +1,4 @@
-{
+I{
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "LCK Documentation",
@@ -54,10 +54,15 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction",
-              "api-reference/lckservice",
-              "api-reference/lckresult",
-              "api-reference/lckerror"
+              "api-reference/CameraResolutionDescriptor",
+              "api-reference/CameraTrackDescriptor",
+              "api-reference/Introduction",
+              "api-reference/LckDescriptor",
+              "api-reference/LckError",
+              "api-reference/LckQualityConfig",
+              "api-reference/LckResult",
+              "api-reference/LckService"
+              
             ]
           }
         ]
