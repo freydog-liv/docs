@@ -5,21 +5,7 @@ description: "Defines the camera track settings passed into LckService.CreateSer
 
 ## Description
 
-**LckDescriptor** is a simple container class that holds a [CameraTrackDescriptor](/api-reference/cameratrackdescriptor) instance, which encapsulates resolution, video bitrate, frame rate, and audio bitrate settings. It’s required when initializing the [LckService](/api-reference/lckservice) via `CreateService`
-
-## Usage (minimized)
-
-Provide an [LckDescriptor](/api-reference/lckdescriptor) with a configured [CameraTrackDescriptor](/api-reference/cameratrackdescriptor) to `LckService.CreateService(...)` to start the service with your preferred capture settings.
-
-## Example
-
-```
-var descriptor = new LckDescriptor {
-    cameraTrackDescriptor = yourTrackDescriptor
-};
-
-var result = LckService.CreateService(descriptor);
-```
+**LckDescriptor** is a simple container class that holds a [CameraTrackDescriptor](/api-reference/cameratrackdescriptor) instance, which encapsulates resolution, video bitrate, frame rate, and audio bitrate settings. It’s required when initializing the [LckService](/api-reference/lckservice) via `CreateService()`
 
 ## References
 
