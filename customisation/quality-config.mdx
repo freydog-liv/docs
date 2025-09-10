@@ -1,15 +1,14 @@
 ---
 title: "Quality Config"
 description: "Understand and configure quality presets for LCK."
+mode: "wide"
 ---
 
 The LCK tablet allows you to customise the quality settings in a variety of ways through the `LckQualityConfig` scriptable object, stored in the Quality Config field in the `LCKCameraController` script.
 
 ## Lck Quality Config
 
-This scriptable object provides a way to granularly define settings for different quality presets for Android and Desktop platforms.
-
-You can also override your android platform presets for specific devices, such as the Quest 2.
+This scriptable object provides a way to define different quality presets for Android and Desktop platforms and define device specific overrides.
 
 ### Quality Options
 
@@ -36,8 +35,8 @@ Each quality preset has a name field and a `Camera Track Descriptor` that allows
     | **Framerate**     | 60       | 60        | 60        | 60        |
     | **Audio Bitrate** | 192000   | 192000    | 192000    | 192000    |
   </Accordion>
-  <Accordion title="Android Overrides" defaultOpen>
-    ### Quest 2
+  <Accordion title="Overrides" defaultOpen="false">
+    ### Android - Quest 2
 
     |                   | SD       | HD        |
     | :---------------- | :------- | :-------- |
