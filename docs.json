@@ -29,7 +29,6 @@
           {
             "group": "Customization",
             "pages": [
-              "customisation/components",
               "customisation/introduction",
               "customisation/quality-config",
               "customisation/tablet-customisation",
