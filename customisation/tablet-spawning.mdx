@@ -3,13 +3,13 @@ title: "Spawning The Tablet"
 description: "Best practices for integrating the camera into your game."
 ---
 
-## Intro
+## Introduction
 
-We’ve left how you spawn the camera in your game up to you. We encourage you to explore what fits the style of your game and choose what would make the best user experience.
+How you choose to spawn the camera in your game is entirely up to you. We encourage you to experiment with what best matches your game’s style and provides the smoothest user experience.
 
-If you do come up with a great way to spawn the camera, we’d love it if you could share and we could add it to our examples and for others to be inspired from.
+The best way to integrate the tablet is to make it feel _native_ to your game - something that belongs naturally in your world rather than feeling like an external tool. A seamless fit helps players stay immersed while encouraging them to use the feature more often.
 
-Once you’ve decided on how to spawn the camera, please make sure you let your community of players and creators know, and try to make it obvious in-game.
+Once you’ve decided on your camera spawning method, be sure to communicate it clearly to your players and creators. Make it intuitive and easy to discover directly in-game.
 
 ## In Game Object (Recommended)
 
@@ -19,14 +19,14 @@ Through our partnerships with various games, we’ve found this approach leads t
 
 To further enhance this experience, we suggest customizing the camera's design to align with your game’s setting and art style—for example, a steampunk camera case in a steampunk game.
 
-### **Example - UNDERDOGS**
+### Example - UNDERDOGS
 
 In _UNDERDOGS_, the developers have have modified the implementation of LCK to be integrated with their mech UI. The result is an LCK tool that feels custom built for the game - this allows players to remain fully immersed in the game world even while creating content.
 
 <iframe className="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/ZIx93GYOeYY" title="
 UNDERDOGS - Filmed in Quest Native using LCK" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
 
-### **Example - Gorilla Tag**
+### Example - Gorilla Tag
 
 Another great example of this is the highly successful _Gorilla Tag_ implementation of LCK. In this game, users can pull the tablet directly from the wall. The design was tailored to match the game’s unique art style and strategically placed near the cosmetics station, ensuring easy access without breaking immersion.
 
@@ -40,11 +40,11 @@ Another great example of this is the highly successful _Gorilla Tag_ implementat
 
 ## In Game Event
 
-You may want to use the camera in a specific way in your gameplay loop (eg. To capture a battle or song performance), you can do this using gameplay events.
+You may want the camera to play a specific role in your gameplay loop—for example, capturing a battle, a performance, or another key moment. This can be done by tying the camera’s availability to certain gameplay events.
 
-One developer spawned the camera after a specific in-game event occurred. It was their gameplay choice to only have the camera available at these specific times.
+For instance, one developer chose to spawn the camera only after a specific in-game event occurred, making it available exclusively during those moments.
 
-We do not recommend this as a default solution because you want to optimize for as many players & creators making videos as possible, and that is partly dependent on being able to spawn the camera anywhere.
+While this can be a fun design choice, we don’t recommend it as the default approach. To maximize the number of players and creators capturing videos, the camera should ideally be available anywhere, anytime.
 
 ## Alternative Options:
 
@@ -52,12 +52,4 @@ We do not recommend this as a default solution because you want to optimize for 
 - Gestures
 - Game Menu
 
-## Other Considerations
-
-### User camera setting defaults
-
-We’ve set reasonable default ranges for user settings, like smoothing, field of view, and distance. However it could be optimized to best suit your app’s use cases and scenes. For example, if your game takes place mainly indoors the distance ranges could be smaller so you’re not outside the scene.
-
-### Sounds
-
-Default input sounds are included in the SDK but as a developer you are free to customize the audio clips used.
+## 
