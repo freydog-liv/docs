@@ -31,7 +31,9 @@
             "pages": [
               "customisation/introduction",
               "customisation/tablet-intro",
-              "customisation/components"
+              "customisation/components",
+              "customisation/tablet-spawning",
+              "customisation/quality-config"
             ]
           },
           {

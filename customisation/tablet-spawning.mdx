@@ -1,6 +1,6 @@
 ---
-title: "Camera Spawn"
-description: "Description of your new file."
+title: "Spawning The Tablet"
+description: "Best practices for integrating the camera into your game."
 ---
 
 ## Intro
@@ -30,4 +30,34 @@ UNDERDOGS - Filmed in Quest Native using LCK" frameBorder="0" allow="acceleromet
 
 Another great example of this is the highly successful _Gorilla Tag_ implementation of LCK. In this game, users can pull the tablet directly from the wall. The design was tailored to match the game’s unique art style and strategically placed near the cosmetics station, ensuring easy access without breaking immersion.
 
-![Gorillatag Spawn Pn](/images/customisation/gorillatag_spawn.png)
+<img
+  src="/images/customisation/gorillatag_spawn.png"
+  alt="Spawner In Gorilla Tag"
+  height="300"
+  className="rounded-lg"
+  title={true}
+/>
+
+## In Game Event
+
+You may want to use the camera in a specific way in your gameplay loop (eg. To capture a battle or song performance), you can do this using gameplay events.
+
+One developer spawned the camera after a specific in-game event occurred. It was their gameplay choice to only have the camera available at these specific times.
+
+We do not recommend this as a default solution because you want to optimize for as many players & creators making videos as possible, and that is partly dependent on being able to spawn the camera anywhere.
+
+## Alternative Options:
+
+- Spawn On Controller Button Press
+- Gestures
+- Game Menu
+
+## Other Considerations
+
+### User camera setting defaults
+
+We’ve set reasonable default ranges for user settings, like smoothing, field of view, and distance. However it could be optimized to best suit your app’s use cases and scenes. For example, if your game takes place mainly indoors the distance ranges could be smaller so you’re not outside the scene.
+
+### Sounds
+
+Default input sounds are included in the SDK but as a developer you are free to customize the audio clips used.
