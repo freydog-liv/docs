@@ -1,4 +1,4 @@
-I{
+{
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "LCK Documentation",
@@ -29,11 +29,12 @@ I{
           {
             "group": "Customization",
             "pages": [
-              "customisation/introduction",
-              "customisation/tablet-intro",
               "customisation/components",
-              "customisation/tablet-spawning",
-              "customisation/quality-config"
+              "customisation/introduction",
+              "customisation/quality-config",
+              "customisation/tablet-customisation",
+              "customisation/tablet-intro",
+              "customisation/tablet-spawning"
             ]
           },
           {
