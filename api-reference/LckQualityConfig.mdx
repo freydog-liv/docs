@@ -12,61 +12,20 @@ description: "Description of your new file."
 Assign `LckQualityConfig` in your project to manage capture quality options across devices.\
 When calling `GetQualityOptionsForSystem()`, the config automatically detects the platform and, if applicable, the current device model to return the correct set of quality options.
 
-## Examples
-
-```
-var config = Resources.Load<LckQualityConfig>("LckQualityConfig");
-var qualityOptions = config.GetQualityOptionsForSystem();
-
-foreach (var option in qualityOptions)
-{
-    Debug.Log($"Option: {option.Name} (Default: {option.IsDefault})");
-}
-```
-
 ## References
 
-### Enums
+### Fields
 
-| Name          | Values                        | Description                      |
-| :------------ | :---------------------------- | :------------------------------- |
-| `DeviceModel` | `Quest2`, `Quest3`, `Quest3s` | Supported Android device models. |
+| Field                         | Type                          | Description                                                    |
+| :---------------------------- | :---------------------------- | :------------------------------------------------------------- |
+| BaseAndroidQualityOptions     | List\<QualityOption\>         | Base quality options for Android devices.                      |
+| AndroidOptionsDeviceOverrides | List\<QualityOptionOverride\> | Device-specific override options for Android devices.          |
+| DesktopQualityOptions         | List\<QualityOption\>         | Quality options for desktop platforms (Windows, Linux, macOS). |
 
-### Structs
+---
 
-#### QualityOption
+### Methods
 
-| Name                    | Type                    | Description                                     |
-| :---------------------- | :---------------------- | :---------------------------------------------- |
-| `Name`                  | `string`                | Human-readable name of the quality option.      |
-| `IsDefault`             | `bool`                  | Indicates if this option is the default choice. |
-| `CameraTrackDescriptor` | `CameraTrackDescriptor` | Descriptor used for configuring camera tracks.  |
-
-#### QualityOptionOverride
-
-| Name             | Type                  | Description                                     |
-| :--------------- | :-------------------- | :---------------------------------------------- |
-| `DeviceModel`    | `DeviceModel`         | The device model this override applies to.      |
-| `QualityOptions` | `List<QualityOption>` | List of quality options specific to the device. |
-
-### Interface
-
-#### ILckQualityConfig
-
-| Method                         | Returns               | Description                                                |
-| :----------------------------- | :-------------------- | :--------------------------------------------------------- |
-| `GetQualityOptionsForSystem()` | `List<QualityOption>` | Retrieves quality options for the current platform/device. |
-
-### Class
-
-#### LckQualityConfig (ScriptableObject, ILckQualityConfig)
-
-| Property/Field                  | Type                          | Description                                  |
-| :------------------------------ | :---------------------------- | :------------------------------------------- |
-| `BaseAndroidQualityOptions`     | `List<QualityOption>`         | Default quality options for Android devices. |
-| `AndroidOptionsDeviceOverrides` | `List<QualityOptionOverride>` | Device-specific overrides for Android.       |
-| `DesktopQualityOptions`         | `List<QualityOption>`         | Quality options for desktop platforms.       |
-
-| Method                         | Returns               | Description                                                               |
-| :----------------------------- | :-------------------- | :------------------------------------------------------------------------ |
-| `GetQualityOptionsForSystem()` | `List<QualityOption>` | Returns quality options based on the current runtime platform and device. |
+| Method                       | Returns               | Description                                                                                                                                                                                                                                                                                     |
+| :--------------------------- | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GetQualityOptionsForSystem() | List\<QualityOption\> | Returns the appropriate quality options for the current runtime platform. On Android, may return device-specific overrides if available; otherwise, returns base Android options. On desktop platforms, returns desktop options. Throws NotImplementedException if the platform is unsupported. |
