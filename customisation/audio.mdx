@@ -12,7 +12,7 @@ When recording with LCK, all audio captured by the active **AudioListener** will
 When the **LckAudioMixer** looks for a game audio source, it will use this logic:
 ```mermaid
 flowchart TD
-    A([Start: LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
+    A([LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
 
     B -->|Yes| C{ILckAudioSource present?}
     C -->|Yes| D[[Use ILckAudioSource for audio]]
