@@ -1,0 +1,107 @@
+---
+title: "Audio"
+description: "Description of your new file."
+---
+
+## Audio Capture
+
+When recording with LCK, all audio captured by the active **AudioListener** will be included. Since the AudioListener is most commonly attached to the player’s HMD, recordings capture audio from the player’s perspective.
+
+## Audio Mixer Behavior
+
+When the **LckAudioMixer** looks for a game audio source, it will use this logic:
+```mermaid
+flowchart TD
+    A([Start: LckAudioMixer searches for audio source]) --> B{AudioListener found?}
+
+    B -->|Yes| C{ILckAudioSource present?}
+    C -->|Yes| D[[Use ILckAudioSource for audio]]
+    C -->|No| E[[Add LckAudioCapture to listener GameObject]]
+
+    B -->|No| F{LckAudioMarker found?}
+    F -->|Yes| G{ILckAudioSource present?}
+    G -->|Yes| H[[Use ILckAudioSource for audio]]
+    G -->|No| I[[Add LckAudioCapture to marker GameObject]]
+
+    F -->|No| J[[No audio source found]]
+    ```
+
+
+<Accordion title="AudioListener in scene">
+  - Check for component implementing ILckAudioSource, use if available.
+  - Otherwise add LckAudioCapture component to AudioListener GameObject.
+</Accordion>
+
+<Accordion title="No AudioListener in scene" icon="sparkles">
+  - Check for LckAudioMarker.
+  - 
+</Accordion>
+
+
+<Steps>
+  <Step title="Look for an AudioListener in scene">
+    1. If found, check for a component implementing **ILckAudioSource**. use it if available.
+    2. If **ILckAudioSource** component not found, add an **LckAudioCapture** to the GameObject with the listener.
+  </Step>
+  <Step title="If not found, look for LckAudioMarker">
+    1. If found, check for a component implementing **ILckAudioSource**. use it if available.
+    2. If not found, add an **LckAudioCapture** to the GameObject with the listener.
+  </Step>
+</Steps>
+
+## Audio Settings
+
+- Smaller DSP buffer sizes can cause **audio artifacting and dropped audio**.
+- This issue is usually less noticeable during gameplay but becomes more pronounced in recordings.
+- For best results, we recommend setting the DSP buffer size to **“Default” or 1024**.
+- We are working on improving how dropped audio is handled, but it may currently cause recording and audio-syncing issues.
+
+---
+
+## Third-Party Audio Support
+
+LCK includes support for **Wwise** and **FMOD**. To enable them:
+
+1. Add the correct scripting define symbol in your project settings:
+   - `LCK_FMOD` (for FMOD 2.02)
+   - `LCK_FMOD_2_03` (for FMOD 2.03\+)
+   - `LCK_WWISE`
+2. Place an **LckAudioMarker** component on the GameObject where LCK should attach capture components.
+
+If you are not using Unity Audio and are also not using Wwise or FMOD, you can add the define:
+
+- `LCK_NOT_UNITY_AUDIO` — this forces LCK not to rely on Unity audio settings.
+
+---
+
+## Supplying Custom Audio
+
+As of **v1.2.0** (see upgrade guide), developers can implement **ILckAudioSource** to manually supply game audio to LCK.
+
+Notes:
+
+- LCK will still collect microphone audio separately from custom sources.
+- LCK expects all audio in **stereo, interleaved floats, at 48kHz**.
+- To use this approach, implement ILckAudioSource in a component and place it:
+  - next to a Unity **AudioListener**, or
+  - next to an **LckAudioMarker**.
+
+For examples, see:
+
+- `LckAudioListener`
+- FMOD and Wwise variants.
+
+---
+
+## Discreet Audio
+
+For audio that should be audible to the player but excluded from recordings (e.g., UI chimes, recording-state sounds), LCK provides the **Discreet Audio API**.
+
+- Play clips directly:
+  - `PlayDiscreetAudioClip(AudioClip audioClip)`
+- Preload clips (recommended for longer audio):
+  - `PreloadDiscreetAudio(AudioClip audioClip)`
+- Stop all discreet audio:
+  - `StopAllDiscreetAudio()`
+
+⚠️ The Discreet Audio API is intended primarily for short audio cues and notifications.
