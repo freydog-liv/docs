@@ -39,27 +39,15 @@ flowchart TD
     style I fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
     style J fill:#F6E7F0,stroke:#A3166F,stroke-width:2px,color:#000000,rx:15,ry:15
 ```
-
 <Accordion title="AudioListener in scene">
-  - Check for component implementing ILckAudioSource, use if available.
-  - Otherwise add LckAudioCapture component to AudioListener GameObject.
+  1. Look for component implementing ILckAudioSource, use if available.
+  2. If not found, add LckAudioCapture component to AudioListener GameObject.
 </Accordion>
 
 <Accordion title="No AudioListener in scene" icon="sparkles">
-  - Check for LckAudioMarker.
-  - 
-</Accordion>
-
-<Steps>
-  <Step title="Look for an AudioListener in scene">
-    1. If found, check for a component implementing **ILckAudioSource**. use it if available.
-    2. If **ILckAudioSource** component not found, add an **LckAudioCapture** to the GameObject with the listener.
-  </Step>
-  <Step title="If not found, look for LckAudioMarker">
-    1. If found, check for a component implementing **ILckAudioSource**. use it if available.
+    1.  Look for LckAudioMarker, if found, check for a component implementing **ILckAudioSource**. use it if available.
     2. If not found, add an **LckAudioCapture** to the GameObject with the listener.
-  </Step>
-</Steps>
+</Accordion>
 
 ## Audio Settings
 
