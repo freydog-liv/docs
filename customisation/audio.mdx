@@ -14,13 +14,13 @@ When the **LckAudioMixer** looks for a game audio source, it will use this logic
 flowchart TD
     A([LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
 
-    B -->|Yes| C{ILckAudioSource present?}
-    C -->|Yes| D[[Use ILckAudioSource for audio]]
+    B -->|Yes| C{Component implementing ILckAudioSource present?}
+    C -->|Yes| D[[Use ILckAudioSource Component for audio]]
     C -->|No| E[[Add LckAudioCapture to listener GameObject]]
 
     B -->|No| F{LckAudioMarker found?}
-    F -->|Yes| G{ILckAudioSource present?}
-    G -->|Yes| H[[Use ILckAudioSource for audio]]
+    F -->|Yes| G{Component implementing ILckAudioSource present?}
+    G -->|Yes| H[[Use ILckAudioSource Component for audio]]
     G -->|No| I[[Add LckAudioCapture to marker GameObject]]
 
     F -->|No| J[[No audio source found]]
