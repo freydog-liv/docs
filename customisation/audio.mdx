@@ -10,6 +10,26 @@ When recording with LCK, all audio captured by the active **AudioListener** will
 ## Audio Mixer Behavior
 
 When the **LckAudioMixer** looks for a game audio source, it will use this logic:
+
+```mermaid
+  flowchart LR
+    subgraph subgraph1
+        direction TB
+        top1[top] --> bottom1[bottom]
+    end
+    subgraph subgraph2
+        direction TB
+        top2[top] --> bottom2[bottom]
+    end
+    %% ^ These subgraphs are identical, except for the links to them:
+
+    %% Link *to* subgraph1: subgraph1 direction is maintained
+    outside --> subgraph1
+    %% Link *within* subgraph2:
+    %% subgraph2 inherits the direction of the top-level graph (LR)
+    outside ---> top2
+```
+
 ```mermaid
 flowchart TD
     A([Start: LckAudioMixer searches for audio source]) --> B{AudioListener found?}
@@ -24,8 +44,7 @@ flowchart TD
     G -->|No| I[[Add LckAudioCapture to marker GameObject]]
 
     F -->|No| J[[No audio source found]]
-    ```
-
+```
 
 <Accordion title="AudioListener in scene">
   - Check for component implementing ILckAudioSource, use if available.
@@ -36,7 +55,6 @@ flowchart TD
   - Check for LckAudioMarker.
   - 
 </Accordion>
-
 
 <Steps>
   <Step title="Look for an AudioListener in scene">
