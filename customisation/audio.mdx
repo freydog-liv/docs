@@ -10,43 +10,44 @@ When recording with LCK, all audio captured by the active **AudioListener** will
 ## Audio Mixer Behavior
 
 When the **LckAudioMixer** looks for a game audio source, it will use this logic:
-```mermaid
-flowchart TD
-    A([LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
 
-    B -->|Yes| C{Component implementing ILckAudioSource present?}
-    C -->|Yes| D[[Use ILckAudioSource Component for audio]]
-    C -->|No| E[[Add LckAudioCapture to listener GameObject]]
+1. Look for an **AudioListener** in the scene:
+   - If found, check for a component implementing **ILckAudioSource** → use it if available.
+   - If not found, add an **LckAudioCapture** to the GameObject with the listener.
+2. If no AudioListener is present:
+   - Look for an **LckAudioMarker**.
+   - Follow the same logic as above (check for ILckAudioSource, or fall back to LckAudioCapture).
 
-    B -->|No| F{LckAudioMarker found?}
-    F -->|Yes| G{Component implementing ILckAudioSource present?}
-    G -->|Yes| H[[Use ILckAudioSource Component for audio]]
-    G -->|No| I[[Add LckAudioCapture to marker GameObject]]
-
-    F -->|No| J[[No audio source found]]
-
-
-             %% Styling - Rounded nodes
-    style A fill:#07C983,stroke:#16A34A,stroke-width:2px,color:#FFFFFF,rx:15,ry:15
-    style B fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
-    style C fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
-    style F fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
-    style G fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
-
-    style D fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
-    style E fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
-    style H fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
-    style I fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
-    style J fill:#F6E7F0,stroke:#A3166F,stroke-width:2px,color:#000000,rx:15,ry:15
-```
-<Accordion title="AudioListener in scene">
-  1. Look for component implementing ILckAudioSource, use if available.
-  2. If not found, add LckAudioCapture component to AudioListener GameObject.
-</Accordion>
-
-<Accordion title="No AudioListener in scene" icon="sparkles">
-    1.  Look for LckAudioMarker, if found, check for a component implementing **ILckAudioSource**. use it if available.
-    2. If not found, add an **LckAudioCapture** to the GameObject with the listener.
+<Accordion title="Audio Mixer Flow Diagram" icon="volume">
+  ```mermaid
+  flowchart TD
+      A([LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
+  
+      B -->|Yes| C{Component implementing ILckAudioSource present?}
+      C -->|Yes| D[[Use ILckAudioSource Component for audio]]
+      C -->|No| E[[Add LckAudioCapture to listener GameObject]]
+  
+      B -->|No| F{LckAudioMarker found?}
+      F -->|Yes| G{Component implementing ILckAudioSource present?}
+      G -->|Yes| H[[Use ILckAudioSource Component for audio]]
+      G -->|No| I[[Add LckAudioCapture to marker GameObject]]
+  
+      F -->|No| J[[No audio source found]]
+  
+  
+               %% Styling - Rounded nodes
+      style A fill:#07C983,stroke:#16A34A,stroke-width:2px,color:#FFFFFF,rx:15,ry:15
+      style B fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
+      style C fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
+      style F fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
+      style G fill:#FFFFFF,stroke:#07C983,stroke-width:2px,color:#000000,rx:15,ry:15
+  
+      style D fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
+      style E fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
+      style H fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
+      style I fill:#E7F6ED,stroke:#16A34A,stroke-width:2px,color:#000000,rx:15,ry:15
+      style J fill:#F6E7F0,stroke:#A3166F,stroke-width:2px,color:#000000,rx:15,ry:15
+  ```
 </Accordion>
 
 ## Audio Settings
