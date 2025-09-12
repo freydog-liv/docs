@@ -18,7 +18,7 @@ When the **LckAudioMixer** looks for a game audio source, it will use this logic
    - Look for an **LckAudioMarker**.
    - Follow the same logic as above (check for ILckAudioSource, or fall back to LckAudioCapture).
 
-<Accordion title="Audio Mixer Flow Diagram" icon="volume">
+<Accordion title="Audio Mixer Flow Diagram" defaultOpen icon="volume">
   ```mermaid
   flowchart TD
       A([LckAudioMixer searches for audio source in scene]) --> B{AudioListener found?}
