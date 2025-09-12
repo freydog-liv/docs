@@ -55,9 +55,7 @@ When the **LckAudioMixer** looks for a game audio source, it will use this logic
 - Smaller DSP buffer sizes can cause **audio artifacting and dropped audio**.
 - This issue is usually less noticeable during gameplay but becomes more pronounced in recordings.
 - For best results, we recommend setting the DSP buffer size to **“Default” or 1024**.
-- We are working on improving how dropped audio is handled, but it may currently cause recording and audio-syncing issues.
-
----
+- We are working on improving how dropped audio is handled, but it may currently cause recording and audio-syncing issues
 
 ## Third-Party Audio Support
 
@@ -73,8 +71,6 @@ If you are not using Unity Audio and are also not using Wwise or FMOD, you can a
 
 - `LCK_NOT_UNITY_AUDIO` — this forces LCK not to rely on Unity audio settings.
 
----
-
 ## Supplying Custom Audio
 
 As of **v1.2.0** (see upgrade guide), developers can implement **ILckAudioSource** to manually supply game audio to LCK.
@@ -87,22 +83,30 @@ Notes:
   - next to a Unity **AudioListener**, or
   - next to an **LckAudioMarker**.
 
-For examples, see:
-
-- `LckAudioListener`
-- FMOD and Wwise variants.
-
----
+For examples take a look at **LckAudioListener **and FMOD and Wwise variants.
 
 ## Discreet Audio
 
 For audio that should be audible to the player but excluded from recordings (e.g., UI chimes, recording-state sounds), LCK provides the **Discreet Audio API**.
 
-- Play clips directly:
-  - `PlayDiscreetAudioClip(AudioClip audioClip)`
-- Preload clips (recommended for longer audio):
-  - `PreloadDiscreetAudio(AudioClip audioClip)`
-- Stop all discreet audio:
-  - `StopAllDiscreetAudio()`
+### Play clips directly
 
-⚠️ The Discreet Audio API is intended primarily for short audio cues and notifications.
+```
+PlayDiscreetAudioClip(AudioClip audioClip)
+```
+
+### Preload clips (recommended for longer audio)
+
+```
+PreloadDiscreetAudio(AudioClip audioClip)
+```
+
+### Stop all discreet audio
+
+```
+StopAllDiscreetAudio()
+```
+
+<Info>
+  The Discreet Audio API is intended primarily for short audio cues and notifications.
+</Info>
