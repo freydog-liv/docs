@@ -66,7 +66,8 @@
               "api-reference/class/LckQualityConfig",
               "api-reference/class/LckDescriptor",
               "api-reference/class/LckCamera",
-              "api-reference/class/LckMonitor"
+              "api-reference/class/LckMonitor",
+              "api-reference/class/LckMediator"
             ]
           },
           { 
