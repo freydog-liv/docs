@@ -1,0 +1,37 @@
+---
+title: "LckCaptureType"
+description: "Enum representing the type of capture mode used within LCK."
+---
+
+## Description
+
+`LckCaptureType` specifies whether the system is currently configured for recording or streaming.
+
+This affects which track descriptors, quality settings, and bitrate/framerate configurations are used.
+
+---
+
+## Usage
+
+```c#
+// Set capture type to streaming
+var result = _lckService.SetActiveCaptureType(LckCaptureType.Streaming);
+
+if (!result.Success)
+    Debug.LogError($"Failed to set capture type: {result.ErrorMessage}");
+
+// Query current type
+var activeType = _lckService.GetActiveCaptureType();
+Debug.Log($"Active capture type: {activeType.Result}");
+```
+
+---
+
+## References
+
+### Values
+
+| Name      | Description                                |
+| :-------- | :----------------------------------------- |
+| Recording | Capture is configured for local recording. |
+| Streaming | Capture is configured for live streaming.  |

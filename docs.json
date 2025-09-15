@@ -89,7 +89,8 @@
           { 
             "group": "Enum",
             "pages": [
-              "api-reference/LckError"
+              "api-reference/enum/LckError",
+              "api-reference/enum/LckCaptureType"
               
             ]
           }
