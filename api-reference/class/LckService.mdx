@@ -5,7 +5,8 @@ description: "Main public-facing service for managing LIV Capture Kit (LCK) func
 
 ## Description
 
-`LckService` is the central entry point for interacting with the LIV Capture Kit at runtime and the default implementation of `ILckService`.\
+`LckService` is the central entry point for interacting with the LIV Capture Kit at runtime and the default implementation of [`ILckService`](/api-reference/ILckService).
+
 It provides APIs for starting and stopping recording or streaming, configuring capture settings (resolution, framerate, bitrate, orientation), managing audio, capturing photos, and controlling active cameras.
 
 This service also exposes events for key lifecycle moments (recording started, stopped, paused, resumed, streaming events, photo saved, etc.), making it easy to integrate LCK into your application workflow.
