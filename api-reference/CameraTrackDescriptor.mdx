@@ -1,55 +1,58 @@
 ---
 title: "CameraTrackDescriptor"
-description: "Description of your new file."
+description: "Struct that defines resolution, bitrate, and framerate parameters for configuring a camera track in LCK."
 ---
 
 ## Description
 
-**CameraTrackDescriptor** is a struct that encapsulates key parameters required for configuring a camera track in LCK. It holds a [CameraResolutionDescriptor](/api-reference/cameraresolutiondescriptor) to define resolution settings and also includes bitrate and framerate parameters for both video and audio. Default values are provided for video bitrate, frame rate, and audio bitrate to simplify common scenarios.
+**CameraTrackDescriptor** encapsulates the key parameters required for configuring a camera track in LCK.
+
+It includes:
+
+- A **CameraResolutionDescriptor** for output resolution.
+- Bitrate and framerate parameters for video.
+- An audio bitrate parameter.
+
+Default values are provided for common use cases:
+
+- **Video bitrate:** `5 << 20` (≈ 5 Mbps)
+- **Framerate:** `30 fps`
+- **Audio bitrate:** `192000` (192 kbps)
+
+---
 
 ## Usage
 
-When creating a **CameraTrackDescriptor**, you typically need to supply a [CameraResolutionDescriptor](/api-reference/cameraresolutiondescriptor). Unless you need custom settings, you can rely on the default values for video bitrate (`5 << 20`), framerate (`30`), and audio bitrate (`192000`).
+When creating a `CameraTrackDescriptor`, you must supply a  [`CameraResolutionDescriptor`](/api-reference/CameraResolutionDescriptor) .
+Other values (bitrate, framerate, audio bitrate) will use defaults unless explicitly set.
+
+---
 
 ## Examples
 
 ```
 // Using default bitrate, framerate, and audio bitrate
-var resolution = new CameraResolutionDescriptor(/* ... resolution params ... */);
+var resolution = new CameraResolutionDescriptor(1920, 1080);
 var descriptor = new CameraTrackDescriptor(resolution);
 
 // Custom configuration
 var customDescriptor = new CameraTrackDescriptor(
     resolution,
     bitrate: 10 << 20,     // 10 Mbps
-    framerate: 60,          // 60 fps
-    audioBitrate: 256000    // 256 kbps
+    framerate: 60,         // 60 fps
+    audioBitrate: 256000   // 256 kbps
 );
 ```
 
+---
+
 ## References
 
-### Struct: CameraTrackDescriptor
+### Fields
 
-| Name                         | Type                         | Description                                                                  |
-| :--------------------------- | :--------------------------- | :--------------------------------------------------------------------------- |
-| `CameraResolutionDescriptor` | `CameraResolutionDescriptor` | Defines the resolution properties of the camera (e.g., width, height, etc.). |
-| `Bitrate`                    | `uint`                       | Video bitrate in bits per second; default is `5 << 20` (~5 Mbps).            |
-| `Framerate`                  | `uint`                       | Frames per second; default is `30`.                                          |
-| `AudioBitrate`               | `uint`                       | Audio bitrate in bits per second; default is `192000` (192 kbps).            |
-
-## Constructor
-
-```
-public CameraTrackDescriptor(
-    CameraResolutionDescriptor cameraResolutionDescriptor,
-    uint bitrate = 5 << 20,
-    uint framerate = 30,
-    uint audioBitrate = 192000
-)
-```
-
-### Parameters
-
-- **cameraResolutionDescriptor** – Defines resolution (width, height, etc.).
-- **bitrate** – Video bitrate in bits per second. Default: ~5 Mbps
+| Field        | Type                       | Description                           |
+| :----------- | :------------------------- | :------------------------------------ |
+| Resolution   | CameraResolutionDescriptor | Defines the video output resolution.  |
+| Bitrate      | uint                       | Video bitrate in bits per second.     |
+| Framerate    | uint                       | Video framerate in frames per second. |
+| AudioBitrate | uint                       | Audio bitrate in bits per second.     |

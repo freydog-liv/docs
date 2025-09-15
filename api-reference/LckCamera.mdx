@@ -5,10 +5,12 @@ description: "Provides integration of a Unity Camera into the LIV Capture Kit sy
 
 ## Description
 
-**LckCamera** is a Unity component that integrates a standard Camera into the LIV Capture Kit (LCK) system.\
+**LckCamera** is a component that integrates a standard Camera into the LIV Capture Kit (LCK) system.\
 It ensures proper registration with the LckMediator, manages activation/deactivation for capture, and provides access to the underlying Unity Camera component.
 
 When used with the **Universal Render Pipeline (URP)**, it automatically configures **UniversalAdditionalCameraData** to disable XR rendering.
+
+---
 
 ## Usage
 
@@ -16,6 +18,8 @@ When used with the **Universal Render Pipeline (URP)**, it automatically configu
 - The camera will automatically register itself with the LCK system at runtime.
 - Use `ILckService.SetActiveCamera(cameraId)` to switch between registered cameras.
 - Cameras are automatically deactivated when not in use.
+
+---
 
 ### Example
 
@@ -30,6 +34,8 @@ public void SwitchToCamera(ILckCamera camera)
 }
 ```
 
+---
+
 ## References
 
 ### Fields
@@ -39,11 +45,15 @@ public void SwitchToCamera(ILckCamera camera)
 | \_camera   | Camera | Reference to the Unity `Camera` component.  |
 | \_cameraId | string | Unique identifier for this camera instance. |
 
+---
+
 ### Properties
 
 | Property | Type   | Description                            |
 | :------- | :----- | :------------------------------------- |
 | CameraId | string | The unique identifier for this camera. |
+
+---
 
 ### Methods
 

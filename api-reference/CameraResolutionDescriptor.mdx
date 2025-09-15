@@ -1,26 +1,29 @@
 ---
 title: "CameraResolutionDescriptor"
-description: "Defines resolution settings for a camera track in LIV Capture Kit."
+description: "Struct defining the output resolution of a camera in pixels for use in video capture and encoding."
 ---
 
 ## Description
 
-The **CameraResolutionDescriptor** struct specifies the width and height of a camera’s output resolution. It is used as part of a [CameraTrackDescriptor](/api-reference/cameratrackdescriptor) to define how video frames should be captured and encoded.
+**CameraResolutionDescriptor** specifies the width and height of a camera’s output resolution.\
+It is used as part of a **CameraTrackDescriptor** to define how video frames should be captured and encoded.
 
-By default, it initializes to a square resolution of **512 × 512** pixels.
-
----
-
-## Fields
-
-| Field      | Type   | Description                          |
-| :--------- | :----- | :----------------------------------- |
-| **Width**  | `uint` | The horizontal resolution in pixels. |
-| **Height** | `uint` | The vertical resolution in pixels.   |
+By default, it initializes to a **square resolution of 512 × 512 pixels**.
 
 ---
 
-## Constructor
+## References
+
+### Fields
+
+| Field  | Type | Description                          |
+| :----- | :--- | :----------------------------------- |
+| Width  | uint | The horizontal resolution in pixels. |
+| Height | uint | The vertical resolution in pixels.   |
+
+---
+
+### Constructor
 
 ```
 public CameraResolutionDescriptor(
@@ -29,7 +32,7 @@ public CameraResolutionDescriptor(
 )
 ```
 
-### Parameters
+#### Parameters
 
-- **width** – Output width in pixels. Default: `512`.
-- **height** – Output height in pixels. Default: `512`.
+- **width** — Output width in pixels. _(Default: 512)_
+- **height** — Output height in pixels. _(Default: 512)_

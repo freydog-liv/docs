@@ -10,11 +10,16 @@ It manages a unique monitor ID for registration with the **LckMediator** and pro
 
 Applications can subscribe to the `OnRenderTextureSet` event to receive updates whenever a new **RenderTexture** is assigned.
 
+---
+
 ## Usage
 
 - Add an **LckMonitor** component to a GameObject to represent a display target.
 - The monitor will automatically register itself with the LCK system at runtime.
 - Subscribe to `OnRenderTextureSet` to update UI or 3D objects with the capture output.
+
+---
+
 
 ### Example
 
@@ -45,6 +50,8 @@ public class MonitorExample : MonoBehaviour
 }
 ```
 
+---
+
 ## References
 
 ### Fields
@@ -53,17 +60,23 @@ public class MonitorExample : MonoBehaviour
 | :---------- | :----- | :------------------------------------------- |
 | \_monitorId | string | Unique identifier for this monitor instance. |
 
+---
+
 ### Properties
 
 | Property  | Type   | Description                             |
 | :-------- | :----- | :-------------------------------------- |
 | MonitorId | string | The unique identifier for this monitor. |
 
+---
+
 ### Events
 
 | Event              | Type                                                            | Description                                                         |
 | :----------------- | :-------------------------------------------------------------- | :------------------------------------------------------------------ |
 | OnRenderTextureSet | LckMonitorRenderTextureSetDelegate(RenderTexture renderTexture) | Invoked whenever a new `RenderTexture` is assigned to this monitor. |
+
+---
 
 ### Methods
 
