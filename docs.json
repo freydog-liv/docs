@@ -81,10 +81,10 @@
           { 
             "group": "Struct",
             "pages": [
-              "api-reference/QualityOption",
-              "api-reference/QualityOptionOverride",
-              "api-reference/CameraTrackDescriptor",
-              "api-reference/CameraResolutionDescriptor"
+              "api-reference/struct/QualityOption",
+              "api-reference/struct/QualityOptionOverride",
+              "api-reference/struct/CameraTrackDescriptor",
+              "api-reference/struct/CameraResolutionDescriptor"
             ]
           },
           { 
