@@ -1,0 +1,31 @@
+---
+title: "LckCameraOrientation"
+description: "Enum representing the orientation of a camera within LCK."
+---
+
+## Description
+
+`LckCameraOrientation` defines the output orientation of a camera.
+
+---
+
+## Usage
+
+```c#
+// Switch camera orientation to portrait
+var result = _lckService.SetCameraOrientation(LckCameraOrientation.Portrait);
+
+if (!result.Success)
+    Debug.LogError($"Failed to set orientation: {result.ErrorMessage}");
+```
+
+---
+
+## References
+
+### Values
+
+| Name      | Description                                    |
+| :-------- | :--------------------------------------------- |
+| Portrait  | Camera output is oriented vertically (tall).   |
+| Landscape | Camera output is oriented horizontally (wide). |

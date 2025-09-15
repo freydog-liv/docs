@@ -90,7 +90,8 @@
             "group": "Enum",
             "pages": [
               "api-reference/enum/LckError",
-              "api-reference/enum/LckCaptureType"
+              "api-reference/enum/LckCaptureType",
+              "api-reference/enum/LckCameraOrientation"
               
             ]
           }
