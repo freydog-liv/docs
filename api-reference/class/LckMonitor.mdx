@@ -5,8 +5,8 @@ description: "Represents a monitor endpoint for LIV Capture Kit cameras and prov
 
 ## Description
 
-`LckMonitor` is a component implementing [`ILckMonitor`](/api-reference/ILckMonitor) that represents a display surface (monitor) in the LCK.\
-It manages a unique monitor ID for registration with the [`LckCamera`](/api-reference/LckCamera) and provides a RenderTexture output for connected [`LckCamera`](/api-reference/LckCamera) instances.
+`LckMonitor` is a component implementing [`ILckMonitor`](/api-reference/interface/ILckMonitor) that represents a display surface (monitor) in the LCK.\
+It manages a unique monitor ID for registration with the [`LckCamera`](/api-reference/class/LckCamera) and provides a RenderTexture output for connected [`LckCamera`](/api-reference/class/LckCamera) instances.
 
 Applications can subscribe to the `OnRenderTextureSet` event to receive updates whenever a new RenderTexture is assigned.
 
