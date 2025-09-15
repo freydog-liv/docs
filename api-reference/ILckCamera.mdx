@@ -1,0 +1,82 @@
+---
+title: "ILckCamera"
+description: "Interface representing a camera that can be activated, deactivated, and managed in the LCK capture system."
+---
+
+## Description
+
+`ILckCamera` defines the contract for cameras managed within LCK. It ensures every camera has a **unique identifier** (`CameraId`), can be **activated or deactivated** with a `RenderTexture` as its output target, and exposes its Unity `Camera` component for direct access.
+
+Within LCK, this interface allows the service ([`ILckService`](/api-reference/ILckService)) and mediator components to register, switch, and control cameras in a consistent way, regardless of whether the implementation is the built-in [`LckCamera`](/api-reference/LckCamera) or a custom one.
+
+---
+
+## Usage
+
+To use a camera with the system, implement `ILckCamera` in your own component.\
+A basic implementation could look like this:
+
+```c#
+using Liv.Lck;
+using UnityEngine;
+
+[RequireComponent(typeof(Camera))]
+public class CustomLckCamera : MonoBehaviour, ILckCamera
+{
+    [SerializeField] private string _cameraId;
+    private Camera _camera;
+
+    public string CameraId => _cameraId;
+
+    private void Awake()
+    {
+        _camera = GetComponent<Camera>();
+
+        // Ensure camera has a unique ID
+        if (string.IsNullOrEmpty(_cameraId))
+            _cameraId = System.Guid.NewGuid().ToString();
+
+        // Disable camera by default
+        _camera.enabled = false;
+    }
+
+    public void ActivateCamera(RenderTexture renderTexture)
+    {
+        _camera.targetTexture = renderTexture;
+        _camera.enabled = true;
+    }
+
+    public void DeactivateCamera()
+    {
+        _camera.targetTexture = null;
+        _camera.enabled = false;
+    }
+
+    public Camera GetCameraComponent()
+    {
+        return _camera;
+    }
+}
+```
+
+This implementation generates a unique ID if none is set, disables the camera by default, and correctly handles activation/deactivation with a `RenderTexture`.
+
+---
+
+## References
+
+### Properties
+
+| Property | Type   | Description                                |
+| :------- | :----- | :----------------------------------------- |
+| CameraId | string | Unique identifier for this camera instance |
+
+---
+
+### Methods
+
+| Method                        | Returns | Description                                                        |
+| :---------------------------- | :------ | :----------------------------------------------------------------- |
+| ActivateCamera(RenderTexture) | void    | Activates the camera and sets its render target.                   |
+| DeactivateCamera()            | void    | Deactivates the camera and clears its render target.               |
+| GetCameraComponent()          | Camera  | Returns the underlying Unity `Camera` component for direct access. |
