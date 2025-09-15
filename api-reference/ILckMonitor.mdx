@@ -1,0 +1,53 @@
+---
+title: "ILckMonitor"
+description: "Interface defining the contract for monitor components in the LCK system."
+---
+
+## Description
+
+**ILckMonitor** is an interface representing a monitor endpoint within LCK. Monitors act as render targets for camera outputs, identified by a unique `MonitorId`.
+
+Any class implementing this interface can be registered with the LCK system to receive video frames via a `RenderTexture`.
+
+---
+
+## Usage
+
+To implement a custom monitor, create a class that implements `ILckMonitor` and register it with the system.\
+For example:
+
+```c#
+using Liv.Lck;
+using UnityEngine;
+
+public class CustomMonitor : MonoBehaviour, ILckMonitor
+{
+    public string MonitorId { get; private set; } = System.Guid.NewGuid().ToString();
+
+    public void SetRenderTexture(RenderTexture renderTexture)
+    {
+        // Example: Apply the render texture to a material
+        GetComponent<Renderer>().material.mainTexture = renderTexture;
+    }
+}
+```
+
+---
+
+## References
+
+### Properties
+
+| Property  | Type   | Description                                 |
+| :-------- | :----- | :------------------------------------------ |
+| MonitorId | string | Unique identifier for the monitor instance. |
+
+---
+
+### Methods
+
+| Method                          | Returns | Description                                                      |
+| :------------------------------ | :------ | :--------------------------------------------------------------- |
+| SetRenderTexture(RenderTexture) | void    | Assigns a `RenderTexture` as the output target for this monitor. |
+
+---
