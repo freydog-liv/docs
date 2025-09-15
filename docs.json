@@ -61,20 +61,20 @@
           {
             "group": "Class",
             "pages": [
-              "api-reference/LckService",
-              "api-reference/LckResult",
-              "api-reference/LckQualityConfig",
-              "api-reference/LckDescriptor",
-              "api-reference/LckCamera",
-              "api-reference/LckMonitor"
+              "api-reference/class/LckService",
+              "api-reference/class/LckResult",
+              "api-reference/class/LckQualityConfig",
+              "api-reference/class/LckDescriptor",
+              "api-reference/class/LckCamera",
+              "api-reference/class/LckMonitor"
             ]
           },
           { 
             "group": "Interface",
             "pages": [
-              "api-reference/ILckService",
-              "api-reference/ILckMonitor",
-              "api-reference/ILckCamera"
+              "api-reference/interface/ILckService",
+              "api-reference/interface/ILckMonitor",
+              "api-reference/interface/ILckCamera"
             ]
           },
           { 

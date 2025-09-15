@@ -1,0 +1,72 @@
+---
+title: "LckMediator"
+description: "Static utility for registering and managing cameras and monitors within LCK."
+---
+
+## Description
+
+`LckMediator` is an internal static class that coordinates the registration and lookup of cameras ([`ILckCamera`](/api-reference/interface/ILckCamera)) and monitors ([`ILckMonitor`](/api-reference/interface/ILckMonitor)) within LCK.
+
+It maintains collections of active cameras and monitors, raises events when they are registered or unregistered, and provides lookup helpers by ID.
+
+It also forwards monitor-to-camera assignments to downstream systems, such as mixers.
+
+---
+
+## Usage
+
+`LckMediator` is typically used indirectly by components like [`LckCamera`](/api-reference/class/LckCamera) and [`LckMonitor`](/api-reference/class/LckMonitor), which register and unregister themselves automatically during their lifecycle.
+
+### Example: manually registering a custom [`ILckCamera`](/api-reference/interface/ILckCamera) implementation
+
+```c#
+var customCamera = new CustomLckCamera(); 
+LckMediator.RegisterCamera(customCamera);
+
+var foundCamera = LckMediator.GetCameraById(customCamera.CameraId);
+if (foundCamera != null)
+    Debug.Log($"Camera {foundCamera.CameraId} is registered.");
+
+// When cleaning up
+LckMediator.UnregisterCamera(customCamera);
+```
+
+### Example: reacting to camera/monitor registration events
+
+```c#
+LckMediator.CameraRegistered += cam =>
+    Debug.Log($"Camera registered: {cam.CameraId}");
+
+LckMediator.MonitorRegistered += mon =>
+    Debug.Log($"Monitor registered: {mon.MonitorId}");
+```
+
+---
+
+## References
+
+### Events
+
+| Event                     | Type                                                            | Description                                     |
+| :------------------------ | :-------------------------------------------------------------- | :---------------------------------------------- |
+| CameraRegistered          | Action\<[`ILckCamera`](/api-reference/interface/ILckCamera)\>   | Invoked when a new camera is registered.        |
+| CameraUnregistered        | Action\<[`ILckCamera`](/api-reference/interface/ILckCamera)\>   | Invoked when a camera is unregistered.          |
+| MonitorRegistered         | Action\<[`ILckMonitor`](/api-reference/interface/ILckMonitor)\> | Invoked when a new monitor is registered.       |
+| MonitorUnregistered       | Action\<[`ILckMonitor`](/api-reference/interface/ILckMonitor)\> | Invoked when a monitor is unregistered.         |
+| MonitorToCameraAssignment | Action\<string, string\>                                        | Invoked when a monitor is assigned to a camera. |
+
+---
+
+### Methods
+
+| Method                                                                   | Returns                                                              | Description                                                        |
+| :----------------------------------------------------------------------- | :------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| RegisterCamera([`ILckCamera`](/api-reference/interface/ILckCamera))      | void                                                                 | Registers a camera if not already present.                         |
+| UnregisterCamera([`ILckCamera`](/api-reference/interface/ILckCamera))    | void                                                                 | Unregisters a camera by ID.                                        |
+| RegisterMonitor([`ILckMonitor`](/api-reference/interface/ILckMonitor))   | void                                                                 | Registers a monitor if not already present.                        |
+| UnregisterMonitor([`ILckMonitor`](/api-reference/interface/ILckMonitor)) | void                                                                 | Unregisters a monitor by ID.                                       |
+| GetCameraById(string id)                                                 | ILckCamera                                                           | Retrieves a registered camera by its ID.                           |
+| GetMonitorById(string id)                                                | ILckMonitor                                                          | Retrieves a registered monitor by its ID.                          |
+| GetCameras()                                                             | IEnumerable\<[`ILckCamera`](/api-reference/interface/ILckCamera)\>   | Returns all currently registered cameras.                          |
+| GetMonitors()                                                            | IEnumerable\<[`ILckMonitor`](/api-reference/interface/ILckMonitor)\> | Returns all currently registered monitors.                         |
+| NotifyMixerAboutMonitorForCamera(string, string)                         | void                                                                 | Notifies listeners about an assignment between monitor and camera. |
