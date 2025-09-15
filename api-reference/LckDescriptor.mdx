@@ -1,16 +1,42 @@
 ---
 title: "LckDescriptor"
-description: "Defines the camera track settings passed into LckService.CreateService"
+description: "Class that wraps the active camera track descriptor used in capture."
 ---
 
 ## Description
 
-`LckDescriptor` is a simple container class that holds a `CameraTrackDescriptor` instance, which encapsulates resolution, video bitrate, frame rate, and audio bitrate settings. It’s required when initializing the [`LckService`](/api-reference/lckservice) via `CreateService()`
+`LckDescriptor` provides a simple container for the currently active [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor).
+
+It is typically returned by service methods (such as `ILckService.GetDescriptor`) to describe the current capture configuration in use.
+
+---
+
+## Usage
+
+Retrieve a `LckDescriptor` from the service to inspect the active track descriptor:
+
+```c#
+var descriptorResult = _lckService.GetDescriptor();
+
+if (descriptorResult.Success)
+{
+    var descriptor = descriptorResult.Result;
+    Debug.Log($"Active resolution: {descriptor.cameraTrackDescriptor.Resolution.Width}x{descriptor.cameraTrackDescriptor.Resolution.Height}");
+    Debug.Log($"Active framerate: {descriptor.cameraTrackDescriptor.Framerate}");
+    Debug.Log($"Active bitrate: {descriptor.cameraTrackDescriptor.Bitrate}");
+}
+else
+{
+    Debug.LogError($"Failed to retrieve descriptor: {descriptorResult.ErrorMessage}");
+}
+```
 
 ---
 
 ## References
 
-| Name                      | Type                                                            | Description                                |
-| :------------------------ | :-------------------------------------------------------------- | :----------------------------------------- |
-| **cameraTrackDescriptor** | [`CameraTrackDescriptor`](/api-reference/cameratrackdescriptor) | Encapsulates track configuration settings. |
+### Fields
+
+| Field                 | Type                  | Description                                  |
+| :-------------------- | :-------------------- | :------------------------------------------- |
+| cameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | The active track descriptor used in capture. |
