@@ -52,10 +52,15 @@
       {
         "tab": "API reference",
         "groups": [
+            {
+            "group": "API Documentation",
+            "pages": [
+              "api-reference/Introduction"
+            ]
+          },
           {
             "group": "Class",
             "pages": [
-              "api-reference/Introduction",
               "api-reference/LckService",
               "api-reference/LckResult",
               "api-reference/LckQualityConfig",
