@@ -1,0 +1,54 @@
+---
+title: "QualityOptionOverride"
+description: "Struct defining device-specific quality option overrides."
+---
+
+## Description
+
+`QualityOptionOverride` allows you to define a custom set of quality options for a specific device model.\
+When the system detects the matching device at runtime, these options override the base configuration.
+
+---
+
+## Usage
+
+Use `QualityOptionOverride` to fine-tune capture quality for specific hardware where defaults may not be optimal.
+
+### Example: Override quality options for a specific device
+
+```c#
+var overrideConfig = new QualityOptionOverride
+{
+    DeviceModel = new DeviceModel("ExampleDevice123"),
+    QualityOptions = new List<QualityOption>
+    {
+        new QualityOption(
+            name: "Medium",
+            isDefault: true,
+            cameraTrackDescriptor: new CameraTrackDescriptor(
+                new CameraResolutionDescriptor(1280, 720),
+                bitrate: 4 << 20,
+                framerate: 30,
+                audioBitrate: 128000),
+            streamingCameraTrackDescriptor: new CameraTrackDescriptor(
+                new CameraResolutionDescriptor(1280, 720),
+                bitrate: 3 << 20,
+                framerate: 30,
+                audioBitrate: 128000)
+        )
+    }
+};
+```
+
+This override ensures that when the system detects `"ExampleDevice123"`, it will use the specified options instead of the base configuration.
+
+---
+
+## References
+
+### Fields
+
+| Field          | Type                                                    | Description                                                |
+| :------------- | :------------------------------------------------------ | :--------------------------------------------------------- |
+| DeviceModel    | DeviceModel                                             | The device model this override applies to.                 |
+| QualityOptions | List\<[`QualityOption`](/api-reference/QualityOption)\> | The list of quality options specific to this device model. |

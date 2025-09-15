@@ -11,7 +11,7 @@ description: "ScriptableObject that provides platform specific quality configura
 
 ## Usage
 
-Assign an `LckQualityConfig` scriptable instance to the **LCKCameraController** to manage capture quality options across devices.\
+Assign an `LckQualityConfig` scriptable instance to the `LckCameraController` to manage capture quality options across devices.\
 When calling `GetQualityOptionsForSystem`, the config automatically detects the platform and, if applicable, the current device model to return the correct set of quality options.
 
 ---
@@ -22,9 +22,9 @@ When calling `GetQualityOptionsForSystem`, the config automatically detects the 
 
 | Field                         | Type                          | Description                                                    |
 | :---------------------------- | :---------------------------- | :------------------------------------------------------------- |
-| BaseAndroidQualityOptions     | List\<QualityOption\>         | Base quality options for Android devices.                      |
+| BaseAndroidQualityOptions     | List\<[`QualityOption`](/api-reference/QualityOption)\>         | Base quality options for Android devices.                      |
 | AndroidOptionsDeviceOverrides | List\<QualityOptionOverride\> | Device-specific override options for Android devices.          |
-| DesktopQualityOptions         | List\<QualityOption\>         | Quality options for desktop platforms (Windows, Linux, macOS). |
+| DesktopQualityOptions         | List\<[`QualityOption`](/api-reference/QualityOption)\>         | Quality options for desktop platforms (Windows, Linux, macOS). |
 
 ---
 
@@ -32,4 +32,4 @@ When calling `GetQualityOptionsForSystem`, the config automatically detects the 
 
 | Method                       | Returns               | Description                                                                                                                                                                                                                                                                                     |
 | :--------------------------- | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GetQualityOptionsForSystem() | List\<QualityOption\> | Returns the appropriate quality options for the current runtime platform. On Android, may return device-specific overrides if available; otherwise, returns base Android options. On desktop platforms, returns desktop options. Throws NotImplementedException if the platform is unsupported. |
+| GetQualityOptionsForSystem() | List\<[`QualityOption`](/api-reference/QualityOption)\> | Returns the appropriate quality options for the current runtime platform. On Android, may return device-specific overrides if available; otherwise, returns base Android options. On desktop platforms, returns desktop options. Throws NotImplementedException if the platform is unsupported. |

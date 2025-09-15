@@ -1,0 +1,76 @@
+---
+title: "QualityOption"
+description: "Struct representing a named quality profile with recording and streaming track configurations."
+---
+
+## Description
+
+`QualityOption` defines a named quality preset that can be selected at runtime.
+
+It includes track descriptors for both recording nd streaming, and can mark one option as the default.
+
+Primarily used in configuration assets such as [`LckQualityConfig`](/api-reference/LckQualityConfig).
+
+---
+
+## Usage
+
+You can define a `QualityOption` to represent different capture quality levels.
+
+For example, you might configure _High_, _Medium_, and _Low_ presets, each with their own resolution, bitrate, and framerate.
+
+```c#
+// Define resolution and track descriptors
+var resolution = new CameraResolutionDescriptor(1920, 1080);
+var recordTrack = new CameraTrackDescriptor(resolution, bitrate: 8 << 20, framerate: 60);
+var streamTrack = new CameraTrackDescriptor(resolution, bitrate: 5 << 20, framerate: 30);
+
+// Create a quality option
+var highQuality = new QualityOption(
+    name: "High",
+    isDefault: true,
+    cameraTrackDescriptor: recordTrack,
+    streamingCameraTrackDescriptor: streamTrack
+);
+```
+
+---
+
+## References
+
+### Fields
+
+| Field                          | Type                  | Description                                 |
+| :----------------------------- | :-------------------- | :------------------------------------------ |
+| Name                           | string                | Display name of the quality option.         |
+| IsDefault                      | bool                  | Marks this option as the default selection. |
+| RecordingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | Track descriptor used when recording.       |
+| StreamingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | Track descriptor used when streaming.       |
+
+---
+
+### Constructor
+
+```c#
+public QualityOption(
+    string name,
+    bool isDefault,
+    CameraTrackDescriptor cameraTrackDescriptor,
+    CameraTrackDescriptor streamingCameraTrackDescriptor
+)
+```
+
+#### Parameters
+
+- **name** — The display name of the option.
+- **isDefault** — Whether this option is the default.
+- **cameraTrackDescriptor** — Track descriptor for recording.
+- **streamingCameraTrackDescriptor** — Track descriptor for streaming.
+
+---
+
+### Obsolete Members
+
+| Member                | Type                  | Description                                                                                                                       |
+| :-------------------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| CameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | **Obsolete.** For backwards compatibility only. Use `RecordingCameraTrackDescriptor` or `StreamingCameraTrackDescriptor` instead. |
