@@ -53,19 +53,39 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Class",
             "pages": [
               "api-reference/Introduction",
               "api-reference/LckService",
               "api-reference/LckResult",
-              "api-reference/LckError",
               "api-reference/LckQualityConfig",
               "api-reference/LckDescriptor",
-              "api-reference/CameraResolutionDescriptor",
-              "api-reference/CameraTrackDescriptor",
               "api-reference/LckCamera",
-              "api-reference/LckMonitor",
-              "api-reference/ILckMonitor"
+              "api-reference/LckMonitor"
+            ]
+          },
+          { 
+            "group": "Interface",
+            "pages": [
+              "api-reference/ILckService",
+              "api-reference/ILckMonitor",
+              "api-reference/ILckCamera"
+            ]
+          },
+          { 
+            "group": "Struct",
+            "pages": [
+              "api-reference/QualityOption",
+              "api-reference/QualityOptionOverride",
+              "api-reference/CameraTrackDescriptor",
+              "api-reference/CameraResolutionDescriptor"
+            ]
+          },
+          { 
+            "group": "Enum",
+            "pages": [
+              "api-reference/LckError"
+              
             ]
           }
         ]
