@@ -55,16 +55,16 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/CameraResolutionDescriptor",
-              "api-reference/CameraTrackDescriptor",
               "api-reference/Introduction",
-              "api-reference/LckDescriptor",
+              "api-reference/LckService",
+              "api-reference/LckResult",
               "api-reference/LckError",
               "api-reference/LckQualityConfig",
-              "api-reference/LckResult",
-              "api-reference/LckService",
+              "api-reference/LckDescriptor",
+              "api-reference/CameraResolutionDescriptor",
+              "api-reference/CameraTrackDescriptor"
               "api-reference/LckCamera",
-              "api-reference/LckMonitor"
+              "api-reference/LckMonitor",
             ]
           }
         ]
