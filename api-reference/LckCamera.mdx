@@ -1,0 +1,54 @@
+---
+title: "LckCamera"
+description: "Provides integration of a Unity Camera into the LIV Capture Kit system."
+---
+
+## Description
+
+**LckCamera** is a Unity component that integrates a standard Camera into the LIV Capture Kit (LCK) system.\
+It ensures proper registration with the LckMediator, manages activation/deactivation for capture, and provides access to the underlying Unity Camera component.
+
+When used with the **Universal Render Pipeline (URP)**, it automatically configures **UniversalAdditionalCameraData** to disable XR rendering.
+
+## Usage
+
+- Add an **LckCamera** component to a GameObject with a Unity Camera.
+- The camera will automatically register itself with the LCK system at runtime.
+- Use `ILckService.SetActiveCamera(cameraId)` to switch between registered cameras.
+- Cameras are automatically deactivated when not in use.
+
+### Example
+
+```c#
+[Inject] private ILckService _lckService;
+
+public void SwitchToCamera(ILckCamera camera)
+{
+    var result = _lckService.SetActiveCamera(camera.CameraId);
+    if (!result.Success)
+        Debug.LogError($"Failed to switch camera: {result.ErrorMessage}");
+}
+```
+
+## References
+
+### Fields
+
+| Field      | Type   | Description                                 |
+| :--------- | :----- | :------------------------------------------ |
+| \_camera   | Camera | Reference to the Unity `Camera` component.  |
+| \_cameraId | string | Unique identifier for this camera instance. |
+
+### Properties
+
+| Property | Type   | Description                            |
+| :------- | :----- | :------------------------------------- |
+| CameraId | string | The unique identifier for this camera. |
+
+### Methods
+
+| Method                        | Returns | Description                                                  |
+| :---------------------------- | :------ | :----------------------------------------------------------- |
+| ActivateCamera(RenderTexture) | void    | Enables the camera and sets its `targetTexture` for capture. |
+| DeactivateCamera()            | void    | Disables the camera and clears its `targetTexture`.          |
+| GetCameraComponent()          | Camera  | Returns the underlying Unity `Camera` component.             |

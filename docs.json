@@ -62,8 +62,9 @@
               "api-reference/LckError",
               "api-reference/LckQualityConfig",
               "api-reference/LckResult",
-              "api-reference/LckService"
-              
+              "api-reference/LckService",
+              "api-reference/LckCamera",
+              "api-reference/LckMonitor"
             ]
           }
         ]
