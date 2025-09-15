@@ -9,7 +9,7 @@ description: "Struct representing a named quality profile with recording and str
 
 It includes track descriptors for both recording nd streaming, and can mark one option as the default.
 
-Primarily used in configuration assets such as [`LckQualityConfig`](/api-reference/LckQualityConfig).
+Primarily used in configuration assets such as [`LckQualityConfig`](/api-reference/class/LckQualityConfig).
 
 ---
 
@@ -44,8 +44,8 @@ var highQuality = new QualityOption(
 | :----------------------------- | :-------------------- | :------------------------------------------ |
 | Name                           | string                | Display name of the quality option.         |
 | IsDefault                      | bool                  | Marks this option as the default selection. |
-| RecordingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | Track descriptor used when recording.       |
-| StreamingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | Track descriptor used when streaming.       |
+| RecordingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/struct/CameraTrackDescriptor) | Track descriptor used when recording.       |
+| StreamingCameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/struct/CameraTrackDescriptor) | Track descriptor used when streaming.       |
 
 ---
 
@@ -73,4 +73,4 @@ public QualityOption(
 
 | Member                | Type                  | Description                                                                                                                       |
 | :-------------------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| CameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/CameraTrackDescriptor) | **Obsolete.** For backwards compatibility only. Use `RecordingCameraTrackDescriptor` or `StreamingCameraTrackDescriptor` instead. |
+| CameraTrackDescriptor | [`CameraTrackDescriptor`](/api-reference/struct/CameraTrackDescriptor) | **Obsolete.** For backwards compatibility only. Use `RecordingCameraTrackDescriptor` or `StreamingCameraTrackDescriptor` instead. |

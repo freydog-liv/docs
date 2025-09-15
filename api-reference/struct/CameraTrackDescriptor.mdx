@@ -9,7 +9,7 @@ description: "Struct that defines resolution, bitrate, and framerate parameters 
 
 It includes:
 
-- A [`CameraResolutionDescriptor`](/api-reference/CameraResolutionDescriptor) for output resolution.
+- A [`CameraResolutionDescriptor`](/api-reference/struct/CameraResolutionDescriptor) for output resolution.
 - Bitrate and framerate parameters for video.
 - An audio bitrate parameter.
 
@@ -23,7 +23,7 @@ Default values are provided for common use cases:
 
 ## Usage
 
-When creating a `CameraTrackDescriptor`, you must supply a  [`CameraResolutionDescriptor`](/api-reference/CameraResolutionDescriptor) .
+When creating a `CameraTrackDescriptor`, you must supply a  [`CameraResolutionDescriptor`](/api-reference/struct/CameraResolutionDescriptor) .
 Other values (bitrate, framerate, audio bitrate) will use defaults unless explicitly set.
 
 ---
@@ -52,7 +52,7 @@ var customDescriptor = new CameraTrackDescriptor(
 
 | Field        | Type                       | Description                           |
 | :----------- | :------------------------- | :------------------------------------ |
-| Resolution   | [`CameraResolutionDescriptor`](/api-reference/CameraResolutionDescriptor) | Defines the video output resolution.  |
+| Resolution   | [`CameraResolutionDescriptor`](/api-reference/struct/CameraResolutionDescriptor) | Defines the video output resolution.  |
 | Bitrate      | uint                       | Video bitrate in bits per second.     |
 | Framerate    | uint                       | Video framerate in frames per second. |
 | AudioBitrate | uint                       | Audio bitrate in bits per second.     |
