@@ -62,9 +62,10 @@
               "api-reference/LckQualityConfig",
               "api-reference/LckDescriptor",
               "api-reference/CameraResolutionDescriptor",
-              "api-reference/CameraTrackDescriptor"
+              "api-reference/CameraTrackDescriptor",
               "api-reference/LckCamera",
               "api-reference/LckMonitor",
+              "api-reference/ILckMonitor"
             ]
           }
         ]
