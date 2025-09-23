@@ -1,0 +1,21 @@
+---
+title: "CoreError"
+description: "Represents high-level error categories returned by LCK Core operations. Used to identify the cause of failures."
+---
+
+## Description
+
+`CoreError` enumerates common error types that can be returned by LckCore.
+
+---
+
+## References
+
+### Enum Members
+
+| Member            | Value | Description                                                             |
+| :---------------- | :---- | :---------------------------------------------------------------------- |
+| InternalError     | 0     | An unexpected internal error occurred within the SDK.                   |
+| MissingTrackingId | 1     | The `trackingId` provided during initialization was missing or invalid. |
+| InvalidArgument   | 2     | An invalid argument was passed to an SDK method.                        |
+| UserNotLoggedIn   | 3     | The operation could not be completed because the user is not logged in. |

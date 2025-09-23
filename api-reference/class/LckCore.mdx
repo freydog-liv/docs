@@ -1,0 +1,94 @@
+---
+title: "LckCore"
+description: "Primary static class for initializing, authenticating, and querying user status within LCK."
+---
+
+## Description
+
+LckCore provides the foundation for all other LCK features by handling:
+
+- **Initialization** — sets up the SDK at game startup with tracking ID and game metadata.
+- **Authentication** — manages login attempts and verifies whether login has completed.
+- **User status** — checks if the user has configured streaming or has an active subscription.
+- **Diagnostics** — controls the SDK’s internal log verbosity.
+- **Shutdown** — disposes resources cleanly when the application exits.
+
+This class should always be used as provided; re-implementing it is not recommended.\
+For custom streaming flows, use `LckStreamingController`.
+
+---
+
+## Usage
+
+### Initialization
+
+```c#
+var gameInfo = new GameInfo
+{
+    GameName = "My Game",
+    GameVersion = "1.0.0",
+    ProjectName = "MyProject",
+    CompanyName = "MyCompany",
+    EngineVersion = Application.unityVersion,
+    RenderPipeline = "URP",
+    GraphicsAPI = SystemInfo.graphicsDeviceType.ToString()
+};
+
+var initResult = LckCore.Initialize("tracking-id-123", gameInfo);
+if (!initResult.IsOk)
+{
+    Debug.LogError($"Initialization failed: {initResult.Message}");
+}
+```
+
+### Authentication Flow
+
+```c#
+// Start login attempt
+var loginResult = await LckCore.StartLoginAttemptAsync();
+if (loginResult.IsOk)
+{
+    Debug.Log($"Login code: {loginResult.Ok}");
+}
+
+// Poll to check whether login is complete
+var loginCheck = await LckCore.CheckLoginCompletedAsync();
+if (loginCheck.IsOk && loginCheck.Ok)
+{
+    Debug.Log("User successfully logged in!");
+}
+```
+
+### Checking User Status
+
+```c#
+// Has the user configured streaming?
+var hasStreaming = await LckCore.HasUserConfiguredStreaming();
+Debug.Log($"Streaming configured: {hasStreaming.Ok}");
+
+// Is the user subscribed?
+var subscription = await LckCore.IsUserSubscribed();
+Debug.Log($"User subscribed: {subscription.Ok}");
+```
+
+### Cleanup
+
+```
+LckCore.Dispose();
+```
+
+---
+
+## References
+
+### Methods
+
+| Method                                                           | Returns                  | Description                                                 |
+| :--------------------------------------------------------------- | :----------------------- | :---------------------------------------------------------- |
+| SetMaxLogLevel([`LevelFilter`](/api-reference/enum/LevelFilter)) | void                     | Sets the maximum log verbosity.                             |
+| Initialize(string, [`GameInfo`](/api-reference/struct/GameInfo)) | Result\<bool\>           | Initializes the SDK with tracking ID and game info.         |
+| HasUserConfiguredStreaming()                                     | Task\<Result\<bool\>\>   | Checks if the user has configured streaming.                |
+| IsUserSubscribed()                                               | Task\<Result\<bool\>\>   | Checks if the user has an active subscription.              |
+| StartLoginAttemptAsync()                                         | Task\<Result\<string\>\> | Starts a login attempt, returns a login code if successful. |
+| CheckLoginCompletedAsync()                                       | Task\<Result\<bool\>\>   | Polls whether the login attempt has completed.              |
+| Dispose()                                                        | void                     | Releases resources and cleans up the SDK.                   |

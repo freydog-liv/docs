@@ -1,0 +1,50 @@
+---
+title: "GameInfo"
+description: "Struct containing metadata about the game and engine configuration, passed to LckCore during initialization."
+---
+
+## Description
+
+**GameInfo** is a struct is used by `LckCore.Initialize` to register the application with the SDK and ensure proper compatibility reporting.
+
+---
+
+## Usage
+
+You typically create and populate a `GameInfo` struct during game startup, then pass it to `LckCore.Initialize`:
+
+```
+var gameInfo = new GameInfo
+{
+    GameName = "My Awesome Game",
+    GameVersion = "1.0.0",
+    ProjectName = "MyProject",
+    CompanyName = "MyStudio",
+    EngineVersion = Application.unityVersion,
+    RenderPipeline = "URP",
+    GraphicsAPI = SystemInfo.graphicsDeviceType.ToString()
+};
+
+var initResult = LckCore.Initialize("tracking-id-123", gameInfo);
+
+if (!initResult.IsOk)
+{
+    Debug.LogError($"Initialization failed: {initResult.Message}");
+}
+```
+
+---
+
+## References
+
+### Fields
+
+| Field          | Type   | Description                                        |
+| :------------- | :----- | :------------------------------------------------- |
+| GameName       | string | Display name of the game.                          |
+| GameVersion    | string | Version string of the game.                        |
+| ProjectName    | string | Name of the project (used internally by the SDK).  |
+| CompanyName    | string | Name of the company or publisher.                  |
+| EngineVersion  | string | Version of the game engine (e.g., Unity version).  |
+| RenderPipeline | string | Active render pipeline (e.g., `URP`, `HDRP`).      |
+| GraphicsAPI    | string | Graphics API in use (e.g., `DirectX11`, `Vulkan`). |

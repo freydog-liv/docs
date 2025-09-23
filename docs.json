@@ -67,7 +67,7 @@
               "api-reference/class/LckDescriptor",
               "api-reference/class/LckCamera",
               "api-reference/class/LckMonitor",
-              "api-reference/class/LckMediator"
+              "api-reference/class/LckCore"
             ]
           },
           { 
@@ -84,7 +84,8 @@
               "api-reference/struct/QualityOption",
               "api-reference/struct/QualityOptionOverride",
               "api-reference/struct/CameraTrackDescriptor",
-              "api-reference/struct/CameraResolutionDescriptor"
+              "api-reference/struct/CameraResolutionDescriptor",
+              "api-reference/struct/GameInfo"
             ]
           },
           { 
@@ -92,7 +93,9 @@
             "pages": [
               "api-reference/enum/LckError",
               "api-reference/enum/LckCaptureType",
-              "api-reference/enum/LckCameraOrientation"
+              "api-reference/enum/LckCameraOrientation",
+              "api-reference/enum/LevelFilter",
+              "api-reference/enum/CoreError"
               
             ]
           }
