@@ -71,7 +71,7 @@
             "group": "Core",
             "pages": [
               "api-reference/class/core/LckCore",
-              "api-reference/class/core/LckResult"
+              "api-reference/class/core/Result"
             ]
         }
       ]
