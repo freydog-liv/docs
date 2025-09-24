@@ -1,3 +1,106 @@
 ---
-description: "Description of your new file."
+description: "Comprehensive Unity camera controller for LCK that switches between Selfie, First Person, and Third Person modes, manages smoothing/FOV, handles portrait/landscape orientation, and wires UI to ILckService."
+title: "LCKCameraController"
+---
+
+---
+
+## Description
+
+`LCKCameraController` is a Unity `MonoBehaviour` that centralises camera control for LCK. It coordinates three virtual cameras (Selfie, First Person, Third Person), applies stabilisation/smoothing, manages UI-driven parameters (FOV, distance), toggles orientation (Landscape/Portrait), and communicates the active camera and track settings to [`ILckService`](/api-reference/interface/ILckService). It can also auto-configure culling masks to hide the tablet layer from the Selfie view.
+
+---
+
+## Usage
+
+- Add `LCKCameraController` to a GameObject and assign:
+  - UI controls (FOV/smoothing/distance buttons, quality selector, top buttons, orientation button)
+  - Camera/stabilizer components for each mode
+  - Optional objects to hide from the Selfie camera and the target “LCK Tablet” layer name
+- (Optional) Provide an `ILckQualityConfig` ScriptableObject to populate quality options and update recording/streaming descriptors on selection.
+
+### Examples
+
+#### Toggle recording from a UI button
+
+```c#
+[SerializeField] private LCKCameraController _cameraController;
+
+public void OnRecordPressed()
+{
+    _cameraController.ToggleRecording();
+}
+```
+
+This disables orientation/quality/top buttons while capture starts, and re-enables on stop or failure.
+
+#### Switch orientation safely
+
+```c#
+public void OnOrientationPressed()
+{
+    _cameraController.ToggleOrientation(); // no-op while capturing
+}
+```
+
+Updates `ILckService` camera orientation, resizes the preview, and recalculates FOV to preserve perceived width in Portrait.
+
+#### Flip selfie camera / set third-person position
+
+```c#
+public void OnFlipSelfie() => _cameraController.ProcessSelfieFlip();
+public void OnThirdPersonFrontBack() => _cameraController.ProcessThirdPersonPosition();
+```
+
+Flips preview scale and stabilizer orientation for Selfie; toggles in-front/behind for Third Person.
+
+---
+
+## References
+
+### Serialized Fields & Options
+
+| Field                               | Type                                     | Description                                                                                                                                              |
+| :---------------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `_modifyRenderLayerAndCullingMasks` | `bool`                                   | If true, automatically moves specified objects to the tablet layer and adjusts camera culling masks so Selfie hides that layer while others show it.     |
+| `_tabletRenderingLayer`             | `string`                                 | Name of the Unity layer used to hide objects from the Selfie camera (e.g., “LCK Tablet”).                                                                |
+| `_objectsHiddenFromSelfieCamera`    | `List<GameObject>`                       | Objects (e.g., tablet model) to assign to the tablet layer.                                                                                              |
+| `_qualityConfig`                    | `ScriptableObject` (`ILckQualityConfig`) | Provides quality options; updates `CameraTrackDescriptor` for Recording/Streaming on selection.                                                          |
+| `_hmdTransform`                     | `Transform`                              | Player/HMD anchor; defaults to `Camera.main.transform` if null.                                                                                          |
+| UI references                       | Various                                  | Settings/top buttons, preview monitor `RectTransform`, `LckQualitySelector`, per-mode FOV/smoothing/distance controls, and per-mode cameras/stabilizers. |
+
+### Properties
+
+| Property               | Type                 | Description                                                                |
+| :--------------------- | :------------------- | :------------------------------------------------------------------------- |
+| `HmdTransform`         | `Transform`          | Gets/sets HMD anchor; falls back to main camera if unset.                  |
+| `OnCameraModeChanged`  | `Action<CameraMode>` | Event raised after switching Selfie/First/Third Person.                    |
+| `ColliderButtonsInUse` | `static bool`        | Global flag for collider-based UI interactions (not used internally here). |
+
+### Camera Modes (behaviour)
+
+- **Selfie** — parented to the tablet; supports flip (front/back), smoothing/FOV, hides tablet layer from the view.
+- **First Person** — follows HMD (position + slight forward offset), smoothing/FOV, instant snap after mode switch.
+- **Third Person** — orbital camera with height angle and adjustable distance; toggle front/behind; smoothing/FOV.
+
+### Key Methods
+
+| Method                                                      | Returns | Description                                                                                                                                   |
+| :---------------------------------------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ToggleRecording()`                                         | `void`  | Starts/stops recording via `ILckService`; disables orientation/quality/top buttons during start; re-enables on stop/failure.                  |
+| `ToggleGameAudio()`                                         | `void`  | Toggles game audio capture on/off via `ILckService`.                                                                                          |
+| `ToggleMicrophoneRecording(bool)`                           | `void`  | Enables/disables microphone capture via `ILckService`.                                                                                        |
+| `ToggleOrientation()`                                       | `void`  | Switches Landscape/Portrait (no-op while capturing); updates `ILckService`, preview size, and recomputes FOV to preserve horizontal FOV feel. |
+| `ProcessSelfieFlip()`                                       | `void`  | Flips Selfie view 180° and adjusts preview mirroring.                                                                                         |
+| `ProcessThirdPersonPosition()`                              | `void`  | Toggles third-person camera in-front/behind the player.                                                                                       |
+| `SetOrientationQualityAndTopButtonsIsDisabledState(bool)`   | `void`  | Enables/disables orientation, quality, and top button UI during capture transitions.                                                          |
+| `OnCaptureStart(LckResult)` / `OnCaptureStopped(LckResult)` | `void`  | Re-enable UI on failure/stop; used with service events for recording/streaming.                                                               |
+
+### Lifecycle & Internals
+
+- Injects or initialises `ILckService` (fallback DI setup in `Awake` if missing).
+- Subscribes to service events to reflect capture state; unsubscribes and stops recording on destroy.
+- Optional auto-layer/culling setup hides tablet layer from Selfie, shows it for others.
+- Recomputes Portrait FOV to maintain perceived width using the current descriptor’s resolution.
+
 ---
