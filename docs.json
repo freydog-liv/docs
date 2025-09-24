@@ -49,83 +49,58 @@
           }
         ]
       },
-{
-  "tab": "API reference",
-  "groups": [
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/Introduction"
-      ]
-    }
-  ]
-},
-{
-  "tab": "Class",
-  "groups": [
-    {
-      "group": "Default",
-      "pages": [
-        "api-reference/class/LckService",
-        "api-reference/class/LckResult",
-        "api-reference/class/LckQualityConfig",
-        "api-reference/class/LckDescriptor",
-        "api-reference/class/LckCamera",
-        "api-reference/class/LckMonitor"
-      ]
-    },
-    {
-      "group": "Core",
-      "pages": [
-        "api-reference/class/core/LckCore"
-      ]
-    }
-  ]
-},
-{
-  "tab": "Interface",
-  "groups": [
-    {
-      "group": "Interface",
-      "pages": [
-        "api-reference/interface/ILckService",
-        "api-reference/interface/ILckMonitor",
-        "api-reference/interface/ILckCamera"
-      ]
-    }
-  ]
-},
-{
-  "tab": "Struct",
-  "groups": [
-    {
-      "group": "Struct",
-      "pages": [
-        "api-reference/struct/QualityOption",
-        "api-reference/struct/QualityOptionOverride",
-        "api-reference/struct/CameraTrackDescriptor",
-        "api-reference/struct/CameraResolutionDescriptor",
-        "api-reference/struct/GameInfo"
-      ]
-    }
-  ]
-},
-{
-  "tab": "Enum",
-  "groups": [
-    {
-      "group": "Enum",
-      "pages": [
-        "api-reference/enum/LckError",
-        "api-reference/enum/LckCaptureType",
-        "api-reference/enum/LckCameraOrientation",
-        "api-reference/enum/LevelFilter",
-        "api-reference/enum/CoreError"
-      ]
-    }
-  ]
-}
-    ],
+      {
+        "tab": "API reference",
+        "groups": [
+            {
+            "group": "API Documentation",
+            "pages": [
+              "api-reference/Introduction"
+            ]
+          },
+          {
+            "group": "Class",
+            "pages": [
+              "api-reference/class/LckService",
+              "api-reference/class/LckResult",
+              "api-reference/class/LckQualityConfig",
+              "api-reference/class/LckDescriptor",
+              "api-reference/class/LckCamera",
+              "api-reference/class/LckMonitor",
+              "api-reference/class/LckCore"
+            ]
+          },
+          { 
+            "group": "Interface",
+            "pages": [
+              "api-reference/interface/ILckService",
+              "api-reference/interface/ILckMonitor",
+              "api-reference/interface/ILckCamera"
+            ]
+          },
+          { 
+            "group": "Struct",
+            "pages": [
+              "api-reference/struct/QualityOption",
+              "api-reference/struct/QualityOptionOverride",
+              "api-reference/struct/CameraTrackDescriptor",
+              "api-reference/struct/CameraResolutionDescriptor",
+              "api-reference/struct/GameInfo"
+            ]
+          },
+          { 
+            "group": "Enum",
+            "pages": [
+              "api-reference/enum/LckError",
+              "api-reference/enum/LckCaptureType",
+              "api-reference/enum/LckCameraOrientation",
+              "api-reference/enum/LevelFilter",
+              "api-reference/enum/CoreError"
+              
+            ]
+          }
+        ]
+      }],
     "global": {
       "anchors": [
         {
