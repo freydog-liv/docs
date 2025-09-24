@@ -5,15 +5,15 @@ description: "Struct containing metadata about the game and engine configuration
 
 ## Description
 
-**GameInfo** is a struct is used by `LckCore.Initialize` to register the application with the SDK and ensure proper compatibility reporting.
+**GameInfo** is a struct is used by [`LckCore.Initialize`](/api-reference/class/core/LckCore) to register the application with the SDK and ensure proper compatibility reporting.
 
 ---
 
 ## Usage
 
-You typically create and populate a `GameInfo` struct during game startup, then pass it to `LckCore.Initialize`:
+You typically create and populate a `GameInfo` struct during game startup, then pass it to [`LckCore.Initialize`](/api-reference/class/core/LckCore):
 
-```
+```c#
 var gameInfo = new GameInfo
 {
     GameName = "My Awesome Game",
