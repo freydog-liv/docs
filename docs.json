@@ -70,8 +70,8 @@
         {
             "group": "Core",
             "pages": [
-              "api-reference/class/LckCore",
-              "api-reference/class/LckResult"
+              "api-reference/class/core/LckCore",
+              "api-reference/class/core/LckResult"
             ]
         }
       ]
