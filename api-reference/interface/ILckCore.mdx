@@ -1,0 +1,73 @@
+---
+title: "ILckCore"
+description: "Interface for accessing core LCK services related to authentication, subscription status, and streaming configuration checks."
+---
+
+## Description
+
+`ILckCore` defines the contract for the **core services** of LCK.
+
+It provides APIs for:
+
+- User **authentication** via short login codes
+- Checking whether the user has an active **subscription**
+- Validating whether the user has configured their **streaming setup**
+
+This interface can be injected, via `[InjectLck] ILckCore _lckCore` and used to define an alternative UX for the login and configuration processes compared to the default offered by the tablets. 
+
+<Warning>
+  Custom implementations of `ILckCore` are **not recommended**. 
+</Warning>
+
+---
+
+## Usage
+
+### Example: Start Login Flow
+
+```c#
+[SerializeField] private LckStreamingController _streamingController;
+
+async void RequestLoginCode(ILckCore _lckCore)
+{
+    var loginResult = await _lckCore.StartLoginAttemptAsync();
+
+    if (loginResult.IsOk)
+    {
+        Debug.Log($"Login code: {loginResult.Ok}");
+        // Display to player via UI
+    }
+    else
+    {
+        Debug.LogError($"Login failed: {loginResult.Err} - {loginResult.Message}");
+    }
+}
+```
+
+### Example: Check Subscription
+
+```c#
+var subResult = await _lckCore.IsUserSubscribed();
+
+if (subResult.IsOk && subResult.Ok)
+{
+    Debug.Log("User is subscribed!");
+}
+else
+{
+    Debug.LogWarning("User not subscribed or check failed.");
+}
+```
+
+---
+
+## References
+
+### Methods
+
+| Method                           | Returns                | Description                                                                            |
+| :------------------------------- | :--------------------- | :------------------------------------------------------------------------------------- |
+| **HasUserConfiguredStreaming()** | `Task<Result<bool>>`   | Checks if the logged-in user has configured streaming. Returns `true` if configured.   |
+| **IsUserSubscribed()**           | `Task<Result<bool>>`   | Checks if the logged-in user has an active subscription. Returns `true` if subscribed. |
+| **StartLoginAttemptAsync()**     | `Task<Result<string>>` | Starts the login process and returns a short login code to display to the user.        |
+| **CheckLoginCompletedAsync()**   | `Task<Result<bool>>`   | Checks if a previously started login attempt has been completed by the user.           |
