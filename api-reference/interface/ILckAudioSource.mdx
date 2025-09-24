@@ -1,0 +1,76 @@
+---
+title: "ILckAudioSource"
+description: "Interface for controlling and monitoring audio sources within LCK, including microphone and game audio."
+---
+
+## Description
+
+`ILckAudioSource` defines the contract for **custom audio sources** in LCK.
+
+As of **v1.2.0**, developers can implement this interface to manually provide **game audio** to LCK. This is useful when integrating with third-party audio middleware (such as FMOD or Wwise) or when Unity’s built-in audio pipeline does not represent the full mix you want to capture.
+
+<Info>
+  Microphone audio is still collected separately by LCK and is **not** replaced by custom sources.
+</Info>
+
+---
+
+## Supplying Custom Audio
+
+When implementing `ILckAudioSource`, keep the following requirements in mind:
+
+- **Audio format**: stereo, interleaved floats, 48 kHz sample rate
+- **Placement**: attach your component next to either:
+  - A Unity `AudioListener`, or
+  - An `LckAudioMarker`
+- **Examples**: see built-in implementations such as:
+  - `LckAudioListener`
+  - FMOD variant
+  - Wwise variant
+
+This flexibility allows you to integrate external audio systems or customise exactly what LCK captures for streaming and recording.
+
+---
+
+## Usage
+
+### Example: Supplying Audio from a Custom Source
+
+```c#
+public class MyCustomAudioSource : MonoBehaviour, ILckAudioSource
+{
+    public void GetAudioData(ILckAudioSource.AudioDataCallbackDelegate callback)
+    {
+        // Fill an AudioBuffer with your audio data here
+        AudioBuffer buffer = MyAudioEngine.FetchAudioBuffer();
+        callback(buffer);
+    }
+
+    public void EnableCapture()
+    {
+        Debug.Log("Custom audio capture enabled.");
+    }
+
+    public void DisableCapture()
+    {
+        Debug.Log("Custom audio capture disabled.");
+    }
+
+    public bool IsCapturing() => true; // return whether actively supplying data
+}
+```
+
+Attach this component next to an `AudioListener` or `LckAudioMarker` to begin supplying custom game audio.
+
+---
+
+## References
+
+### Methods
+
+| Method                                               | Returns | Description                                                                                                  |
+| :--------------------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------- |
+| **GetAudioData(AudioDataCallbackDelegate callback)** | `void`  | Called by LCK to request audio data. Supply an `AudioBuffer` with interleaved stereo float samples at 48kHz. |
+| **EnableCapture()**                                  | `void`  | Activates audio capture for this source.                                                                     |
+| **DisableCapture()**                                 | `void`  | Deactivates audio capture for this source.                                                                   |
+| **IsCapturing()**                                    | `bool`  | Returns whether this audio source is currently supplying audio data.                                         |
