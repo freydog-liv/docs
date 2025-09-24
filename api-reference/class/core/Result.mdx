@@ -1,0 +1,55 @@
+---
+title: "Core.Result<T>"
+description: "Generic container for representing the outcome of LIV Capture Kit (LCK) Core SDK operations, encapsulating both success and failure states without exceptions."
+---
+
+## Description
+
+`Result<T>` is a generic class used throughout `LckCore` to represent the outcome of operations.
+
+Instead of relying on exceptions for control flow, `LckCore` methods such as `Initialize()`, `HasUserConfiguredStreaming()`, `IsUserSubscribed()`, and `StartLoginAttemptAsync()` return `Result<T>`.
+
+This ensures all SDK operations cleanly indicate success (with a value) or failure (with an error and message), making error handling consistent and predictable in Unity projects.
+
+---
+
+## Usage
+
+- Always check `IsOk` before accessing the result value.
+- On **success**, use `Ok` to retrieve the returned value.
+- On **failure**, check `Err` and `Message` for details.
+
+```
+Result<bool> initResult = LckCore.Initialize("trackingId", gameInfo);
+
+if (initResult.IsOk)
+{
+    Debug.Log("Initialization successful!");
+}
+else
+{
+    Debug.LogError($"Init failed: {initResult.Err} - {initResult.Message}");
+}
+```
+
+---
+
+## References
+
+### Properties
+
+| Property    | Type          | Description                                                                                           |
+| :---------- | :------------ | :---------------------------------------------------------------------------------------------------- |
+| **IsOk**    | `bool`        | Indicates whether the operation was successful. Always check this first.                              |
+| **Message** | `string`      | Error message when the operation fails. `null` if successful.                                         |
+| **Err**     | `CoreError` ? | High-level error category (e.g., `InternalError`, `InvalidArgument`). `null` if successful.           |
+| **Ok**      | `T`           | The result value on success. Returns default(`T`) (e.g., `null`, `0`, or `false`) if `IsOk == false`. |
+
+---
+
+### Methods
+
+| Method                                                       | Returns     | Description                                                                                   |
+| :----------------------------------------------------------- | :---------- | :-------------------------------------------------------------------------------------------- |
+| `static Result<T> NewSuccess(T result)`                      | `Result<T>` | Creates a result representing a successful operation and wraps the returned value.            |
+| `static Result<T> NewError(CoreError error, string message)` | `Result<T>` | Creates a result representing a failed operation, with an error type and descriptive message. |
