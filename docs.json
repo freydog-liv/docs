@@ -91,7 +91,12 @@
         "api-reference/struct/QualityOptionOverride",
         "api-reference/struct/CameraTrackDescriptor",
         "api-reference/struct/CameraResolutionDescriptor",
-        "api-reference/struct/GameInfo"
+        {
+            "group": "Core",
+            "pages": [
+              "api-reference/struct/core/GameInfo"
+            ]
+        }
       ]
     },
     { 
@@ -100,8 +105,13 @@
         "api-reference/enum/LckError",
         "api-reference/enum/LckCaptureType",
         "api-reference/enum/LckCameraOrientation",
-        "api-reference/enum/LevelFilter",
-        "api-reference/enum/CoreError"
+        "api-reference/enum/CoreError",
+         {
+            "group": "Core",
+            "pages": [
+              "api-reference/enum/core/LevelFilter"
+            ]
+        }
       ]
     }
   ]
