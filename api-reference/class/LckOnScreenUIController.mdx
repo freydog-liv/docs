@@ -1,0 +1,64 @@
+---
+title: "LckOnScreenUIController"
+description: "Controller for managing the state of on-screen UI elements in LCK, such as photo mode or selfie mode buttons, and coordinating them with notifications."
+---
+
+## Description
+
+`LckOnScreenUIController` is a Unity `MonoBehaviour` that manages the visibility and visual state of **on-screen UI elements** in LCK.
+
+It ensures that interactive elements like buttons (Photo Mode, Selfie Mode, etc.) behave correctly when:
+
+- Notifications are shown/hidden
+- Recording sessions start
+- Notifications complete and the UI should reset to its default state
+
+Typically, this controller works alongside [`LckNotificationController`](/api-reference/class/LckNotificationController), which calls `OnNotificationStarted()` and `OnNotificationEnded()` to temporarily disable UI interactions while notifications are active.
+
+---
+
+## Usage
+
+1. Add `LckOnScreenUIController` to a GameObject in your scene.
+2. Populate the **On-Screen UI list** in the Inspector with all UI GameObjects you want to manage.
+3. Connect it with your [`LckNotificationController`](/api-reference/class/LckNotificationController) so notifications correctly lock/unlock UI.
+
+### Example: Notification Flow
+
+```c#
+// Called when a notification is shown
+_onScreenUIController.OnNotificationStarted();
+
+// Called when a notification ends
+_onScreenUIController.OnNotificationEnded();
+```
+
+### Example: Auto-reset Button Colors
+
+```c#
+_onScreenUIController.OnNotificationEnded();
+// Resets all UI buttons back to their default visual state
+```
+
+---
+
+## References
+
+### Properties
+
+| Property            | Type                                                  | Description                                                 |
+| :------------------ | :---------------------------------------------------- | :---------------------------------------------------------- |
+| **\_lckService**    | [`ILckService`](/api-reference/interface/ILckService) | Injected LCK service used to subscribe to recording events. |
+| **\_allOnscreenUI** | `List<GameObject>`                                    | List of UI elements controlled by this manager.             |
+
+---
+
+### Methods
+
+| Method                                                                             | Returns | Description                                                                               |
+| :--------------------------------------------------------------------------------- | :------ | :---------------------------------------------------------------------------------------- |
+| **OnNotificationStarted()**                                                        | `void`  | Disables all UI elements when a notification appears.                                     |
+| **OnNotificationEnded()**                                                          | `void`  | Re-enables all UI elements and resets their visuals to default.                           |
+| **OnRecordingStarted(**[**LckResult **](/api-reference/class/LckResult)**result)** | `void`  | Event handler: ensures UI is enabled when recording begins successfully.                  |
+| **SetAllOnscreenButtonsState(bool state)**                                         | `void`  | Enables or disables all tracked UI GameObjects.                                           |
+| **SetAllOnscreenButtonsToDefaultVisual(List\<GameObject\> objectList)**            | `void`  | Resets UI button visuals by calling `SetDefaultButtonColors()` on each `LckScreenButton`. |

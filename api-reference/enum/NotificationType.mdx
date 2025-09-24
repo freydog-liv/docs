@@ -1,0 +1,42 @@
+---
+title: "NotificationType"
+description: "Enumeration defining the types of user-facing notifications available in LCK."
+---
+
+## Description
+
+`NotificationType` is an enumeration that specifies the **different categories of notifications** that can be displayed by LCK.
+
+It is used by `LckNotificationController` and other UI controllers to decide which notification prefab should be shown to the user.
+
+Each type maps to a prefab configured in the notification controller, typically representing a distinct UI message or prompt (e.g., video saved, login code required, subscription check).
+
+---
+
+## Usage
+
+- Configure `NotificationType` entries in the `LckNotificationController's` notifications list in the Unity Inspector.
+- Trigger notifications in code using `ShowNotification(NotificationType)`.
+
+```c#
+// Show a "Video Saved" notification
+_notificationController.ShowNotification(NotificationType.VideoSaved);
+
+// Prompt the user with their LIV Hub login code
+_notificationController.ShowNotification(NotificationType.EnterStreamCode);
+
+// Clear any current notification
+_notificationController.HideNotifications();
+```
+
+---
+
+## Values
+
+| Value               | Description                                                                 |
+| :------------------ | :-------------------------------------------------------------------------- |
+| **VideoSaved**      | Shown when a recording has been successfully saved to disk.                 |
+| **PhotoSaved**      | Shown when a photo capture has been saved.                                  |
+| **EnterStreamCode** | Shown to display a LIV Hub login/stream code (e.g., "123-456").             |
+| **CheckSubscribed** | Shown to prompt the user to verify or upgrade their LIV subscription.       |
+| **ConfigureStream** | Shown to prompt the user to complete their LIV Hub streaming configuration. |

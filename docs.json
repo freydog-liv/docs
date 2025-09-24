@@ -67,6 +67,9 @@
         "api-reference/class/LckDescriptor",
         "api-reference/class/LckCamera",
         "api-reference/class/LckMonitor",
+        "api-reference/class/LckStreamingController",
+        "api-reference/class/LckNotificationController",
+        "api-reference/class/LckOnScreenUIController",
         {
             "group": "Core",
             "pages": [

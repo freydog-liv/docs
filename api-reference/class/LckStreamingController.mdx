@@ -1,5 +1,82 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "LckStreamingController"
+description: "Component that manages the LCK streaming workflow using a state machine for login, subscription, and configuration checks."
 ---
 
+## Description
+
+`LckStreamingController` is a Unity `MonoBehaviour` that orchestrates the **user streaming workflow** in the LIV Capture Kit.
+
+It functions as a **state machine**, guiding the user through the necessary steps before streaming with LIV Hub:
+
+- Logging in to LIV Hub
+- Checking subscription status
+- Confirming correct stream configuration
+
+This class serves as a **reference implementation** for a recommended streaming flow. Developers can:
+
+- Use it directly in their scene, or
+- Extend it to create custom UI/UX flows while maintaining best practices.
+
+At runtime, it integrates with both:
+
+- [`ILckService`](/api-reference/interface/ILckService) - for starting/stopping streams
+- `ILckCore` - for authentication and user status checks
+
+To use, attach `LckStreamingController` to a GameObject in your scene and assign its dependencies in the Unity Inspector.
+
+---
+
+## Usage
+
+- Place `LckStreamingController` on a scene GameObject.
+- Connect a `LckNotificationController` for user-facing messages.
+- Wire UnityEvents (`_onStreamButtonError`, `_onStreamButtonPressWithCorrectConfig`) for feedback when users press the stream button.
+- Call `StreamingButtonToggled()` from your UI toggle or button to start/stop streaming once configured.
+- Call `CheckCurrentState()` when the user initiates the streaming setup flow.
+
+### Example
+
+```c#
+[SerializeField] private LckStreamingController _streamingController;
+
+public void OnStreamButtonPressed()
+{
+    _streamingController.StreamingButtonToggled();
+}
+```
+
+---
+
+## References
+
+### Properties
+
+| Property                     | Type                                   | Description                                                                                                      |
+| :--------------------------- | :------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **IsConfiguredCorrectly**    | `bool`                                 | Indicates whether user setup and validation have been completed. When `true`, streaming can be toggled directly. |
+| **CurrentState**             | `LckStreamingBaseState`                | The currently active state in the streaming state machine.                                                       |
+| **CheckConfiguredState**     | `LckStreamingCheckConfiguredState`     | State for verifying if the user has already configured streaming.                                                |
+| **ShowCodeState**            | `LckStreamingShowCodeState`            | State for showing the user their login code.                                                                     |
+| **CheckSubscribedState**     | `LckStreamingCheckSubscribedState`     | State for verifying if the user has an active subscription.                                                      |
+| **WaitingForConfigureState** | `LckStreamingWaitingForConfigureState` | State for waiting while the user configures streaming in LIV Hub.                                                |
+| **ConfiguredCorrectlyState** | `LckStreamingConfiguredCorrectlyState` | State indicating setup is complete and the user can start streaming.                                             |
+| **CancellationTokenSource**  | `CancellationTokenSource`              | Token used to cancel any ongoing async tasks when switching states or destroying the object.                     |
+| **LckCore**                  | `ILckCore`                             | Provides access to the LIV Core SDK for authentication and user status checks.                                   |
+
+---
+
+### Methods
+
+| Method                                       | Returns | Description                                                                                                  |
+| :------------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------- |
+| **CheckCurrentState()**                      | `void`  | Starts the setup/validation state machine from the beginning (`CheckConfiguredState`).                       |
+| **StopCheckingStates()**                     | `void`  | Cancels any ongoing async checks or polling in the current state. Useful when leaving the streaming UI.      |
+| **SwitchState(LckStreamingBaseState state)** | `void`  | Switches to a new streaming state, cancelling pending operations and updating `IsConfiguredCorrectly`.       |
+| **StreamingButtonToggled()**                 | `void`  | Toggles streaming: if configured, starts/stops streaming; if not configured, invokes `_onStreamButtonError`. |
+| **StopStreaming()**                          | `void`  | Force stops streaming if a stream is currently active.                                                       |
+| **ShowNotification(NotificationType type)**  | `void`  | Displays a notification via the linked `LckNotificationController`.                                          |
+| **HideNotifications()**                      | `void`  | Hides currently visible notifications.                                                                       |
+| **SetNotificationStreamCode(string code)**   | `void`  | Updates the notification UI with a login/streaming code.                                                     |
+| **Log(string message)**                      | `void`  | Logs debug messages if `_showDebugLogs` is enabled.                                                          |
+| **LogError(string error)**                   | `void`  | Logs error messages if `_showDebugLogs` is enabled.                                                          |

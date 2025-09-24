@@ -1,0 +1,82 @@
+---
+title: "LckNotificationController"
+description: "Central manager for displaying user-facing notifications in the LIV Capture Kit (LCK), bridging backend events and UI feedback."
+---
+
+## Description
+
+`LckNotificationController` is a Unity `MonoBehaviour` that manages **notifications** in the LIV Capture Kit (LCK).
+
+It is responsible for:
+
+- Instantiating and managing notification prefabs
+- Displaying notifications in response to **LCK service events** (e.g., video saved, streaming started)
+- Providing a central API for other controllers (like [`LckStreamingController`](/api-reference/class/LckStreamingController)) to show or hide notifications
+
+Attach this component to a GameObject and configure notification prefabs in the Unity Inspector. Each prefab is linked to a [`NotificationType`](/api-reference/enum/NotificationType) and must contain a component inheriting from `LckBaseNotification`.
+
+---
+
+## Usage
+
+1. Add [`LckNotificationController`](/api-reference/class/LckNotificationController) to a GameObject in your scene.
+2. Configure the **notifications list** in the Inspector by assigning prefabs for each [`NotificationType`](/api-reference/enum/NotificationType).
+3. Link a `LckOnScreenUIController` to respond when notifications appear/disappear.
+4. Use `ShowNotification(NotificationType)` and `HideNotifications()` in your code or UI flows.
+
+### Example: Showing a Saved Video Notification
+
+```c#
+_notificationController.ShowNotification(NotificationType.VideoSaved);
+```
+
+### Example: Displaying a Login Code
+
+```c#
+_notificationController.SetNotificationStreamCode("123-456");
+```
+
+### Example: Clearing All Notifications
+
+```c#
+_notificationController.HideNotifications();
+```
+
+---
+
+## References
+
+### NotificationType
+
+| Value               | Description                                                             |
+| :------------------ | :---------------------------------------------------------------------- |
+| **VideoSaved**      | Shown when a recording has been saved successfully.                     |
+| **PhotoSaved**      | Shown when a photo capture is saved successfully.                       |
+| **EnterStreamCode** | Shown to display the LIV Hub login/stream code.                         |
+| **CheckSubscribed** | Shown to prompt the user to verify or upgrade their subscription.       |
+| **ConfigureStream** | Shown to prompt the user to configure their streaming setup in LIV Hub. |
+
+---
+
+### Properties
+
+| Property                       | Type                                                | Description                                                                       |
+| :----------------------------- | :-------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| **\_notificationsInitializer** | `List<InitializerNotification>`                     | Inspector-configured list mapping `NotificationType` to prefabs.                  |
+| **\_notifications**            | `Dictionary<NotificationType, LckBaseNotification>` | Runtime dictionary of instantiated notifications.                                 |
+| **\_currentNotification**      | `LckBaseNotification`                               | Reference to the currently active notification (if any).                          |
+| **\_notificationShowDuration** | `float`                                             | Default duration in seconds before auto-hiding a notification.                    |
+| **\_notificationsTransform**   | `Transform`                                         | Parent transform where notification prefabs are instantiated.                     |
+| **\_onScreenUIController**     | `LckOnScreenUIController`                           | Optional higher-level UI controller that reacts to notification lifecycle events. |
+
+---
+
+### Methods
+
+| Method                                      | Returns | Description                                                                                |
+| :------------------------------------------ | :------ | :----------------------------------------------------------------------------------------- |
+| **ShowNotification(NotificationType type)** | `void`  | Displays a notification of the given type. Hides any currently visible notification first. |
+| **HideNotifications()**                     | `void`  | Immediately hides any active notification and stops pending auto-hide timers.              |
+| **SetNotificationStreamCode(string code)**  | `void`  | Updates the `EnterStreamCode` notification with a login code.                              |
+| **InitializeNotifications()**               | `void`  | Instantiates all configured notification prefabs at startup. Called in `Awake()`.          |
+| **DestroyNotifications()**                  | `void`  | Destroys all instantiated notification prefabs for cleanup.                                |
