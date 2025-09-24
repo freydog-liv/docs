@@ -21,7 +21,7 @@ This class serves as a **reference implementation** for a recommended streaming 
 At runtime, it integrates with both:
 
 - [`ILckService`](/api-reference/interface/ILckService) - for starting/stopping streams
-- `ILckCore` - for authentication and user status checks
+- [`ILckCore`](/api-reference/interface/core/ILckCore) - for authentication and user status checks
 
 To use, attach `LckStreamingController` to a GameObject in your scene and assign its dependencies in the Unity Inspector.
 
@@ -30,7 +30,7 @@ To use, attach `LckStreamingController` to a GameObject in your scene and assign
 ## Usage
 
 - Place `LckStreamingController` on a scene GameObject.
-- Connect a `LckNotificationController` for user-facing messages.
+- Connect a [`LckNotificationController`](/api-reference/class/LckNotificationController) for user-facing messages.
 - Wire UnityEvents (`_onStreamButtonError`, `_onStreamButtonPressWithCorrectConfig`) for feedback when users press the stream button.
 - Call `StreamingButtonToggled()` from your UI toggle or button to start/stop streaming once configured.
 - Call `CheckCurrentState()` when the user initiates the streaming setup flow.
