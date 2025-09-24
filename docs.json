@@ -90,7 +90,7 @@
          {
             "group": "Core",
             "pages": [
-              "api-reference/interface/ILckCore"
+              "api-reference/interface/core/ILckCore"
             ]
         }
         
