@@ -86,7 +86,13 @@
         "api-reference/interface/ILckService",
         "api-reference/interface/ILckMonitor",
         "api-reference/interface/ILckCamera",
-        "api-reference/interface/ILckCore"
+         {
+            "group": "Core",
+            "pages": [
+              "api-reference/interface/ILckCore"
+            ]
+        }
+        
       ]
     },
     { 
