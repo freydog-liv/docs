@@ -1,3 +1,4 @@
+
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
@@ -70,11 +71,11 @@
         }
       ],
       "pages": [
-        "api-reference/class/LckCamera",
-        "api-reference/class/LckMonitor",
-        "api-reference/class/LckDescriptor",
+        "api-reference/class/LckService",
         "api-reference/class/LckQualityConfig",
-        "api-reference/class/LckService"
+        "api-reference/class/LckDescriptor",
+        "api-reference/class/LckCamera",
+        "api-reference/class/LckMonitor"
       ]
     },
     { 
