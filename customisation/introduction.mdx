@@ -9,6 +9,12 @@ LCK manages standard Unity Camera components through the [**LckCamera**](/api-re
 
 Since LCK builds directly on Unity’s native cameras, all existing camera settings and rendering options remain available. Recording control—such as choosing which camera to capture from or when to start and stop—is handled by an [LckService ](/api-reference/class/LckService) instance, which you create before beginning a session.
 
+You can retrieve an instance of LckService through Dependency Injection:
+
+```c#
+[Inject] private ILckService _lckService;
+```
+
 Instead of passing direct object references, cameras and monitors are managed using string IDs. This design makes it easier to organize components across different parts of a project without tightly coupling them.
 
 Once a camera is activated through the service, it immediately starts capturing, with its output available in the [`LckMonitor`](/api-reference/class/LckMonitor). You can also switch between cameras seamlessly—even during recording—for smooth, uninterrupted transitions.
@@ -18,6 +24,7 @@ Once a camera is activated through the service, it immediately starts capturing,
 These MonoBehaviours are the main ones you will need when using LCK. They all connect the [LckService](/api-reference/class/LckService) to Unity gameobjects to allow easy control over the capture behaviour.
 
 ### [LckService](/api-reference/class/LckService)
+
 `LckService` is the central entry point for interacting with the LIV Capture Kit at runtime and the default implementation of [`ILckService`](/api-reference/interface/ILckService).
 
 It provides APIs for starting and stopping recording or streaming, configuring capture settings (resolution, framerate, bitrate, orientation), managing audio, capturing photos, and controlling active cameras.
