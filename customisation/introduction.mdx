@@ -5,54 +5,32 @@ description: "Learn about the components used by the LCK tablet."
 
 ## Overview
 
-LCK manages standard Unity Camera components through the **LckCamera**, which captures video and audio at the target framerate and sends them to the encoder. These captures can also be previewed or further processed using an **LckMonitor**.
+LCK manages standard Unity Camera components through the [**LckCamera**](/api-reference/class/LckCamera), which captures video and audio at the target framerate and sends them to the encoder. These captures can also be previewed or further processed using an [**LckMonitor**](/api-reference/class/LckMonitor).
 
 Since LCK builds directly on Unity’s native cameras, all existing camera settings and rendering options remain available. Recording control—such as choosing which camera to capture from or when to start and stop—is handled by an [LckService ](/api-reference/class/LckService) instance, which you create before beginning a session.
 
 Instead of passing direct object references, cameras and monitors are managed using string IDs. This design makes it easier to organize components across different parts of a project without tightly coupling them.
 
-Once a camera is activated through the service, it immediately starts capturing, with its output available in the `LckMonitor`. You can also switch between cameras seamlessly—even during recording—for smooth, uninterrupted transitions.
+Once a camera is activated through the service, it immediately starts capturing, with its output available in the [`LckMonitor`](/api-reference/class/LckMonitor). You can also switch between cameras seamlessly—even during recording—for smooth, uninterrupted transitions.
 
 ## Core
 
-These MonoBehaviours are the main ones you will need when using LCK. They all connect the `LckService` to Unity gameobjects to allow easy control over the capture behaviour.
+These MonoBehaviours are the main ones you will need when using LCK. They all connect the [LckService](/api-reference/class/LckService) to Unity gameobjects to allow easy control over the capture behaviour.
 
-### LckServiceHelper
+### [LckService](/api-reference/class/LckService)
+`LckService` is the central entry point for interacting with the LIV Capture Kit at runtime and the default implementation of [`ILckService`](/api-reference/interface/ILckService).
 
-A simple helper to get a baseline [LckService](/api-reference/class/LckService)  up and running, tying its lifetime to a GameObject.
+It provides APIs for starting and stopping recording or streaming, configuring capture settings (resolution, framerate, bitrate, orientation), managing audio, capturing photos, and controlling active cameras.
 
-If you want the service to persist across \_s_cene loads, you must keep the **LckServiceHelper** GameObject alive.
+This service also exposes events for key lifecycle moments (recording started, stopped, paused, resumed, streaming events, photo saved, etc.), making it easy to integrate LCK into your application workflow.
 
-### LckCamera
+### [LckCamera](/api-reference/class/LckCamera)
 
 Connects a regular Unity Camera component with the LCK system.
 
-### **Fields**
+[`LckCamera`](/api-reference/class/LckCamera) is a component that integrates a standard Camera into the LIV Capture Kit system.\
+It ensures proper registration with the [`LckMediator`](/api-reference/class/LckMediator), manages activation/deactivation for capture, and provides access to the underlying Unity Camera component.
 
-| Field      | Type   | Description                                                                                                                                            |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| \_camera   | Camera | Reference to the Unity Camera that should be managed.                                                                                                  |
-| \_cameraId | string | Optional ID for the camera. If unset, a UUID is auto-generated. Setting this to `"MyCamera"` allows you to reference it via the service using that ID. |
-
-### **Methods**
-
-| Method               | Returns | Description                                                                 |
-| -------------------- | ------- | --------------------------------------------------------------------------- |
-| CameraId             | string  | Returns the ID of the LCK Camera (useful when passing to the `LckService`). |
-| GetCameraComponent() | Camera  | Returns the underlying Unity Camera.                                        |
-
-### LckMonitor
+### [LckMonitor](/api-reference/class/LckMonitor)
 
 Provides access to the current active capture `RenderTexture`, which can be displayed or processed further.
-
-**Fields**
-
-| Field        | Type     | Description                                                                                                                                |
-| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `_monitorId` | `string` | Optional ID for the monitor. If unset, a UUID is auto-generated. Setting this to `"MyMonitor"` allows you to reference it via the service. |
-
-**Events**
-
-| Event                | Type                                 | Description                                                                                                                                    |
-| -------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `OnRenderTextureSet` | `LckMonitorRenderTextureSetDelegate` | Fired whenever LCK creates a new render texture for the main output. Allows you to track and use the currently active camera’s render texture. |
