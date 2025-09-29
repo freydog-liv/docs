@@ -22,7 +22,7 @@ It ensures proper registration with the [`LckMediator`](/api-reference/class/Lck
 ### Example
 
 ```c#
-[Inject] private ILckService _lckService;
+[InjectLck] private ILckService _lckService;
 
 public void SwitchToCamera(ILckCamera camera)
 {
@@ -55,8 +55,8 @@ public void SwitchToCamera(ILckCamera camera)
 
 ### Methods
 
-| Method                        | Returns | Description                                                  |
-| :---------------------------- | :------ | :----------------------------------------------------------- |
-| ActivateCamera(RenderTexture) | void    | Enables the camera and sets its `targetTexture` for capture. |
-| DeactivateCamera()            | void    | Disables the camera and clears its `targetTexture`.          |
-| GetCameraComponent()          | Camera  | Returns the underlying Unity `Camera` component.             |
+| Method                        | Returns | Description                                                                        |
+| :---------------------------- | :------ | :--------------------------------------------------------------------------------- |
+| ActivateCamera(RenderTexture) | void    | Enables the camera and sets its `targetTexture` for capture.                       |
+| DeactivateCamera()            | void    | Disables the camera and clears its `targetTexture`. Should not be called directly. |
+| GetCameraComponent()          | Camera  | Returns the underlying Unity `Camera` component.                                   |
