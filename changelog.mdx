@@ -1,5 +1,211 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Changelog"
+description: "Product updates and announcements"
 ---
 
+<Update label="30th July 2025" description="v1.3.5">
+  **Added**
+  - API exposed to enable Pausing and Resuming of the recording  
+  - Ability to define the follow target Transform on the Tablet prefab, and at runtime via the API  
+
+  **Fixed**
+  - Reverted change *"Active Camera Component no longer disables between frames"* from v1.3.4 due to performance degradation when camera Depth Textures are enabled  
+  - Jitter when moving the tablet
+</Update>
+
+<Update label="16th July 2025" description="v1.3.4">
+  **Added**
+  - Tablet follow mode  
+
+  **Changed**
+  - Active Camera Component no longer disables between frames  
+
+  **Fixed**
+  - Occasional long-running recordings becoming corrupt, resulting in video skipping and the recording output being cut short  
+  - Audio encoding artifacts that were prevalent on some systems  
+  - Flickering of viewfinder during photo mode captures  
+  - Memory leak upon destruction of LCKService  
+  - FPV and TPV breaking if the player camera is destroyed after the tablet is spawned
+</Update>
+
+<Update label="12th June 2025" description="v1.3.3">
+  **Added**
+  - FMOD 2.03 support, via `LCK_FMOD_2_03` scripting define  
+
+  **Changed**
+  - Removed automated tests from package  
+
+  **Fixed**
+  - Notification script failing to load in Unity 2021 and below
+</Update>
+
+<Update label="5th June 2025" description="v1.3.2">
+  **Added**
+  - Ability to capture photos  
+  - Camera stabilization space can now be defined, allowing for player snap-turning  
+
+  **Changed**
+  - Improved support for Meta Hands interaction  
+
+  **Fixed**
+  - Optimised system behaviour to reduce performance impact when LCK is not in use  
+  - Disabled AudioListener components are now ignored  
+  - Camera FOV resetting when using Meta Interaction
+</Update>
+
+<Update label="25th April 2025" description="v1.3.1">
+  **Fixed**
+  - New quality option button missing collider on the Direct Tablet variant
+</Update>
+
+<Update label="23rd April 2025" description="v1.3.0">
+  **Added**
+  - A save screen now pops up on the tablet notifying about the video being done saving  
+  - All tablet buttons now use the discreet audio API to not be included in recordings  
+  - Added video Quality Config button to tablet, with SD/HD buttons on Standalone, and additional 2K and 4K option on Windows  
+  - Exposed `GetActiveCamera` method and `ActiveCameraSet` callback in the LckService  
+
+  **Changed**
+  - Default android audio bitrate set to 192kb  
+  - Recordings now saved to Movies Folder on Quest  
+
+  **Fixed**
+  - Video and audio artifacts at the beginning of recording
+</Update>
+
+<Update label="3rd April 2025" description="v1.2.4">
+  **Added**
+  - Soft limiting function to mixed audio, reducing artifacts with loud audio (can be disabled in project settings)  
+
+  **Fixed**
+  - Crash when LckSettings asset could not be loaded  
+  - Record button state incorrect when disabling tablet immediately after stopping recording
+</Update>
+
+<Update label="12th March 2025" description="v1.2.3">
+  **Fixed**
+  - EGL context creation issue causing recordings to fail with ERROR when using OpenGL
+</Update>
+
+<Update label="3rd March 2025" description="v1.2.2">
+  **Fixed**
+  - Memory leak causing GL resources not freed when stopping a recording on Android  
+  - Memory leak causing textures not freed when stopping a recording on Windows with Dx11
+</Update>
+
+<Update label="27th February 2025" description="v1.2.1">
+  **Changed**
+  - Video samplerate now follows Unity or third-party audio engine output samplerate, or fallback from LCK Settings  
+  - Improved error handling and error reporting  
+
+  **Fixed**
+  - Wwise audio capture issues
+</Update>
+
+<Update label="12th February 2025" description="v1.2.0">
+  **Added**
+  - Audio API allows supplying custom game audio via `ILckAudioSource`  
+  - Wwise audio engine support  
+  - `SetPreviewEnabled` to LckService for enabling/disabling capture without recording  
+  - Wider Unity engine version support  
+
+  **Changed**
+  - LCK Tablet prefab restructured to be input system agnostic  
+  - XR Interaction Toolkit no longer a dependency  
+
+  **Fixed**
+  - Various audio delay/desync issues  
+  - Microphone capture and Photon/Unity microphone conflicts  
+  - FMOD integration
+</Update>
+
+<Update label="10th January 2025" description="v1.1.6">
+  **Added**
+  - OpenGL support  
+  - `SetTrackDescriptor`, `SetTrackBitrate`, `SetTrackAudioBitrate`, `SetMicrophoneGain`, `SetGameAudioGain` APIs  
+  - Explicit game name field in project settings  
+
+  **Changed**
+  - Sync point between game and encoder moved earlier for better Android performance  
+  - Microphone permissions request on awake (Android), configurable  
+
+  **Fixed**
+  - Microphone toggle issues  
+  - Tablet preview interpreting alpha channel incorrectly as transparency  
+  - Crash caused by spamming microphone/recording actions  
+  - Editor hang with unsupported input devices  
+  - Tablet shader issues in Unity 2021  
+  - Slow Vulkan encoding on desktop  
+  - Build issues with minified builds
+</Update>
+
+<Update label="18th November 2024" description="v1.1.5">
+  **Fixed**
+  - Crash when muting/unmuting rapidly  
+  - Unsupported platforms not excluded from NativeGallery/NativeAudio defs  
+  - Recording telemetry serialization issues  
+  - Tablet not hiding properly in selfie mode and other visual bugs
+</Update>
+
+<Update label="12th November 2024" description="v1.1.4">
+  **Added**
+  - Unity 2020 support  
+
+  **Changed**
+  - Tablet hierarchy/transform cleanup  
+  - Improved error handling and telemetry in LckMixer  
+
+  **Fixed**
+  - Error spam related to RecordingTime when service unavailable
+</Update>
+
+<Update label="8th November 2024" description="v1.1.3">
+  **Fixed**
+  - `SetTrackFramerate` issue  
+  - Potential audio crash on Windows
+</Update>
+
+<Update label="5th November 2024" description="v1.1.2">
+  **Added**
+  - Project settings for disabling device/location telemetry  
+
+  **Fixed**
+  - Native audio error in editor with Android target  
+  - Error reporting in LckService/Helper improved  
+  - Discreet audio preload issues  
+  - Tablet error spam when service unavailable  
+  - Another UnityNativeGallery conflict
+</Update>
+
+<Update label="1st November 2024" description="v1.1.1">
+  **Fixed**
+  - UnityNativeGallery conflict
+</Update>
+
+<Update label="30th October 2024" description="v1.1.0">
+  **Added**
+  - Discreet audio playback API in LckService  
+  - Discreet audio cues for recording start/stop on tablet  
+  - `OnRenderTextureSet` event on LckMonitor  
+  - Stencil support  
+  - Log filtering in project settings  
+  - `SetTrackFramerate` API  
+  - Error reporting for unsupported graphics API/platform  
+
+  **Changed**
+  - Tablet shaders to support built-in renderer  
+  - Tablet design  
+  - Tablet manages render layers/culling masks automatically  
+
+  **Fixed**
+  - Tablet direct usage issues  
+  - Crashes due to Unity render pass timing  
+  - General UI bugs  
+  - Editor issues with `DontDestroyOnLoad`  
+  - Off-main-thread Unity call errors  
+  - Error reporting improved in LckService paths
+</Update>
+
+<Update label="Initial Launch" description="v1.0.0">
+  Initial release
+</Update>
