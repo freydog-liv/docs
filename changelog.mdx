@@ -3,7 +3,7 @@ title: "Changelog"
 description: "Product updates and announcements"
 ---
 
-<Update label="30th July 2025" description="v1.3.5">
+<Update label="v1.3.5" description="30th July 2025">
   **Added**
   - API exposed to enable Pausing and Resuming of the recording  
   - Ability to define the follow target Transform on the Tablet prefab, and at runtime via the API  
@@ -13,7 +13,7 @@ description: "Product updates and announcements"
   - Jitter when moving the tablet
 </Update>
 
-<Update label="16th July 2025" description="v1.3.4">
+<Update label="v1.3.4" description="16th July 2025">
   **Added**
   - Tablet follow mode  
 
@@ -28,7 +28,7 @@ description: "Product updates and announcements"
   - FPV and TPV breaking if the player camera is destroyed after the tablet is spawned
 </Update>
 
-<Update label="12th June 2025" description="v1.3.3">
+<Update label="v1.3.3" description="12th June 2025">
   **Added**
   - FMOD 2.03 support, via `LCK_FMOD_2_03` scripting define  
 
@@ -39,7 +39,7 @@ description: "Product updates and announcements"
   - Notification script failing to load in Unity 2021 and below
 </Update>
 
-<Update label="5th June 2025" description="v1.3.2">
+<Update label="v1.3.2" description="5th June 2025">
   **Added**
   - Ability to capture photos  
   - Camera stabilization space can now be defined, allowing for player snap-turning  
@@ -53,12 +53,12 @@ description: "Product updates and announcements"
   - Camera FOV resetting when using Meta Interaction
 </Update>
 
-<Update label="25th April 2025" description="v1.3.1">
+<Update label="v1.3.1" description="25th April 2025">
   **Fixed**
   - New quality option button missing collider on the Direct Tablet variant
 </Update>
 
-<Update label="23rd April 2025" description="v1.3.0">
+<Update label="v1.3.0" description="23rd April 2025">
   **Added**
   - A save screen now pops up on the tablet notifying about the video being done saving  
   - All tablet buttons now use the discreet audio API to not be included in recordings  
@@ -73,7 +73,7 @@ description: "Product updates and announcements"
   - Video and audio artifacts at the beginning of recording
 </Update>
 
-<Update label="3rd April 2025" description="v1.2.4">
+<Update label="v1.2.4" description="3rd April 2025">
   **Added**
   - Soft limiting function to mixed audio, reducing artifacts with loud audio (can be disabled in project settings)  
 
@@ -82,18 +82,18 @@ description: "Product updates and announcements"
   - Record button state incorrect when disabling tablet immediately after stopping recording
 </Update>
 
-<Update label="12th March 2025" description="v1.2.3">
+<Update label="v1.2.3" description="12th March 2025">
   **Fixed**
   - EGL context creation issue causing recordings to fail with ERROR when using OpenGL
 </Update>
 
-<Update label="3rd March 2025" description="v1.2.2">
+<Update label="v1.2.2" description="3rd March 2025">
   **Fixed**
   - Memory leak causing GL resources not freed when stopping a recording on Android  
   - Memory leak causing textures not freed when stopping a recording on Windows with Dx11
 </Update>
 
-<Update label="27th February 2025" description="v1.2.1">
+<Update label="v1.2.1" description="27th February 2025">
   **Changed**
   - Video samplerate now follows Unity or third-party audio engine output samplerate, or fallback from LCK Settings  
   - Improved error handling and error reporting  
@@ -102,7 +102,7 @@ description: "Product updates and announcements"
   - Wwise audio capture issues
 </Update>
 
-<Update label="12th February 2025" description="v1.2.0">
+<Update label="v1.2.0" description="12th February 2025">
   **Added**
   - Audio API allows supplying custom game audio via `ILckAudioSource`  
   - Wwise audio engine support  
@@ -119,7 +119,7 @@ description: "Product updates and announcements"
   - FMOD integration
 </Update>
 
-<Update label="10th January 2025" description="v1.1.6">
+<Update label="v1.1.6" description="10th January 2025">
   **Added**
   - OpenGL support  
   - `SetTrackDescriptor`, `SetTrackBitrate`, `SetTrackAudioBitrate`, `SetMicrophoneGain`, `SetGameAudioGain` APIs  
@@ -139,7 +139,7 @@ description: "Product updates and announcements"
   - Build issues with minified builds
 </Update>
 
-<Update label="18th November 2024" description="v1.1.5">
+<Update label="v1.1.5" description="18th November 2024">
   **Fixed**
   - Crash when muting/unmuting rapidly  
   - Unsupported platforms not excluded from NativeGallery/NativeAudio defs  
@@ -147,7 +147,7 @@ description: "Product updates and announcements"
   - Tablet not hiding properly in selfie mode and other visual bugs
 </Update>
 
-<Update label="12th November 2024" description="v1.1.4">
+<Update label="v1.1.4" description="12th November 2024">
   **Added**
   - Unity 2020 support  
 
@@ -159,13 +159,13 @@ description: "Product updates and announcements"
   - Error spam related to RecordingTime when service unavailable
 </Update>
 
-<Update label="8th November 2024" description="v1.1.3">
+<Update label="v1.1.3" description="8th November 2024">
   **Fixed**
   - `SetTrackFramerate` issue  
   - Potential audio crash on Windows
 </Update>
 
-<Update label="5th November 2024" description="v1.1.2">
+<Update label="v1.1.2" description="5th November 2024">
   **Added**
   - Project settings for disabling device/location telemetry  
 
@@ -177,12 +177,12 @@ description: "Product updates and announcements"
   - Another UnityNativeGallery conflict
 </Update>
 
-<Update label="1st November 2024" description="v1.1.1">
+<Update label="v1.1.1" description="1st November 2024">
   **Fixed**
   - UnityNativeGallery conflict
 </Update>
 
-<Update label="30th October 2024" description="v1.1.0">
+<Update label="v1.1.0" description="30th October 2024">
   **Added**
   - Discreet audio playback API in LckService  
   - Discreet audio cues for recording start/stop on tablet  
@@ -206,6 +206,6 @@ description: "Product updates and announcements"
   - Error reporting improved in LckService paths
 </Update>
 
-<Update label="Initial Launch" description="v1.0.0">
+<Update label="v1.0.0" description="Initial Launch">
   Initial release
 </Update>
