@@ -1,0 +1,13 @@
+---
+title: "Upgrade Guide"
+description: "How to change LCK version"
+---
+
+<Danger>
+  Always close the editor when upgrading **or** when switching LCK version.
+</Danger>
+
+Upgrading version should for the most part only require you to delete the `tv.liv.lck` and folder already present in `Packages` and put in the newly downloaded version, however there are some things to note:
+
+- Close down the editor before swapping versions, even if you haven't pressed play yet. This is because LCK requires core libraries to be loaded on editor launch and Unity never unloads libraries while open. Upgrading while open will cause the upgrade to fail and could crash your editor.
+- This will wipe any custom changes you've made to LCK. For the most part we recommend you **_do not_** modify the LCK package directly, but rather create your own project local prefabs and variants based on LCK assets and scripts.
