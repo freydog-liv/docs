@@ -24,8 +24,7 @@
             "pages": [
               "index",
               "installation",
-              "quickstart",
-              "changelogs"
+              "quickstart"
             ]
           },
           {
