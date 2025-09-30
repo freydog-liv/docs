@@ -1,11 +1,10 @@
-
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "LCK Documentation",
-  "background":{
-    "color":{
-      "dark":"#0F1010"
+  "background": {
+    "color": {
+      "dark": "#0F1010"
     }
   },
   "colors": {
@@ -24,8 +23,7 @@
             "pages": [
               "index",
               "installation",
-              "quickstart",
-              "changelog"
+              "quickstart"
             ]
           },
           {
@@ -52,84 +50,84 @@
           }
         ]
       },
-{
-  "tab": "API reference",
-  "groups": [
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/Introduction"
-      ]
-    },
-    {
-      "group": "Class",
-      "pages": [
-        "api-reference/class/LckService",
-        "api-reference/class/LckQualityConfig",
-        "api-reference/class/LckDescriptor",
-        "api-reference/class/LckCamera",
-        "api-reference/class/LckMonitor",
-        "api-reference/class/LckStreamingController",
-        "api-reference/class/LckNotificationController",
-        "api-reference/class/LckOnScreenUIController",
-        "api-reference/class/LckCameraController",
-        {
-            "group": "Core",
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "API Reference",
             "pages": [
-              "api-reference/class/core/LckCore",
-              "api-reference/class/core/Result"
+              "api-reference/Introduction"
             ]
-        }
-      ]
-    },
-    { 
-      "group": "Interface",
-      "pages": [
-        "api-reference/interface/ILckService",
-        "api-reference/interface/ILckMonitor",
-        "api-reference/interface/ILckCamera",
-        "api-reference/interface/ILckAudioSource",
-         {
-            "group": "Core",
+          },
+          {
+            "group": "Class",
             "pages": [
-              "api-reference/interface/core/ILckCore"
+              "api-reference/class/LckService",
+              "api-reference/class/LckQualityConfig",
+              "api-reference/class/LckDescriptor",
+              "api-reference/class/LckCamera",
+              "api-reference/class/LckMonitor",
+              "api-reference/class/LckStreamingController",
+              "api-reference/class/LckNotificationController",
+              "api-reference/class/LckOnScreenUIController",
+              "api-reference/class/LckCameraController",
+              {
+                "group": "Core",
+                "pages": [
+                  "api-reference/class/core/LckCore",
+                  "api-reference/class/core/Result"
+                ]
+              }
             ]
-        }
-        
-      ]
-    },
-    { 
-      "group": "Struct",
-      "pages": [
-        "api-reference/struct/QualityOption",
-        "api-reference/struct/QualityOptionOverride",
-        "api-reference/struct/CameraTrackDescriptor",
-        "api-reference/struct/CameraResolutionDescriptor",
-        {
-            "group": "Core",
+          },
+          {
+            "group": "Interface",
             "pages": [
-              "api-reference/struct/core/GameInfo"
+              "api-reference/interface/ILckService",
+              "api-reference/interface/ILckMonitor",
+              "api-reference/interface/ILckCamera",
+              "api-reference/interface/ILckAudioSource",
+              {
+                "group": "Core",
+                "pages": [
+                  "api-reference/interface/core/ILckCore"
+                ]
+              }
             ]
-        }
-      ]
-    },
-    { 
-      "group": "Enum",
-      "pages": [
-        "api-reference/enum/LckError",
-        "api-reference/enum/LckCaptureType",
-        "api-reference/enum/LckCameraOrientation",
-        "api-reference/enum/CoreError",
-         {
-            "group": "Core",
+          },
+          {
+            "group": "Struct",
             "pages": [
-              "api-reference/enum/core/LevelFilter"
+              "api-reference/struct/QualityOption",
+              "api-reference/struct/QualityOptionOverride",
+              "api-reference/struct/CameraTrackDescriptor",
+              "api-reference/struct/CameraResolutionDescriptor",
+              {
+                "group": "Core",
+                "pages": [
+                  "api-reference/struct/core/GameInfo"
+                ]
+              }
             ]
-        }
-      ]
-    }
-  ]
-}],
+          },
+          {
+            "group": "Enum",
+            "pages": [
+              "api-reference/enum/LckError",
+              "api-reference/enum/LckCaptureType",
+              "api-reference/enum/LckCameraOrientation",
+              "api-reference/enum/CoreError",
+              {
+                "group": "Core",
+                "pages": [
+                  "api-reference/enum/core/LevelFilter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "global": {
       "anchors": [
         {
@@ -139,7 +137,7 @@
         },
         {
           "anchor": "Discord",
-          "href": "https://discord.com/invite/liv" ,
+          "href": "https://discord.com/invite/liv",
           "icon": "discord"
         },
         {
@@ -169,15 +167,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
