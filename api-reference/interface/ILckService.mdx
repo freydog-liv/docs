@@ -16,7 +16,7 @@ It exposes events for lifecycle notifications (recording, streaming, saving, etc
 Retrieve an `ILckService` instance through dependency injection or the DI container:
 
 ```c#
-[Inject] private ILckService _lckService;
+[InjectLck] private ILckService _lckService;
 ```
 
 ### Example: Start a Recording
@@ -66,8 +66,8 @@ Debug.Log($"Mic Output Level: {micLevel.Result}");
 
 ### Events
 
-| Event              | Type                                 | Description                              |
-| :----------------- | :----------------------------------- | :--------------------------------------- |
+| Event              | Type                                                                     | Description                              |
+| :----------------- | :----------------------------------------------------------------------- | :--------------------------------------- |
 | OnRecordingStarted | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when recording starts.           |
 | OnRecordingPaused  | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when recording is paused.        |
 | OnRecordingResumed | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when recording resumes.          |
@@ -81,40 +81,40 @@ Debug.Log($"Mic Output Level: {micLevel.Result}");
 
 ### Methods
 
-| Method                                                    | Returns                     | Description                                         |
-| :-------------------------------------------------------- | :-------------------------- | :-------------------------------------------------- |
-| GetRecordingDuration()                                    | [`LckResult`](/api-reference/class/LckResult)\<TimeSpan\>       | Gets the duration of the current recording.         |
-| GetStreamDuration()                                       | [`LckResult`](/api-reference/class/LckResult)\<TimeSpan\>       | Gets the duration of the current stream.            |
-| StartRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                   | Starts recording.                                   |
-| PauseRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                   | Pauses recording.                                   |
-| ResumeRecording()                                         | [`LckResult`](/api-reference/class/LckResult)                   | Resumes recording.                                  |
-| StopRecording()                                           | [`LckResult`](/api-reference/class/LckResult)                   | Stops recording.                                    |
-| StartStreaming()                                          | [`LckResult`](/api-reference/class/LckResult)                   | Starts streaming.                                   |
-| StopStreaming()                                           | [`LckResult`](/api-reference/class/LckResult)                   | Stops streaming.                                    |
-| SetTrackFramerate(uint)                                   | [`LckResult`](/api-reference/class/LckResult)                   | Sets the capture framerate.                         |
-| SetTrackDescriptor(CameraTrackDescriptor)                 | [`LckResult`](/api-reference/class/LckResult)                   | Sets the track descriptor for capture.              |
-| SetTrackDescriptor(LckCaptureType, CameraTrackDescriptor) | [`LckResult`](/api-reference/class/LckResult)                   | Sets the track descriptor for a given capture type. |
-| SetTrackResolution(CameraResolutionDescriptor)            | [`LckResult`](/api-reference/class/LckResult)                   | Sets the capture resolution.                        |
-| SetTrackBitrate(uint)                                     | [`LckResult`](/api-reference/class/LckResult)                   | Sets the video bitrate.                             |
-| SetTrackAudioBitrate(uint)                                | [`LckResult`](/api-reference/class/LckResult)                   | Sets the audio bitrate.                             |
-| SetCameraOrientation(LckCameraOrientation)                | [`LckResult`](/api-reference/class/LckResult)                   | Sets the camera orientation.                        |
-| GetActiveCaptureType()                                    | [`LckResult`](/api-reference/class/LckResult)\<LckCaptureType\> | Gets the currently active capture type.             |
-| SetActiveCaptureType(LckCaptureType)                      | [`LckResult`](/api-reference/class/LckResult)                   | Sets the active capture type.                       |
-| SetPreviewActive(bool)                                    | [`LckResult`](/api-reference/class/LckResult)                   | Enables or disables preview rendering.              |
-| IsRecording()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>           | Returns whether recording is active.                |
-| IsStreaming()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>           | Returns whether streaming is active.                |
-| IsCapturing()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>           | Returns whether capture is active.                  |
-| SetGameAudioCaptureActive(bool)                           | [`LckResult`](/api-reference/class/LckResult)                   | Enables/disables game audio capture.                |
-| SetMicrophoneCaptureActive(bool)                          | [`LckResult`](/api-reference/class/LckResult)                   | Enables/disables microphone capture.                |
-| GetMicrophoneOutputLevel()                                | [`LckResult`](/api-reference/class/LckResult)\<float\>          | Gets the current microphone output level.           |
-| SetMicrophoneGain(float)                                  | [`LckResult`](/api-reference/class/LckResult)                   | Sets microphone gain.                               |
-| SetGameAudioGain(float)                                   | [`LckResult`](/api-reference/class/LckResult)                   | Sets game audio gain.                               |
-| GetGameOutputLevel()                                      | [`LckResult`](/api-reference/class/LckResult)\<float\>          | Gets the current game audio output level.           |
-| IsGameAudioMute()                                         | [`LckResult`](/api-reference/class/LckResult)\<bool\>           | Returns whether game audio is muted.                |
-| SetActiveCamera(string, string monitorId = null)          | [`LckResult`](/api-reference/class/LckResult)                   | Sets the active camera (and optional monitor).      |
-| PreloadDiscreetAudio(AudioClip, float, bool)              | [`LckResult`](/api-reference/class/LckResult)                   | Preloads an audio clip for discreet playback.       |
-| PlayDiscreetAudioClip(AudioClip)                          | [`LckResult`](/api-reference/class/LckResult)                   | Plays a discreet audio clip.                        |
-| StopAllDiscreetAudio()                                    | [`LckResult`](/api-reference/class/LckResult)                   | Stops all discreet audio playback.                  |
-| GetDescriptor()                                           | [`LckResult`](/api-reference/class/LckResult)\<[`LckDescriptor`](/api-reference/class/LckDescriptor)\>  | Gets the current descriptor.                        |
-| CapturePhoto()                                            | [`LckResult`](/api-reference/class/LckResult)                   | Captures a photo.                                   |
-| Dispose()                                                 | void                        | Cleans up and disposes the service.                 |
+| Method                                                    | Returns                                                                                                | Description                                         |
+| :-------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :-------------------------------------------------- |
+| GetRecordingDuration()                                    | [`LckResult`](/api-reference/class/LckResult)\<TimeSpan\>                                              | Gets the duration of the current recording.         |
+| GetStreamDuration()                                       | [`LckResult`](/api-reference/class/LckResult)\<TimeSpan\>                                              | Gets the duration of the current stream.            |
+| StartRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                                                          | Starts recording.                                   |
+| PauseRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                                                          | Pauses recording.                                   |
+| ResumeRecording()                                         | [`LckResult`](/api-reference/class/LckResult)                                                          | Resumes recording.                                  |
+| StopRecording()                                           | [`LckResult`](/api-reference/class/LckResult)                                                          | Stops recording.                                    |
+| StartStreaming()                                          | [`LckResult`](/api-reference/class/LckResult)                                                          | Starts streaming.                                   |
+| StopStreaming()                                           | [`LckResult`](/api-reference/class/LckResult)                                                          | Stops streaming.                                    |
+| SetTrackFramerate(uint)                                   | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the capture framerate.                         |
+| SetTrackDescriptor(CameraTrackDescriptor)                 | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the track descriptor for capture.              |
+| SetTrackDescriptor(LckCaptureType, CameraTrackDescriptor) | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the track descriptor for a given capture type. |
+| SetTrackResolution(CameraResolutionDescriptor)            | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the capture resolution.                        |
+| SetTrackBitrate(uint)                                     | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the video bitrate.                             |
+| SetTrackAudioBitrate(uint)                                | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the audio bitrate.                             |
+| SetCameraOrientation(LckCameraOrientation)                | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the camera orientation.                        |
+| GetActiveCaptureType()                                    | [`LckResult`](/api-reference/class/LckResult)\<LckCaptureType\>                                        | Gets the currently active capture type.             |
+| SetActiveCaptureType(LckCaptureType)                      | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the active capture type.                       |
+| SetPreviewActive(bool)                                    | [`LckResult`](/api-reference/class/LckResult)                                                          | Enables or disables preview rendering.              |
+| IsRecording()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>                                                  | Returns whether recording is active.                |
+| IsStreaming()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>                                                  | Returns whether streaming is active.                |
+| IsCapturing()                                             | [`LckResult`](/api-reference/class/LckResult)\<bool\>                                                  | Returns whether capture is active.                  |
+| SetGameAudioCaptureActive(bool)                           | [`LckResult`](/api-reference/class/LckResult)                                                          | Enables/disables game audio capture.                |
+| SetMicrophoneCaptureActive(bool)                          | [`LckResult`](/api-reference/class/LckResult)                                                          | Enables/disables microphone capture.                |
+| GetMicrophoneOutputLevel()                                | [`LckResult`](/api-reference/class/LckResult)\<float\>                                                 | Gets the current microphone output level.           |
+| SetMicrophoneGain(float)                                  | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets microphone gain.                               |
+| SetGameAudioGain(float)                                   | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets game audio gain.                               |
+| GetGameOutputLevel()                                      | [`LckResult`](/api-reference/class/LckResult)\<float\>                                                 | Gets the current game audio output level.           |
+| IsGameAudioMute()                                         | [`LckResult`](/api-reference/class/LckResult)\<bool\>                                                  | Returns whether game audio is muted.                |
+| SetActiveCamera(string, string monitorId = null)          | [`LckResult`](/api-reference/class/LckResult)                                                          | Sets the active camera (and optional monitor).      |
+| PreloadDiscreetAudio(AudioClip, float, bool)              | [`LckResult`](/api-reference/class/LckResult)                                                          | Preloads an audio clip for discreet playback.       |
+| PlayDiscreetAudioClip(AudioClip)                          | [`LckResult`](/api-reference/class/LckResult)                                                          | Plays a discreet audio clip.                        |
+| StopAllDiscreetAudio()                                    | [`LckResult`](/api-reference/class/LckResult)                                                          | Stops all discreet audio playback.                  |
+| GetDescriptor()                                           | [`LckResult`](/api-reference/class/LckResult)\<[`LckDescriptor`](/api-reference/class/LckDescriptor)\> | Gets the current descriptor.                        |
+| CapturePhoto()                                            | [`LckResult`](/api-reference/class/LckResult)                                                          | Captures a photo.                                   |
+| Dispose()                                                 | void                                                                                                   | Cleans up and disposes the service.                 |

@@ -18,7 +18,7 @@ This service also exposes events for key lifecycle moments (recording started, s
 - Retrieve the service via DI:
 
   ```c#
-  [Inject] private ILckService _lckService;
+  [InjectLck] private ILckService _lckService;
   ```
 - Configure capture options (resolution, framerate, bitrate) before starting capture.
 - Start recording or streaming with `StartRecording()` or `StartStreaming()`.
@@ -30,8 +30,8 @@ This service also exposes events for key lifecycle moments (recording started, s
 
 ### Events
 
-| Event              | Type                                                               | Description                                           |
-| :----------------- | :----------------------------------------------------------------- | :---------------------------------------------------- |
+| Event              | Type                                                                     | Description                                           |
+| :----------------- | :----------------------------------------------------------------------- | :---------------------------------------------------- |
 | OnRecordingStarted | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when a recording session starts.              |
 | OnRecordingStopped | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when a recording session stops.               |
 | OnRecordingPaused  | Action\<[`LckResult`](/api-reference/class/LckResult)\>                  | Invoked when a recording session is paused.           |
@@ -47,8 +47,8 @@ This service also exposes events for key lifecycle moments (recording started, s
 
 ### Methods
 
-| Method                                                    | Returns                                                   | Description                                                        |
-| :-------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------- |
+| Method                                                    | Returns                                                         | Description                                                        |
+| :-------------------------------------------------------- | :-------------------------------------------------------------- | :----------------------------------------------------------------- |
 | StartRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                   | Starts recording to disk.                                          |
 | StopRecording()                                           | [`LckResult`](/api-reference/class/LckResult)                   | Stops recording (reason defaults to `UserStopped`).                |
 | PauseRecording()                                          | [`LckResult`](/api-reference/class/LckResult)                   | Pauses an active recording.                                        |

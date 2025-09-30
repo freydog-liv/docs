@@ -12,23 +12,27 @@ Each value indicates a specific failure condition in LCK.
 
 ## Enum Values
 
-| Name                               | Value | Description                                                      |
-| :--------------------------------- | :---- | :--------------------------------------------------------------- |
-| **ServiceNotCreated**              | 1     | The service has not been created before the call.                |
-| **ServiceDisposed**                | 2     | The service has already been disposed and can no longer be used. |
-| **InvalidDescriptor**              | 3     | The provided `LckDescriptor` was invalid.                        |
-| **CameraIdNotFound**               | 4     | The specified camera ID could not be found.                      |
-| **MonitorIdNotFound**              | 5     | The specified monitor ID could not be found.                     |
-| **MicrophonePermissionDenied**     | 6     | Microphone permission was denied by the user or system.          |
-| **RecordingAlreadyStarted**        | 7     | A recording session is already in progress.                      |
-| **NotCurrentlyRecording**          | 8     | Stop or query was attempted while no recording was active.       |
-| **RecordingError**                 | 9     | An error occurred while recording.                               |
-| **PhotoCaptureError**              | 10    | An error occurred while capturing a photo.                       |
-| **CantEditSettingsWhileRecording** | 11    | Settings cannot be changed during an active recording.           |
-| **NotEnoughStorageSpace**          | 12    | The device does not have enough free storage space.              |
-| **FailedToCopyRecordingToGallery** | 13    | A recorded video could not be copied to the gallery.             |
-| **FailedToCopyPhotoToGallery**     | 14    | A captured photo could not be copied to the gallery.             |
-| **UnsupportedGraphicsApi**         | 15    | The current graphics API is not supported by LCK.                |
-| **UnsupportedPlatform**            | 16    | The current platform is not supported by LCK.                    |
-| **MicrophoneError**                | 17    | A runtime error occurred with microphone input.                  |
-| **UnknownError**                   | 18    | An unspecified or unknown error occurred.                        |
+| Name                               | Value | Description                                                                                                        |
+| :--------------------------------- | :---- | :----------------------------------------------------------------------------------------------------------------- |
+| **ServiceNotCreated**              | 1     | The service has not been created before the call.                                                                  |
+| **ServiceDisposed**                | 2     | The service has already been disposed and can no longer be used.                                                   |
+| **InvalidDescriptor**              | 3     | The provided `LckDescriptor` was invalid.                                                                          |
+| **CameraIdNotFound**               | 4     | The specified camera ID could not be found.                                                                        |
+| **MonitorIdNotFound**              | 5     | The specified monitor ID could not be found.                                                                       |
+| **MicrophonePermissionDenied**     | 6     | Microphone permission was denied by the user or system.                                                            |
+| **RecordingAlreadyStarted**        | 7     | A recording session is already in progress.                                                                        |
+| **NotCurrentlyRecording**          | 8     | Stop or query was attempted while no recording was active.                                                         |
+| **NotPaused**                      | 9     | An attempt to resume recording was made while the recording was not paused.                                        |
+| **RecordingError**                 | 10    | An error occurred while recording.                                                                                 |
+| **PhotoCaptureError**              | 11    | An error occurred while capturing a photo.                                                                         |
+| **CantEditSettingsWhileRecording** | 12    | Settings cannot be changed during an active recording.                                                             |
+| **NotEnoughStorageSpace**          | 13    | The device does not have enough free storage space.                                                                |
+| **FailedToCopyRecordingToGallery** | 14    | A recorded video could not be copied to the gallery.                                                               |
+| **FailedToCopyPhotoToGallery**     | 15    | A captured photo could not be copied to the gallery.                                                               |
+| **UnsupportedGraphicsApi**         | 16    | The current graphics API is not supported by LCK.                                                                  |
+| **UnsupportedPlatform**            | 17    | The current platform is not supported by LCK.                                                                      |
+| **MicrophoneError**                | 18    | A runtime error occurred with microphone input.                                                                    |
+| **StreamerNotImplemented**         | 19    | No impelentation of a streaming framework is impelemted. This can occur if the Streaming package has been removed. |
+| **StreamingError**                 | 20    | An error occured during streaming.                                                                                 |
+| **EncodingError**                  | 21    | An error occured during encoding.                                                                                  |
+| **UnknownError**                   | 22    | An unspecified or unknown error occurred.                                                                          |

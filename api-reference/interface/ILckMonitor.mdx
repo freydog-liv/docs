@@ -13,25 +13,7 @@ Any class implementing this interface can be registered with the LCK system to r
 
 ## Usage
 
-To implement a custom monitor, create a class that implements `ILckMonitor` and register it with the system.
-
-### Example
-
-```c#
-using Liv.Lck;
-using UnityEngine;
-
-public class CustomMonitor : MonoBehaviour, ILckMonitor
-{
-    public string MonitorId { get; private set; } = System.Guid.NewGuid().ToString();
-
-    public void SetRenderTexture(RenderTexture renderTexture)
-    {
-        // Example: Apply the render texture to a material
-        GetComponent<Renderer>().material.mainTexture = renderTexture;
-    }
-}
-```
+To implement a custom monitor, create a class that implements `ILckMonitor` and register it with the system. See `LckMonitor` for a simple example.
 
 ---
 

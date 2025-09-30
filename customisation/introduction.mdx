@@ -12,7 +12,7 @@ Since LCK builds directly on Unity’s native cameras, all existing camera setti
 You can retrieve an instance of LckService through Dependency Injection:
 
 ```c#
-[Inject] private ILckService _lckService;
+[InjectLck] private ILckService _lckService;
 ```
 
 Instead of passing direct object references, cameras and monitors are managed using string IDs. This design makes it easier to organize components across different parts of a project without tightly coupling them.
