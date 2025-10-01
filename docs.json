@@ -152,6 +152,10 @@
   {
     "source": "/intro/liv-sdk",
     "destination": "/"
+  },
+    {
+    "source": "/docs",
+    "destination": "/"
   }
 ],
   "logo": {
