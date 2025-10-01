@@ -148,6 +148,12 @@
       ]
     }
   },
+  "redirects": [
+  {
+    "source": "/intro/liv-sdk",
+    "destination": "/"
+  }
+],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
