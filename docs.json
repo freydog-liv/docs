@@ -23,7 +23,8 @@
             "pages": [
               "index",
               "installation",
-              "quickstart"
+              "quickstart",
+              "changelog"
             ]
           },
           {
@@ -45,8 +46,7 @@
               "learn-more/known-issues",
               "learn-more/marketing-support",
               "learn-more/telemetry",
-              "learn-more/contact-us",
-              "learn-more/changelog"
+              "learn-more/contact-us"
             ]
           }
         ]
