@@ -143,7 +143,7 @@
         },
         {
           "anchor": "Dashboard",
-          "href": "https://dashboard.liv.tv/dev/login?welcome=false",
+          "href": "https://dashboard.liv.tv/dev/login",
           "icon": "rocket"
         }
       ]
