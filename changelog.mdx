@@ -2,7 +2,19 @@
 title: "Changelog"
 description: "Product updates and announcements"
 ---
+<Update label="v1.4.0" description="4th November 2025">
+  **Added**
+  - Streaming support via RTMP (YouTube, Twitch supported)
+  - Build process adds internet permission to AndroidManifest.xml and prevents Meta Quest Feature "ForceRemoveInternetPermission" from blocking internet access, toggleable via Lck Settings
 
+  **Changed**
+  - LCK Service dependencies are now resolved via Dependency Injection
+  - Tablet position now updates in LateUpdate, instead of Update, to mitigate jitter
+  - Microphone access permission requested on startup, toggleable via Lck Settings
+
+  **Fixed**
+  - Encoding exception when switching scenes while recording
+</Update>
 <Update label="v1.3.5" description="30th July 2025">
   **Added**
   - API exposed to enable Pausing and Resuming of the recording
