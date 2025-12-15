@@ -16,7 +16,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Unity Guides",
         "groups": [
           {
             "group": "Getting Started",
@@ -52,7 +52,7 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Unity API reference",
         "groups": [
           {
             "group": "API Reference",
@@ -127,7 +127,24 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Unreal Guides",
+        "groups":[
+          {
+            "group": "Getting Started with Unreal",
+            "pages":[
+              "unreal/unreal-index",
+              "unreal/unreal-installation",
+              "unreal/unreal-quickstart",
+              "unreal/design-customization",
+              "unreal/core-architecture",
+              "unreal/unreal-changelog"
+            ]
+          }
+        ]
       }
+      
     ],
     "global": {
       "anchors": [
@@ -190,9 +207,10 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://twitter.com/LIV",
+      "youtube": "https://www.youtube.com/@liv",
+      "instagram": "https://www.instagram.com/liv/",
+      "bluesky": "https://bsky.app/profile/liv.tv"
     }
   }
 }

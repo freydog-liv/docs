@@ -1,0 +1,46 @@
+---
+title: "Unreal Core Architecture"
+---
+
+The LCK Unreal SDK is structured around a ULCKSubsystem (WorldSubsystem) that creates and owns a single ULCKService instance responsible for all recording, preview and telemetry operations, while the user-facing tablet is implemented as an ALCKTablet actor (BP_LCKTablet) that owns its own ULCKTabletDataModel (persisted settings) and ULCKUISystem (3D UI) and communicates with the service only via direct function calls.
+
+| Component                                              | Role                                                                            | Lifetime                     | How to Access                                  |
+| :----------------------------------------------------- | :------------------------------------------------------------------------------ | :--------------------------- | :--------------------------------------------- |
+| **ULCKSubsystem**                                      | **WorldSubsystem** → creates and owns the single ULCKService instance           | World lifetime               | **GetWorld()-\>GetSubsystem()-\>GetService()** |
+| **ULCKService**                                        | Central SDK brain: recording, preview, profiles, delegates, telemetry           | Singleton per player session | Always via **ULCKSubsystem**                   |
+| **ALCKTablet **\+ **BP_LCKTablet**                     | Ready-to-use actor containing full 3D UI + recording logic                      | One per tablet in the Level  | Drop the provided **BP_LCKTablet **Blueprint   |
+| **ULCKDummyRecorderController**<br />(will be renamed) | Handles record button state & timer                                             | Owned by ALCKTablet          | Used internally by the tablet                  |
+| **ULCKUISystem**                                       | Full 3D UI orchestrator (all buttons, tabs, show/hide groups)                   | Component of the tablet      | Manages all UI components and data binding     |
+| **ULCKTabletDataModel**                                | Central data container (mic state, quality, orientation, camera settings, etc.) | Owned by tablet              | All UI elements bind to it automatically       |
+
+# Recording profile
+
+Recording quality modes defined in the tablet.
+
+| **Profile**            | **Resolution**               | **Framerate** | **Video Bitrate** | **Audio Bitrate** |
+| :--------------------- | :--------------------------- | :------------ | :---------------- | :---------------- |
+| **SD_30FPS (default)** | 960×540<br />(Soon 1280×720) | 30 fps        | 4 Mbps            | 128 kbps          |
+| **HD_60FPS**           | 1920×1080                    | 60 fps        | 10 Mbps           | 256 kbps          |
+
+For now tablet recording profile switching isn’t effective (it only visually updates the HD/SD button in the tablet, without the logic being bound) but will be functional in the next update.\
+Editor-exposed settings panel will be added soon, in the meantime you have one temporary way to define your default recording profile.\
+To define the default recording profile of your tablet, you may temporarily set it in **ALCKTablet::BeginPlay()**.\
+\
+\
+**Important:**
+
+Directly editing any **.cpp** file inside the plugin folder is **a temporary workaround** to update the default recording settings.
+
+# Telemetry
+
+- Telemetry is anonymous. **DeviceId** is an irreversible MD5 hash.
+- Define the **TrackingID **inside **DefaultGame.ini **as shown in the section **“Preview Integration Guide”**
+
+| **Event**                         | **Trigger**               | **Example context sent**     |
+| :-------------------------------- | :------------------------ | :--------------------------- |
+| **GameInitialized**               | Plugin loaded             | Engine version, graphics API |
+| **ServiceCreated **/ **Disposed** | ULCKService init/shutdown | –                            |
+| **RecordingStarted**              | User starts recording     | Resolution, FPS, bitrates    |
+| **RecordingStopped**              | User stops recording      | Duration, stop reason        |
+| **PhotoCaptured**                 | TakePhoto() called        | Resolution, format (PNG)     |
+| **RecorderError **/ **SdkError**  | Any failure               | Error message + code         |
