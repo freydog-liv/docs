@@ -8,34 +8,107 @@ Open Unreal and make sure the plugins are enabled, they should be by default.
 
 To enable recording on Windows you will also need to enable the \*\*AVCodecsCore \*\*plugin (which should be enabled via dependency when you add LCK) and also add the relevant extension plugins like \*\*NVCodecs \*\*and **AMFCodecs**. Unfortunately as for now WMFCodecs only supports audio so it’s not a full Windows Media Foundation extension.
 
+![Image3](/images/unreal-images/image3.png)
+
 Let’s start setting up our new amazing camera
+
+<img
+  src="/images/unreal-images/image4.png"
+  alt="Image4"
+  title="Image4"
+  style={{ width:"23%" }}
+/>
+
+<img
+  src="/images/unreal-images/image5.png"
+  alt="Image5"
+  title="Image5"
+  style={{ width:"44%" }}
+/>
 
 You will need a SceneCaptureComponent2D which is the minimum requirement but you may also want to add a timer and a viewfinder for preview.
 
 The minimal requirement to start recording are the following nodes that can be accessed from the **LCKRecorderSubsystem**
 
+<img
+  src="/images/unreal-images/image20.png"
+  alt="Image20"
+  title="Image20"
+  style={{ width:"64%" }}
+/>
+
 **SetupRecorder**: setup the recording settings like resolution and samplerate. Samplerate should match the audio setup and for this version it needs to be 48kHz because Unreal only supports this on Android for microphone capture.
 
 Type “samplerate” in Project Settings and make sure it’s set to 48000 for Android.
 
+<img
+  src="/images/unreal-images/image21.png"
+  alt="Image21"
+  title="Image21"
+  style={{ width:"85%" }}
+/>
+
 The second parameter for this node is the SceneCaptureComponent2D that we want to use as the actual source for the recording.
+
+<img
+  src="/images/unreal-images/image16.png"
+  alt="Image16"
+  title="Image16"
+  style={{ width:"51%" }}
+/>
 
 Make sure the SceneCaptureComponent is not active when the recording is not needed. We don’t capture Every Frame anyway but we use the target framerate in **RecorderParams**
 
+![Image25](/images/unreal-images/image25.png)
+
 **StartPreview**: this is an optional node and it allows the viewfinder to be activated before starting the actual recording process. It’s useful in conjunction with the RenderTarget node that can be requested once the preview is started.
+
+<img
+  src="/images/unreal-images/image14.png"
+  alt="Image14"
+  title="Image14"
+  style={{ width:"59%" }}
+/>
+
+<img
+  src="/images/unreal-images/image17.png"
+  alt="Image17"
+  title="Image17"
+  style={{ width:"91%" }}
+/>
 
 The RenderTarget can be used as a texture in the viewfinder component.
 
 **StartRecording**: once everything has been set up we can start the recording process. Make sure to check the returned value to validate if the recording has actually started successfully.
 
+<img
+  src="/images/unreal-images/image7.png"
+  alt="Image7"
+  title="Image7"
+  style={{ width:"87%" }}
+/>
+
 **GetTime**: now you can get the recording time in seconds and breaking it down in minutes and seconds like this
+
+<img
+  src="/images/unreal-images/image13.png"
+  alt="Image13"
+  title="Image13"
+  style={{ width:"91%" }}
+/>
 
 And show it to the player for a visual hint that the recording is working.
 
 **StopRecording**: when we are done we can stop the recording and the file will be saved in the gallery. This operation might take long depending on the length of the video (hence the size of the file to be copied to the gallery). You may also validate the return value to make sure everything went well.
 
+![Image6](/images/unreal-images/image6.png)
+
 **StopPreview**: you can finally decide if you want to stop the preview so the camera stops rendering and save performance and battery life when not needed.
 
+![Image31](/images/unreal-images/image31.png)
+
 **Settings**: finally you will need to customize the values in **DefaultGame.ini**
+
+![Image26](/images/unreal-images/image26.png)
 
 And provide the actual TrackingId and the GameName which will be used to save the recorded videos in the gallery
