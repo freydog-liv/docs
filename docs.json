@@ -137,8 +137,8 @@
               "unreal/unreal-index",
               "unreal/unreal-installation",
               "unreal/unreal-quickstart",
-              "unreal/design-customization",
-              "unreal/core-architecture",
+              "unreal/unreal-design-customization",
+              "unreal/unreal-core-architecture",
               "unreal/unreal-changelog"
             ]
           }
