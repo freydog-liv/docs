@@ -4,13 +4,19 @@ title: "Unreal Design Customization"
 
 Tablet UI comes from the **LCKUI** plugin. **LCKUI** is a 3D UI Framework.
 
+![Image30](/images/unreal-images/image30.png)
+
 ## Enable interactions
 
 Interaction with the UI is collision-based.
 
 The simplest way to enable interactions is to add a **SphereCollider** with 5-10mm radius to the index fingertip.
 
+![Image9](/images/unreal-images/image9.png)
+
 Make sure that the collider has \*\*UICollision \*\*tag. It’s used to filter collision for UI.
+
+![Image18](/images/unreal-images/image18.png)
 
 ## Enable grabbing
 
@@ -20,13 +26,19 @@ This is an example of how you add the \*\*GrabComponent \*\*from the UE’s VR T
 
 Make sure that you call **GrabStarted** and **GrabEnded** methods on \*\*LCKTablet. \*\*You can set them up in C++ or Blueprint.
 
+![Image28](/images/unreal-images/image28.png)
+
 ## Sound and Haptic Feedback
 
 **TabletDataModel** has a broadcast for a UI element being pressed. You can subscribe your own implementation to it.
 
+![Image12](/images/unreal-images/image12.png)
+
 ## Emission && Lighting
 
 Depending on how you use real-time lighting in your game you might want to tweak emission strength on the UI materials.
+
+![Image23](/images/unreal-images/image23.png)
 
 ## UI Customization
 
@@ -34,4 +46,6 @@ UI visuals defined by the **UITexture** asset. Update it to change the UI look.
 
 Update **LCKTabletTexture** asset to change how the tablet looks.
 
-A Figma source file will be share later.
+A Figma source file will be shared later.
+
+![Image8](/images/unreal-images/image8.png)
