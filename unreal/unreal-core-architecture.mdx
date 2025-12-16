@@ -15,25 +15,44 @@ The LCK Unreal SDK is structured around a ULCKSubsystem (WorldSubsystem) that cr
 
 # Recording profile
 
-Recording quality modes defined in the tablet.
+The Recording Profiles system defines video capture presets for the LCK Tablet. These profiles are managed by **ULCKTabletDataModel **in the **LCKUI **plugin and are fully configurable in Blueprints.
 
-| **Profile**            | **Resolution**               | **Framerate** | **Video Bitrate** | **Audio Bitrate** |
-| :--------------------- | :--------------------------- | :------------ | :---------------- | :---------------- |
-| **SD_30FPS (default)** | 960×540<br />(Soon 1280×720) | 30 fps        | 4 Mbps            | 128 kbps          |
-| **HD_60FPS**           | 1920×1080                    | 60 fps        | 10 Mbps           | 256 kbps          |
+#### **Key Components**
 
-For now tablet recording profile switching isn’t effective (it only visually updates the HD/SD button in the tablet, without the logic being bound) but will be functional in the next update.\
-Editor-exposed settings panel will be added soon, in the meantime you have one temporary way to define your default recording profile.\
-To define the default recording profile of your tablet, you may temporarily set it in **ALCKTablet::BeginPlay()**.\
-\
-\
-**Important:**
+- **ULCKTabletDataModel** (**LCKUI** plugin)
+  - Owns all recording settings
+  - Exposes four FLCKRecordingProfile instances: **Profile_SD**, **Profile_HD**, **Profile_2K**, **Profile_4K **
+  - Exposes **CurrentVideoQuality **(enum: **SD**, **HD**, **2K**, **4K**)
+  - Exposes **CurrentScreenOrientation **(enum: **Landscape**, **Portrait**)
+- **FLCKRecordingProfile** (**LCKTablet** plugin)
+  - USTRUCT containing:
+    - **ELCKRecordingResolution **Resolution
+    - **ELCKFramerate **Framerate
+    - **int32 **VideoBitrate
+    - **int32 **AudioBitrate
+    - **int32 **Samplerate
+- **ULCKService** (**LCKTablet** plugin)
+  - Exposes **ApplyRecordingSettings(int32 Width, int32 Height, int32 Framerate, int32 VideoBitrate, int32 AudioBitrate, int32 Samplerate)**
+  - Forwards parameters to **ULCKRecorderSubsystem**
 
-Directly editing any **.cpp** file inside the plugin folder is **a temporary workaround** to update the default recording settings.
+![Profile1](/images/unreal-images/profile1.png)
 
-![Image15](/images/unreal-images/image15.png)
+**<u>Recording profile Default values:</u>**
 
-![Image29](/images/unreal-images/image29.png)
+**Note: **2K and 4K resolution are only available on Windows.
+
+| **Profile** | **Resolution** | **Framerate** | **Video Bitrate** | **Audio Bitrate** |
+| :---------- | :------------- | :------------ | :---------------- | :---------------- |
+| **SD**      | 1280×720       | 30 fps        | 4 Mbps            | 128 kbps          |
+| **HD**      | 1920×1080      | 60 fps        | 10 Mbps           | 256 kbps          |
+| **2K**      | 2560×1440      | 60 fps        | 20 Mbps           | 320 kbps          |
+| **4K**      | 3840×2160      | 60 fps        | 35 Mbps           | 320 kbps          |
+
+![Profile2](/images/unreal-images/profile2.png)
+
+These recording profiles ca be modified in the **BP_LCKTablet **blueprint to be overwritten as follow :
+
+![Profile3](/images/unreal-images/profile3.png)
 
 # Telemetry
 
