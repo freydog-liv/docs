@@ -143,6 +143,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Unreal API Reference",
+        "groups":[
+          {
+            "group": "API Reference",
+            "pages":[
+              "unreal-api-reference/unreal-api-reference-introduction"
+            ]
+          }
+        ]
       }
       
     ],
