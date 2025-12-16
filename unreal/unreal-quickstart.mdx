@@ -2,11 +2,50 @@
 title: "Unreal Quickstart"
 ---
 
-Copy the \*\*LCK \*\*and \*\*LCKUnrealAudio \*\*plugins in the \*\*Plugins \*\*folder of the project.
+## **Quickstart**
+
+**Step 1: Configure LCK Settings**
+
+1. **Open the LCKGame project following installation guidelines**
+2. Enter your **Tracking ID** in **DefaultGame.ini** (obtained from the LCK Dashboard after account creation).
+3. The GameName will be used to identify the filepath videos and photos are saved.
+
+![Image26](/images/unreal-images/image26.png)
+
+**Step 2: Add the Tablet to Your Level**
+
+1. Locate the tablet Blueprint at **Plugins/LCKTabletContent/Blueprints/BP_LCKTablet.**
+2. Drag **BP_LCKTablet** into your level.
+3. (Optional) Adjust default recording settings in the BP_LCKTablet blueprint:
+   - **Recording Profiles (SD, HD, 2K, 4K)**
+
+The tablet is fully functional out-of-the-box with collision-based interaction, for tablet Grabbing, look at the dedicated section.
+
+**Step 3: Test Recording**
+
+1. Package and deploy to your Quest headset (or run in editor for PC testing).
+2. **In-game:**
+   - Grab the tablet by its handles.
+   - Tap the Record button to start/stop recording.
+   - Use the quality button to cycle between**SD/HD/2K/4K.**
+   - Use the orientation button to toggle **Landscape/Portrait.**
+3. **Recorded videos are saved to:**
+   - Quest: /Movies/GameName
+   - PC: /Videos/GameName
+3. **Recorded photos are saved to:**
+   1. Quest: /Pictures/GameName
+   2. PC: /Pictures/GameName
+
+**Next Steps**
+
+- **Customize recording profiles in the BP_LCKTablet Details panel.**
+- **Explore the full UI system (camera modes, mic toggle, etc.).**
+
+Copy the **LCK** and **LCKUnrealAudio** plugins in the **Plugins** folder of the project.
 
 Open Unreal and make sure the plugins are enabled, they should be by default.
 
-To enable recording on Windows you will also need to enable the \*\*AVCodecsCore \*\*plugin (which should be enabled via dependency when you add LCK) and also add the relevant extension plugins like \*\*NVCodecs \*\*and **AMFCodecs**. Unfortunately as for now WMFCodecs only supports audio so it’s not a full Windows Media Foundation extension.
+To enable recording on Windows you will also need to enable the **AVCodecsCore** plugin (which should be enabled via dependency when you add LCK) and also add the relevant extension plugins like **NVCodecs** and **AMFCodecs**. Unfortunately as for now WMFCodecs only supports audio so it’s not a full Windows Media Foundation extension.
 
 ![Image3](/images/unreal-images/image3.png)
 
@@ -106,9 +145,3 @@ And show it to the player for a visual hint that the recording is working.
 **StopPreview**: you can finally decide if you want to stop the preview so the camera stops rendering and save performance and battery life when not needed.
 
 ![Image31](/images/unreal-images/image31.png)
-
-**Settings**: finally you will need to customize the values in **DefaultGame.ini**
-
-![Image26](/images/unreal-images/image26.png)
-
-And provide the actual TrackingId and the GameName which will be used to save the recorded videos in the gallery
