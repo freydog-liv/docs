@@ -3,6 +3,25 @@ title: "Changelog"
 description: "Product updates and announcements"
 ---
 
+<Update label="v1.4.3" description="18th December 2025">
+  **Added**
+ - Tablet position update order configurable via LCKCameraController, to help overcome tablet movement jitter
+
+**Changed**
+- Removed streaming user subscription requirement
+- Removed LckMicPermissionChecker. Mic Permissions are now resolved via LCK Settings, allowing developers to set when the permission request is made (Startup, TabletSpawn, Mic Unmute, Never)
+- Stop Streaming button now stops stream while finger/ray is clicking the button
+- Improved handling of error telemetry
+- Improved malformed Tracking ID reporting
+
+**Fixed**
+- Quest captures not matching the original game renders color output
+- YouTube streaming requiring manual start step
+- LIV Hub button not opening store page on latest Meta OS
+- Support for .net Standard 2.0 & C# 8.0
+</Update>
+
+
 <Update label="v1.4.2" description="17th November 2025">
   **Fixed**
 
