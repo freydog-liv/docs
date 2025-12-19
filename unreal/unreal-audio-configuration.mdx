@@ -3,7 +3,7 @@ title: "Unreal Audio Configuration"
 ---
 
 <Info>
-  This page is under construction.  If you're having audio challenges, please drop us a note at [liv.tv/discord](https://liv.tv/discord) 
+  This page is under construction.  If you're having audio challenges, please drop us a note at [liv.tv/discord](https://liv.tv/discord)
 </Info>
 
 Voice chat and game audio must match in samplerate, otherwise audio distortion will occur in recordings.
@@ -17,3 +17,15 @@ FMOD has this options, instead of leaving it to 0 I'd suggest to set it to somet
 FMOD **Output Format** set to Stereo, default is 5.1 which is unsupported at this time
 
 ![Screenshot 2025 12 19 174248](/images/unreal-images/Screenshot_2025-12-19_174248.png)
+
+# Wwise
+
+Suggest to set **Sample Rate **to 48000 and **Channel Config Type **to Standard, rather than Anonymous or Ambisonic.
+
+![Wwiseimage](/images/unreal-images/wwiseimage.png)
+
+Setting Channels to 2 sometimes resolves some issues.
+
+These settings need to be done separately for Android and Windows, depending on your platforms.
+
+![Wwise2image](/images/unreal-images/wwise2image.png)
