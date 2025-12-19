@@ -140,6 +140,7 @@
               "unreal/unreal-design-customization",
               "unreal/unreal-core-architecture",
               "unreal/unreal-audio-configuration",
+              "unreal/unreal-troubleshooting",
               "unreal/unreal-changelog"
             ]
           }
